@@ -18,7 +18,7 @@ public class Main {
         try {
             SQLList listForSend;
             db.open();
-            listForSend = db.getLines();
+            listForSend = db.getZones();
             db.close();
             allObject=listForSend.toJSON();
         } catch (SQLException e) {

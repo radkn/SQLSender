@@ -19,7 +19,7 @@ public class SQLZone implements ISendable{
 
     @Override
     public String toJSON() {
-        return "{\"lineTitle\":\"" + zoneTitle
+        return "{\"zoneTitle\":\"" + zoneTitle
                 + "\",\"uid\":\"" + uid
                 + "\",\"datatime_start\":\"" + datatime_start
                 + "\",\"datatime_end\":\"" + datatime_end
