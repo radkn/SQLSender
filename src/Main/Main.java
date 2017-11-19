@@ -1,6 +1,12 @@
 package Main;
 
+import DAO.DAOFactory;
+import DAO.Line;
+import DAO.LineDAO;
+import DAO.MySQLDaoFactory;
+
 import java.sql.*;
+import java.util.List;
 
 public class Main {
     private static String DB_NAME = "jdbc:mysql://localhost:3306/NewVision";
@@ -9,6 +15,11 @@ public class Main {
 
     public static void main(String[] args){
         System.out.println(DB_SELECT_All_ToJSON());
+        try {
+            testGetAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static String DB_SELECT_All_ToJSON(){
@@ -26,6 +37,17 @@ public class Main {
         }
 
         return allObject;
+    }
+
+    public static void testGetAll() throws Exception{
+        DAOFactory daoFactory = new MySQLDaoFactory();
+        List<Line> list;
+        try(Connection con = daoFactory.getConnection()){
+            LineDAO daoL = daoFactory.getLineDao(con);
+            list = daoL.getAll();
+        }
+
+        System.out.println(list.get(1).getLineTitle());
     }
 
 }

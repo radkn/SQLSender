@@ -18,6 +18,9 @@ public class SQLProvider{
         DB_PASSWORD = password;
     }
 
+
+
+
     public SQLList getLines() throws SQLException {
         query = "SELECT * FROM Line";
         statement = connection.prepareStatement(query);
