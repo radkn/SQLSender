@@ -1,5 +1,5 @@
 package Main;
 
-interface ISendable {
+public interface ISendable {
     public String toJSON();
 }

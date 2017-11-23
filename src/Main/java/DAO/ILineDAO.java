@@ -3,7 +3,7 @@ package DAO;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface LineDAO {
+public interface ILineDAO {
 
     public Line create();
 
