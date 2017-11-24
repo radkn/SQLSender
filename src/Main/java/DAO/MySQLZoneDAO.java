@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
@@ -21,6 +22,21 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     @Override
     public String getSelectQuery() {
         return "SELECT * FROM Zone";
+    }
+
+    @Override
+    public String getCreateQuery() {
+        return null;
+    }
+
+    @Override
+    public String getupdateQuery() {
+        return null;
+    }
+
+    @Override
+    public String getDeleteQuery() {
+        return null;
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -46,6 +62,16 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    protected void prepareStatementForInsert(PreparedStatement statement, Zone object) throws Exception {
+
+    }
+
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement statement, Zone object) throws Exception {
+
     }
 
     @Override

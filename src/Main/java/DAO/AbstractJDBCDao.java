@@ -25,8 +25,40 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     public abstract String getSelectQuery();
 
+    /**
+     * Возвращает sql запрос для вставки новой записи в базу данных.
+     * <p/>
+     * INSERT INTO [Table] ([column, column, ...]) VALUES (?, ?, ...);
+     */
+    public abstract String getCreateQuery();
+
+    /**
+     * Возвращает sql запрос для обновления записи.
+     * <p/>
+     * UPDATE [Table] SET [column = ?, column = ?, ...] WHERE id = ?;
+     */
+    public abstract String getupdateQuery();
+
+    /**
+     * Возвращает sql запрос для удаления записи из базы данных.
+     * <p/>
+     * DELETE FROM [Table] WHERE id= ?;
+     */
+    public abstract String getDeleteQuery();
+
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     protected abstract List<T> parseResultSet(ResultSet rs);
+
+    /**
+     * Устанавливает аргументы insert запроса в соответствии со значением полей объекта object.
+     */
+    protected abstract void prepareStatementForInsert(PreparedStatement statement, T object) throws Exception;
+
+    /**
+     * Устанавливает аргументы update запроса в соответствии со значением полей объекта object.
+     */
+    protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws Exception;
+
 
     /**возвращает все записи выбраной таблицы в виде списка объектов*/
     public List<T> getAll(){

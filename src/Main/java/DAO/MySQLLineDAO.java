@@ -21,6 +21,21 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         return "SELECT * FROM Line";
     }
 
+    @Override
+    public String getCreateQuery() {
+        return null;
+    }
+
+    @Override
+    public String getupdateQuery() {
+        return null;
+    }
+
+    @Override
+    public String getDeleteQuery() {
+        return null;
+    }
+
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     @Override
     protected List<Line> parseResultSet(ResultSet rs) {
@@ -43,6 +58,16 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    protected void prepareStatementForInsert(PreparedStatement statement, Line object) throws Exception {
+
+    }
+
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement statement, Line object) throws Exception {
+
     }
 
     @Override
