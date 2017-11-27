@@ -2,24 +2,28 @@ package DAO;
 
 import Main.ISendable;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 
 public class Line implements ISendable {
-    private String id;
+    private int id;
     private String scene_id;
     private String lineTitle;
     private String uid;
-    private String dataTime;
-    private String status;
-    private String type;
-    private String time_stamp;
-    private String transmitted;
+    private Timestamp dataTime;
+    private int status;
+    private int type;
+    private Timestamp time_stamp;
+    private boolean transmitted;
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,51 +51,51 @@ public class Line implements ISendable {
         this.uid = uid;
     }
 
-    public String getDataTime() {
+    public Timestamp getDataTime() {
         return dataTime;
     }
 
-    public void setDataTime(String dataTime) {
-        /**обрезаем два лишних символа с базы (".0")*/
-        this.dataTime = dataTime.substring(0, dataTime.length()-2);
+    public void setDataTime(Timestamp dataTime) {
+        this.dataTime = dataTime;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public String getTime_stamp() {
+    public Timestamp getTime_stamp() {
         return time_stamp;
     }
 
-    public void setTime_stamp(String time_stamp) {
+    public void setTime_stamp(Timestamp time_stamp) {
         this.time_stamp = time_stamp;
     }
 
-    public String getTransmitted() {
+    public boolean getTransmitted() {
         return transmitted;
     }
 
-    public void setTransmitted(String transmitted) {
+    public void setTransmitted(boolean transmitted) {
         this.transmitted = transmitted;
     }
 
     public String toJSON() {
+        DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
         return "{\"lineTitle\":\"" + lineTitle
                 + "\",\"uid\":\"" + uid
-                + "\",\"dataTime\":\"" + dataTime
+                + "\",\"dataTime\":\"" + sendFormat.format(new java.util.Date(dataTime.getTime()))
                 + "\",\"status\":\"" + status
                 + "\",\"type\":\"" + type
                 + "\"}";

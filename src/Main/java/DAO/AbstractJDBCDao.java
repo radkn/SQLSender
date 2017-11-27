@@ -37,7 +37,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      * <p/>
      * UPDATE [Table] SET [column = ?, column = ?, ...] WHERE id = ?;
      */
-    public abstract String getupdateQuery();
+    public abstract String getUpdateQuery();
 
     /**
      * Возвращает sql запрос для удаления записи из базы данных.
@@ -59,8 +59,25 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws Exception;
 
+    /***/
+    @Override
+    public void update(T object) {
+        String sql = getUpdateQuery();
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
+            prepareStatementForUpdate(statement, object);
+            int count = statement.executeUpdate();
+            if(count !=1){
+                throw new Exception("On update modify more then 1 record: " + count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**возвращает все записи выбраной таблицы в виде списка объектов*/
+    @Override
     public List<T> getAll(){
         List<T> list = new ArrayList<T>();
         String sql = getSelectQuery();

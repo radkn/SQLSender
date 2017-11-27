@@ -27,8 +27,10 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     }
 
     @Override
-    public String getupdateQuery() {
-        return null;
+    public String getUpdateQuery() {
+        return "UPDATE Line\n" +
+                "SET status = ? " +
+                "WHERE id = ?";
     }
 
     @Override
@@ -43,15 +45,15 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         try{
             while (rs.next()){
                 Line l = new Line();
-                l.setId(rs.getString(1));
+                l.setId(rs.getInt(1));
                 l.setScene_id(rs.getString(2));
                 l.setLineTitle(rs.getString(3));
                 l.setUid(rs.getString(4));
-                l.setDataTime(rs.getString(5));
-                l.setStatus(rs.getString(6));
-                l.setType(rs.getString(7));
-                l.setTime_stamp(rs.getString(8));
-                l.setTransmitted(rs.getString(9));
+                l.setDataTime(rs.getTimestamp(5));
+                l.setStatus(rs.getInt(6));
+                l.setType(rs.getInt(7));
+                l.setTime_stamp(rs.getTimestamp(8));
+                l.setTransmitted(rs.getBoolean(9));
                 result.add(l);
             }
         } catch (SQLException e) {
@@ -67,7 +69,8 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Line object) throws Exception {
-
+        statement.setBoolean(1,object.getTransmitted());
+        statement.setInt(2, 398);
     }
 
     @Override
@@ -83,12 +86,6 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     @Override
     public Line getByPk(int key) throws SQLException {
         return null;
-    }
-
-
-    @Override
-    public void update(Line line) {
-
     }
 
     @Override

@@ -30,7 +30,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     }
 
     @Override
-    public String getupdateQuery() {
+    public String getUpdateQuery() {
         return null;
     }
 
@@ -46,15 +46,15 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         try {
             while (rs.next()){
                 Zone z = new Zone();
-                z.setId(rs.getString(1));
+                z.setId(rs.getInt(1));
                 z.setScene_id(rs.getString(2));
                 z.setZoneTitle(rs.getString(3));
                 z.setUid(rs.getString(4));
-                z.setDatatime_start(rs.getString(5));
-                z.setDatatime_end(rs.getString(6));
-                z.setDatatime_delay(rs.getString(7));
+                z.setDatatime_start(rs.getTimestamp(5));
+                z.setDatatime_end(rs.getTimestamp(6));
+                z.setDatatime_delay(rs.getInt(7));
                 z.setType(rs.getString(8));
-                z.setTime_stamp(rs.getString(9));
+                z.setTime_stamp(rs.getTimestamp(9));
                 z.setTransmitted(rs.getString(10));
                 result.add(z);
             }
@@ -89,10 +89,6 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         return null;
     }
 
-    @Override
-    public void update(Zone object) throws SQLException {
-
-    }
 
     @Override
     public void delate(Zone object) throws SQLException {

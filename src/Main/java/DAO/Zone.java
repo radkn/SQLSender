@@ -2,23 +2,27 @@ package DAO;
 
 import Main.ISendable;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Zone implements ISendable {
-    private String id;
+    private int id;
     private String scene_id;
     private String zoneTitle;
     private String uid;
-    private String datatime_start;
-    private String datatime_end;
-    private String datatime_delay;
+    private Timestamp datatime_start;
+    private Timestamp datatime_end;
+    private int datatime_delay;
     private String type;
-    private String time_stamp;
+    private Timestamp time_stamp;
     private String transmitted;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,29 +50,27 @@ public class Zone implements ISendable {
         this.uid = uid;
     }
 
-    public String getDatatime_start() {
+    public Timestamp getDatatime_start() {
         return datatime_start;
     }
 
-    public void setDatatime_start(String datatime_start) {
-        /**обрезаем два лишних символа с базы (".0")*/
-        this.datatime_start = datatime_start.substring(0, datatime_start.length()-2);
+    public void setDatatime_start(Timestamp datatime_start) {
+        this.datatime_start = datatime_start;
     }
 
-    public String getDatatime_end() {
+    public Timestamp getDatatime_end() {
         return datatime_end;
     }
 
-    public void setDatatime_end(String datatime_end) {
-        /**обрезаем два лишних символа с базы (".0")*/
-        this.datatime_end = datatime_end.substring(0, datatime_end.length()-2);
+    public void setDatatime_end(Timestamp datatime_end) {
+        this.datatime_end = datatime_end;
     }
 
-    public String getDatatime_delay() {
+    public int getDatatime_delay() {
         return datatime_delay;
     }
 
-    public void setDatatime_delay(String datatime_delay) {
+    public void setDatatime_delay(int datatime_delay) {
         this.datatime_delay = datatime_delay;
     }
 
@@ -80,11 +82,11 @@ public class Zone implements ISendable {
         this.type = type;
     }
 
-    public String getTime_stamp() {
+    public Timestamp getTime_stamp() {
         return time_stamp;
     }
 
-    public void setTime_stamp(String time_stamp) {
+    public void setTime_stamp(Timestamp time_stamp) {
         this.time_stamp = time_stamp;
     }
 
@@ -99,10 +101,12 @@ public class Zone implements ISendable {
 
     @Override
     public String toJSON() {
+
+        DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
         return "{\"zoneTitle\":\"" + zoneTitle
                 + "\",\"uid\":\"" + uid
-                + "\",\"datatime_start\":\"" + datatime_start
-                + "\",\"datatime_end\":\"" + datatime_end
+                + "\",\"datatime_start\":\"" + sendFormat.format(new java.util.Date(datatime_start.getTime()))
+                + "\",\"datatime_end\":\"" + sendFormat.format(new java.util.Date(datatime_end.getTime()))
                 + "\",\"datatime_delay\":\"" + datatime_delay
                 + "\",\"type\":\"" + type
                 + "\"}";

@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args){
         try {
-            System.out.println(testGetAll(Zone.class));
+            System.out.println(testGetAll(Line.class));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -24,12 +24,14 @@ public class Main {
 
     public static String testGetAll(Class cl) throws Exception{
         IDAOFactory daoFactory = new MySQLDaoFactory(DB_URL, DB_USER, DB_PASSWORD);
-        List<Line> list;
+        List<ISendable> list;
         SQLList listForSend = new SQLList();
         String allObject;
         try(Connection con = daoFactory.getConnection()){
             IGenericDAO daoL = daoFactory.getDAO(con, cl);
             list = daoL.getAll();
+            //list.get(1).setTransmitted(true);
+            //daoL.update(list.get(1));
             for(int i = 0; i < list.size(); i++){
                 listForSend.add(list.get(i));
             }
