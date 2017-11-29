@@ -11,6 +11,12 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         super(connection);
     }
 
+    private class PersistLine extends Line {
+        public void setId(int id){
+            super.setId(id);
+        }
+    }
+
     /**
      * Возвращает sql запрос для получения всех записей.
      * <p/>
@@ -23,13 +29,14 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     @Override
     public String getCreateQuery() {
-        return null;
+        return "INSERT INTO Line (scene_id, lineTitle, uid, datetime, status, type, time_stamp, transmitted)" +
+                "VALUE (?,?,?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
         return "UPDATE Line\n" +
-                "SET status = ? " +
+                "SET transmitted = ? " +
                 "WHERE id = ?";
     }
 
@@ -64,33 +71,26 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Line object) throws Exception {
-
+        statement.setString(1, object.getScene_id());
+        statement.setString(2, object.getLineTitle());
+        statement.setString(3, object.getUid());
+        statement.setTimestamp(4, object.getDataTime());
+        statement.setInt(5, object.getStatus());
+        statement.setInt(6, object.getType());
+        statement.setTimestamp(7, object.getTime_stamp());
+        statement.setBoolean(8, object.getTransmitted());
     }
 
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Line object) throws Exception {
-        statement.setBoolean(1,object.getTransmitted());
-        statement.setInt(2, 398);
+
+        statement.setInt(2, object.getId());
+        statement.setBoolean(1, object.getTransmitted());
+
     }
 
     @Override
-    public Line create() {
-        return null;
+    public Line create(Line l) throws SQLException {
+        return persist(l);
     }
-
-    @Override
-    public Line persist(Line object) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Line getByPk(int key) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void delate(Line line) {
-
-    }
-
 }

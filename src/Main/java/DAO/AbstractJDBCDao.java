@@ -59,14 +59,44 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws Exception;
 
-    /***/
+    @Override
+    public T persist(T object) throws SQLException {
+        T persistInstance = null;
+        /**Добавляем запись*/
+        String sql = getCreateQuery();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            prepareStatementForInsert(statement, object);
+            int count = statement.executeUpdate();
+            if (count != 1) {
+                throw new Exception("On persist modify more then 1 record: " + count);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /**Получаем только что вставленую запись*/
+        sql = getSelectQuery() + " WHERE id = LAST_INSERT_ID();";// + lastId;
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet rs = statement.executeQuery();
+            List<T> list = parseResultSet(rs);
+            if ((list == null) || (list.size() != 1)) {
+                throw new Exception("Exception on findByPK new persist data.");
+            }
+            persistInstance = list.iterator().next();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return persistInstance;
+    }
+
+        /***/
     @Override
     public void update(T object) {
         String sql = getUpdateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)){
             prepareStatementForUpdate(statement, object);
             int count = statement.executeUpdate();
-            if(count !=1){
+            if(count != 1){
                 throw new Exception("On update modify more then 1 record: " + count);
             }
         } catch (SQLException e) {
@@ -90,4 +120,14 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         return list;
 
     }
+
+        @Override
+        public T getByPk(int key) throws SQLException {
+            return null;
+        }
+
+        @Override
+        public void delate(T object) {
+
+        }
 }

@@ -16,7 +16,7 @@ public class Zone implements ISendable {
     private int datatime_delay;
     private String type;
     private Timestamp time_stamp;
-    private String transmitted;
+    private boolean transmitted;
 
     public int getId() {
         return id;
@@ -90,11 +90,11 @@ public class Zone implements ISendable {
         this.time_stamp = time_stamp;
     }
 
-    public String getTransmitted() {
+    public boolean getTransmitted() {
         return transmitted;
     }
 
-    public void setTransmitted(String transmitted) {
+    public void setTransmitted(boolean transmitted) {
         this.transmitted = transmitted;
     }
 

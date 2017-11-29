@@ -8,7 +8,7 @@ import java.util.List;
 public interface IGenericDAO<T, PK extends Serializable> {
 
     /** Создает новую запись и соответствующий ей объект */
-    public T create() throws SQLException;
+    public T create(T object) throws SQLException;
 
     /** Создает новую запись, соответствующую объекту object */
     public T persist(T object) throws SQLException;

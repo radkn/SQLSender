@@ -24,14 +24,15 @@ public class Main {
 
     public static String testGetAll(Class cl) throws Exception{
         IDAOFactory daoFactory = new MySQLDaoFactory(DB_URL, DB_USER, DB_PASSWORD);
-        List<ISendable> list;
+        List<Line> list;
         SQLList listForSend = new SQLList();
         String allObject;
         try(Connection con = daoFactory.getConnection()){
             IGenericDAO daoL = daoFactory.getDAO(con, cl);
             list = daoL.getAll();
-            //list.get(1).setTransmitted(true);
-            //daoL.update(list.get(1));
+            daoL.create(list.get(0));
+            list.get(2).setTransmitted(true);
+            daoL.update(list.get(2));
             for(int i = 0; i < list.size(); i++){
                 listForSend.add(list.get(i));
             }

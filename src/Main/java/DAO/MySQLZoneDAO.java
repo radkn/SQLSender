@@ -55,7 +55,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
                 z.setDatatime_delay(rs.getInt(7));
                 z.setType(rs.getString(8));
                 z.setTime_stamp(rs.getTimestamp(9));
-                z.setTransmitted(rs.getString(10));
+                z.setTransmitted(rs.getBoolean(10));
                 result.add(z);
             }
         } catch (SQLException e) {
@@ -75,23 +75,12 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     }
 
     @Override
-    public Zone create() throws SQLException {
+    public Zone create(Zone z) throws SQLException {
         return null;
     }
 
     @Override
     public Zone persist(Zone object) throws SQLException {
         return null;
-    }
-
-    @Override
-    public Zone getByPk(int key) throws SQLException {
-        return null;
-    }
-
-
-    @Override
-    public void delate(Zone object) throws SQLException {
-
     }
 }
