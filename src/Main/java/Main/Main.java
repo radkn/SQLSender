@@ -23,11 +23,17 @@ public class Main {
     }
 
     public static String testGetAll(Class cl) throws Exception{
+        //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(DB_URL, DB_USER, DB_PASSWORD);
+        //список для хранения полученых линий с базы данных
         List<Line> list;
+        //
         SQLList listForSend = new SQLList();
+        //строка для хранения JSON
         String allObject;
+        //создание подкличения к базе
         try(Connection con = daoFactory.getConnection()){
+            //создание
             IGenericDAO daoL = daoFactory.getDAO(con, cl);
             list = daoL.getAll();
             daoL.create(list.get(0));
