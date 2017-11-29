@@ -26,12 +26,15 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return null;
+        return "INSERT INTO Zone (scene_id, zoneTitle, uid, datetime_start, datetime_end, datetime_delay, type, time_stamp, transmitted)" +
+                "VALUE (?,?,?,?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
-        return null;
+        return "UPDATE Zone\n" +
+                "SET scene_id = ?, zoneTitle = ?, uid = ?, datetime_start = ?, datetime_end = ?, datetime_delay = ?, type = ?, time_stamp = ?, transmitted = ? " +
+                "WHERE id = ?";
     }
 
     @Override
@@ -53,7 +56,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
                 z.setDatatime_start(rs.getTimestamp(5));
                 z.setDatatime_end(rs.getTimestamp(6));
                 z.setDatatime_delay(rs.getInt(7));
-                z.setType(rs.getString(8));
+                z.setType(rs.getInt(8));
                 z.setTime_stamp(rs.getTimestamp(9));
                 z.setTransmitted(rs.getBoolean(10));
                 result.add(z);
@@ -66,21 +69,34 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
 
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, Zone object) throws Exception {
-
+        statement.setString(1, object.getScene_id());
+        statement.setString(2, object.getZoneTitle());
+        statement.setString(3, object.getUid());
+        statement.setTimestamp(4, object.getDatatime_start());
+        statement.setTimestamp(5, object.getDatatime_end());
+        statement.setInt(6, object.getDatatime_delay());
+        statement.setInt(7, object.getType());
+        statement.setTimestamp(8, object.getTime_stamp());
+        statement.setBoolean(9, object.getTransmitted());
     }
 
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Zone object) throws Exception {
+        statement.setString(1, object.getScene_id());
+        statement.setString(2, object.getZoneTitle());
+        statement.setString(3, object.getUid());
+        statement.setTimestamp(4, object.getDatatime_start());
+        statement.setTimestamp(5, object.getDatatime_end());
+        statement.setInt(6, object.getDatatime_delay());
+        statement.setInt(7, object.getType());
+        statement.setTimestamp(8, object.getTime_stamp());
+        statement.setBoolean(9, object.getTransmitted());
 
+        statement.setInt(10, object.getId());
     }
 
     @Override
     public Zone create(Zone z) throws SQLException {
-        return null;
-    }
-
-    @Override
-    public Zone persist(Zone object) throws SQLException {
-        return null;
+        return persist(z);
     }
 }

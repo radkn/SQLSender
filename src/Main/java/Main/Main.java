@@ -31,8 +31,9 @@ public class Main {
             IGenericDAO daoL = daoFactory.getDAO(con, cl);
             list = daoL.getAll();
             daoL.create(list.get(0));
-            list.get(2).setTransmitted(true);
-            daoL.update(list.get(2));
+            Line line = list.get(5);
+            line.setId(list.get(list.size()-3).getId());
+            daoL.update(line);
             for(int i = 0; i < list.size(); i++){
                 listForSend.add(list.get(i));
             }

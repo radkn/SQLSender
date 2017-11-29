@@ -36,7 +36,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     @Override
     public String getUpdateQuery() {
         return "UPDATE Line\n" +
-                "SET transmitted = ? " +
+                "SET scene_id = ?, lineTitle = ?, uid = ?, datetime = ?, status = ?, type = ?, time_stamp = ?, transmitted = ? " +
                 "WHERE id = ?";
     }
 
@@ -84,9 +84,16 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     @Override
     protected void prepareStatementForUpdate(PreparedStatement statement, Line object) throws Exception {
 
-        statement.setInt(2, object.getId());
-        statement.setBoolean(1, object.getTransmitted());
+        statement.setString(1, object.getScene_id());
+        statement.setString(2, object.getLineTitle());
+        statement.setString(3, object.getUid());
+        statement.setTimestamp(4, object.getDataTime());
+        statement.setInt(5, object.getStatus());
+        statement.setInt(6, object.getType());
+        statement.setTimestamp(7, object.getTime_stamp());
+        statement.setBoolean(8, object.getTransmitted());
 
+        statement.setInt(9, object.getId());
     }
 
     @Override

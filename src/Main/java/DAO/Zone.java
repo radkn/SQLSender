@@ -14,7 +14,7 @@ public class Zone implements ISendable {
     private Timestamp datatime_start;
     private Timestamp datatime_end;
     private int datatime_delay;
-    private String type;
+    private int type;
     private Timestamp time_stamp;
     private boolean transmitted;
 
@@ -74,11 +74,11 @@ public class Zone implements ISendable {
         this.datatime_delay = datatime_delay;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
