@@ -70,6 +70,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
             if (count != 1) {
                 throw new Exception("On persist modify more then 1 record: " + count);
             }
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,6 +84,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
                 throw new Exception("Exception on findByPK new persist data.");
             }
             persistInstance = list.iterator().next();
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -99,6 +101,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
             if(count != 1){
                 throw new Exception("On update modify more then 1 record: " + count);
             }
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -114,6 +117,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         try(PreparedStatement stm = connection.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             list = parseResultSet(rs);
+            stm.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -122,12 +126,40 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     }
 
         @Override
-        public T getByPk(int key) throws SQLException {
-            return null;
+        public T getByPk(int key) throws Exception {
+            List<T> list = null;
+            String sql = getSelectQuery() + "WHERE id = ?";
+            try(PreparedStatement statement = connection.prepareStatement(sql)){
+                statement.setInt(1,key);
+                ResultSet rs = statement.executeQuery();
+                list = parseResultSet(rs);
+                statement.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            if ((list == null) || (list.size() == 0)){
+                throw new Exception("Record with PK = " + key + " not found.");
+            }
+            if (list.size()>1){
+                throw new Exception("Received more than one record.");
+            }
+            return list.iterator().next();
         }
 
         @Override
-        public void delate(T object) {
-
+        public void delete(int id) {
+            String sql = getDeleteQuery();
+            try(PreparedStatement stm = connection.prepareStatement(sql)){
+                stm.setInt(1,id);
+                int count = stm.executeUpdate();
+                if(count != 1){
+                    throw new Exception("On delete modify more then 1 record: " + count);
+                }
+                stm.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 }

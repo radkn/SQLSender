@@ -24,7 +24,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
      */
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM Line";
+        return "SELECT * FROM Line ";
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     @Override
     public String getDeleteQuery() {
-        return null;
+        return "DELETE FROM Line WHERE id = ?;";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
