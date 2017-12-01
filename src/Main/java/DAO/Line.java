@@ -95,7 +95,7 @@ public class Line implements ISendable {
         DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
         return "{\"lineTitle\":\"" + lineTitle
                 + "\",\"uid\":\"" + uid
-                + "\",\"dataTime\":\"" + sendFormat.format(new java.util.Date(dataTime.getTime()))
+                + "\",\"datetime\":\"" + sendFormat.format(new java.util.Date(dataTime.getTime()))
                 + "\",\"status\":\"" + status
                 + "\",\"type\":\"" + type
                 + "\"}";
