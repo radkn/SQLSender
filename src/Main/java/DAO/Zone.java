@@ -105,9 +105,9 @@ public class Zone implements ISendable {
         DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
         return "{\"zoneTitle\":\"" + zoneTitle
                 + "\",\"uid\":\"" + uid
-                + "\",\"datatime_start\":\"" + sendFormat.format(new java.util.Date(datatime_start.getTime()))
-                + "\",\"datatime_end\":\"" + sendFormat.format(new java.util.Date(datatime_end.getTime()))
-                + "\",\"datatime_delay\":\"" + datatime_delay
+                + "\",\"datetime_start\":\"" + sendFormat.format(new java.util.Date(datatime_start.getTime()))
+                + "\",\"datetime_end\":\"" + sendFormat.format(new java.util.Date(datatime_end.getTime()))
+                + "\",\"datetime_delay\":\"" + datatime_delay
                 + "\",\"type\":\"" + type
                 + "\"}";
     }

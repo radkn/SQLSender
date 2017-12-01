@@ -1,7 +1,7 @@
 <object-stream>
   <java.lang.Class>
     <DB__URL>jdbc:mysql://localhost:3306/NewVision</DB__URL>
-    <DB__USER>mysql</DB__USER>
-    <DB__PASSWORD>mysql</DB__PASSWORD>
+    <DB__USER>root</DB__USER>
+    <DB__PASSWORD>root</DB__PASSWORD>
   </java.lang.Class>
 </object-stream>

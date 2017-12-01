@@ -2,6 +2,7 @@ package Main;
 
 import DAO.*;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 /**
@@ -11,8 +12,24 @@ import java.util.List;
 * */
 public class Main {
     public static void main(String[] args){
-        boolean sendSuccess = sendLines();
+        boolean sendSuccess = sendZones();
         System.out.println(sendSuccess);
+    }
+
+    public static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
+        XMLwriterReader<Parameters> reader = new XMLwriterReader(".idea/parameters/parameters.xml");
+        Parameters param = reader.ReadFile(Parameters.class);
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+        try (Connection con = daoFactory.getConnection()) {
+            IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
+            for (Line l : lines) {
+                daoL.create(l);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
