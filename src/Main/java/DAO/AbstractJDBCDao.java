@@ -40,6 +40,13 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     public abstract String getUpdateQuery();
 
     /**
+     * Возвращает sql запрос для обновления записи.
+     * <p/>
+     * UPDATE [Table] SET [column = ?, column = ?, ...] WHERE id = ?;
+     */
+    public abstract String getUpdateTransmittedQuery();
+
+    /**
      * Возвращает sql запрос для удаления записи из базы данных.
      * <p/>
      * DELETE FROM [Table] WHERE id= ?;
@@ -109,6 +116,24 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         }
     }
 
+    @Override
+    public void updateTransmitted(int id, boolean transmitted) {
+        String sql = getUpdateTransmittedQuery();
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setBoolean(1, transmitted);
+            statement.setInt(2, id);
+            int count = statement.executeUpdate();
+            if(count != 1){
+                throw new Exception("On update modify more then 1 record: " + count);
+            }
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**возвращает все записи выбраной таблицы в виде списка объектов*/
     @Override
     public List<T> getAll(){
@@ -123,6 +148,21 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         }
         return list;
 
+    }
+
+    public List<T> getByTransmittedLimit(boolean tr, int limit){
+        List<T> list = new ArrayList<T>();
+        String sql = getSelectQuery() + "WHERE transmitted = ? LIMIT ?";
+        try(PreparedStatement stm = connection.prepareStatement(sql)) {
+            stm.setBoolean(1,tr);
+            stm.setInt(2, limit);
+            ResultSet rs = stm.executeQuery();
+            list = parseResultSet(rs);
+            stm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
         @Override

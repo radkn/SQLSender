@@ -41,6 +41,13 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     }
 
     @Override
+    public String getUpdateTransmittedQuery() {
+        return "UPDATE Line\n" +
+                "SET transmitted = ? " +
+                "WHERE id = ? ";
+    }
+
+    @Override
     public String getDeleteQuery() {
         return "DELETE FROM Line WHERE id = ?;";
     }
@@ -95,6 +102,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
         statement.setInt(9, object.getId());
     }
+
 
     @Override
     public Line create(Line l) throws SQLException {

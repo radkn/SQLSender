@@ -38,6 +38,13 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     }
 
     @Override
+    public String getUpdateTransmittedQuery() {
+        return "UPDATE Zone\n" +
+                "SET transmitted = ? " +
+                "WHERE id = ?";
+    }
+
+    @Override
     public String getDeleteQuery() {
         return "DELETE FROM Line WHERE id = ?;";
     }
