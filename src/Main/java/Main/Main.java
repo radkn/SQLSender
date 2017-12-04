@@ -27,7 +27,7 @@ public class Main {
      * @throws ClassNotFoundException
      */
     public static void transmittedsToTRUELine(List<Line> list)throws IOException, ClassNotFoundException {
-        XMLwriterReader<Parameters> reader = new XMLwriterReader(".idea/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
@@ -49,7 +49,7 @@ public class Main {
      * @throws ClassNotFoundException
      */
     public static void transmittedsToTRUEZone(List<Zone> list)throws IOException, ClassNotFoundException {
-        XMLwriterReader<Parameters> reader = new XMLwriterReader(".idea/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
@@ -72,7 +72,7 @@ public class Main {
      * @throws ClassNotFoundException
      */
     public static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
-        XMLwriterReader<Parameters> reader = new XMLwriterReader(".idea/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
@@ -96,7 +96,7 @@ public class Main {
      * @throws Exception
      */
     public static List<Line> getLines() throws Exception{
-        XMLwriterReader<Parameters> reader = new XMLwriterReader(".idea/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
@@ -134,7 +134,7 @@ public class Main {
      * @throws Exception
      */
     public static List<Zone> getZones() throws Exception{
-        XMLwriterReader<Parameters> reader = new XMLwriterReader(".idea/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
