@@ -46,7 +46,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM Line WHERE id = ?;";
+        return "DELETE FROM Zone WHERE id = ?;";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/

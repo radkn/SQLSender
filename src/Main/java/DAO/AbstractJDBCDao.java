@@ -98,7 +98,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         return persistInstance;
     }
 
-        /***/
+
     @Override
     public void update(T object) {
         String sql = getUpdateQuery();
@@ -116,6 +116,11 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         }
     }
 
+    /**
+     * Обновляет поле transmitted записи указаного id соответственно параметру transmitted
+     * @param id id записи которую нужно обновить
+     * @param transmitted значение согласно которому необходимо обновлять запись
+     */
     @Override
     public void updateTransmitted(int id, boolean transmitted) {
         String sql = getUpdateTransmittedQuery();
@@ -150,9 +155,15 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
 
     }
 
+    /**
+     * Возвращает первые limit записей со значением tr поля transmitted
+     * @param tr значение поля transmitted по которому выполняеться поиск
+     * @param limit количество записей которые необходимо получить
+     * @return
+     */
     public List<T> getByTransmittedLimit(boolean tr, int limit){
         List<T> list = new ArrayList<T>();
-        String sql = getSelectQuery() + "WHERE transmitted = ? LIMIT ?";
+        String sql = getSelectQuery() + " WHERE transmitted = ? LIMIT ?";
         try(PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setBoolean(1,tr);
             stm.setInt(2, limit);
