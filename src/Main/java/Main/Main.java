@@ -107,7 +107,7 @@ public class Main {
             //создание объекта реализующего интерфейс работы с базой данных
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
             //получение списка первых 100 записей таблици в которых параметр transmitted = false
-            list = daoL.getByTransmittedLimit(false, 100);
+            list = daoL.getByTransmittedLimit(param.getTtansmitted(), param.getOnePackOfStrings());
             //создание новой записи в таблице по переданому объекту
 //            daoL.create(list.get(0));
 //            Line line = list.get(5);
@@ -145,7 +145,7 @@ public class Main {
             //создание объекта реализующего интерфейс работы с базой данных
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
             //получение списка первых 100 записей таблици в которых параметр transmitted = false
-            list = daoL.getByTransmittedLimit(false, 10);
+            list = daoL.getByTransmittedLimit(param.getTtansmitted(), param.getOnePackOfStrings());
             //создание новой записи в таблице по переданому объекту
 //            daoL.create(list.get(0));
 //            Line line = list.get(5);
