@@ -3,5 +3,8 @@
     <DB__URL>jdbc:mysql://localhost:3306/NewVision</DB__URL>
     <DB__USER>mysql</DB__USER>
     <DB__PASSWORD>mysql</DB__PASSWORD>
+    <transmitted>false</transmitted>
+    <numberOfStrings>30</numberOfStrings>
+    <onePackOfStrings>10</onePackOfStrings>
   </java.lang.Class>
 </object-stream>
