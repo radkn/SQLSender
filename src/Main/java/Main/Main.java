@@ -14,10 +14,36 @@ import java.util.List;
 public class Main {
     public static void main(String[] args){
         boolean sendSuccess;
-        sendSuccess = sendLines();
-        System.out.println("Lines success: "+sendSuccess);
-        sendSuccess = sendZones();
-        System.out.println("Zones success: "+sendSuccess);
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
+        Parameters param = new Parameters();
+
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (param.getNumberOfStringsLines()>0) {
+            sendSuccess = sendLines();
+            param.setNumberOfStringsLines(param.getNumberOfStringsLines()-param.getOnePackOfStrings());
+            System.out.println("Lines success: " + sendSuccess);
+            System.out.println("Lines:" + param.getNumberOfStringsLines());
+        }
+
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        while (param.getNumberOfStringsZones()>0) {
+            sendSuccess = sendZones();
+            param.setNumberOfStringsZones(param.getNumberOfStringsZones()-param.getOnePackOfStrings());
+            System.out.println("Zones success: " + sendSuccess);
+            System.out.println("Zones:" + param.getNumberOfStringsZones());
+        }
     }
 
     /**
@@ -27,7 +53,7 @@ public class Main {
      * @throws ClassNotFoundException
      */
     public static void transmittedsToTRUELine(List<Line> list)throws IOException, ClassNotFoundException {
-        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
@@ -49,7 +75,7 @@ public class Main {
      * @throws ClassNotFoundException
      */
     public static void transmittedsToTRUEZone(List<Zone> list)throws IOException, ClassNotFoundException {
-        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
@@ -72,7 +98,7 @@ public class Main {
      * @throws ClassNotFoundException
      */
     public static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
-        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
@@ -96,7 +122,7 @@ public class Main {
      * @throws Exception
      */
     public static List<Line> getLines() throws Exception{
-        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
@@ -108,6 +134,7 @@ public class Main {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
             //получение списка первых 100 записей таблици в которых параметр transmitted = false
             list = daoL.getByTransmittedLimit(param.getTtansmitted(), param.getOnePackOfStrings());
+
             //создание новой записи в таблице по переданому объекту
 //            daoL.create(list.get(0));
 //            Line line = list.get(5);
@@ -119,6 +146,8 @@ public class Main {
 //            System.out.println(l.toJSON());
             //удаление записи по ID
 //            daoL.delete(416);
+
+
             con.close();
         }
         System.out.println(list.size());
@@ -134,7 +163,7 @@ public class Main {
      * @throws Exception
      */
     public static List<Zone> getZones() throws Exception{
-        XMLwriterReader<Parameters> reader = new XMLwriterReader("src/parameters/parameters.xml");
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
@@ -146,6 +175,8 @@ public class Main {
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
             //получение списка первых 100 записей таблици в которых параметр transmitted = false
             list = daoL.getByTransmittedLimit(param.getTtansmitted(), param.getOnePackOfStrings());
+
+
             //создание новой записи в таблице по переданому объекту
 //            daoL.create(list.get(0));
 //            Line line = list.get(5);
@@ -157,6 +188,8 @@ public class Main {
 //            System.out.println(l.toJSON());
             //удаление записи по ID
 //            daoL.delete(416);
+
+
             con.close();
         }
         System.out.println(list.size());
@@ -204,6 +237,15 @@ public class Main {
     }
 
     public static boolean sendZones(){
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
+        Parameters param = new Parameters();
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         boolean sendSuccess = false;
         DataSender sender = new DataSender();
         String messageZones = null;
