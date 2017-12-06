@@ -49,6 +49,16 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         return "DELETE FROM Zone WHERE id = ?;";
     }
 
+    @Override
+    public String getCountQuery() {
+        return "SELECT COUNT(*) FROM Zone WHERE transmitted = 0;";
+    }
+
+    @Override
+    public String isMoreRecordsQuery() {
+        return null;
+    }
+
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     @Override
     protected List<Zone> parseResultSet(ResultSet rs) {

@@ -19,7 +19,7 @@ public interface IGenericDAO<T, PK extends Serializable> {
     /** Сохраняет состояние объекта group в базе данных */
     public void update(T object) throws SQLException;
 
-    public List<T> getByTransmittedLimit(boolean tr, int limit);
+    public List<T> getByTransmittedLimit(boolean tr, long limit);
 
     public void updateTransmitted(int id, boolean transmitted) throws SQLException;
 
@@ -28,4 +28,6 @@ public interface IGenericDAO<T, PK extends Serializable> {
 
     /**возвращает все объекты выбраной таблицы*/
     public List<T> getAll() throws SQLException;
+
+    public long getCount() throws SQLException;
 }

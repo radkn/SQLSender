@@ -52,6 +52,16 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         return "DELETE FROM Line WHERE id = ?;";
     }
 
+    @Override
+    public String getCountQuery() {
+        return "SELECT COUNT(*) FROM Line WHERE transmitted = 0;";
+    }
+
+    @Override
+    public String isMoreRecordsQuery() {
+        return null;
+    }
+
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     @Override
     protected List<Line> parseResultSet(ResultSet rs) {

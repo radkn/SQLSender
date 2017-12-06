@@ -53,6 +53,10 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     public abstract String getDeleteQuery();
 
+    public abstract String getCountQuery();
+
+    public abstract  String isMoreRecordsQuery();
+
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     protected abstract List<T> parseResultSet(ResultSet rs);
 
@@ -161,12 +165,12 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      * @param limit количество записей которые необходимо получить
      * @return
      */
-    public List<T> getByTransmittedLimit(boolean tr, int limit){
+    public List<T> getByTransmittedLimit(boolean tr, long limit){
         List<T> list = new ArrayList<T>();
         String sql = getSelectQuery() + " WHERE transmitted = ? LIMIT ?";
         try(PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setBoolean(1,tr);
-            stm.setInt(2, limit);
+            stm.setLong(2, limit);
             ResultSet rs = stm.executeQuery();
             list = parseResultSet(rs);
             stm.close();
@@ -212,5 +216,20 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        public long getCount(){
+            long count = 0;
+            String sql = getCountQuery();
+            try(PreparedStatement stm = connection.prepareStatement(sql)){
+                ResultSet rs = stm.executeQuery();
+                rs.next();
+                count = rs.getInt(1);
+                stm.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return count;
         }
 }
