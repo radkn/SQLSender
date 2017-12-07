@@ -58,8 +58,8 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     }
 
     @Override
-    public String isMoreRecordsQuery() {
-        return null;
+    public String getReserveDataQuery(){
+        return "SELECT * FROM Line WHERE transmitted = 1";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -117,5 +117,10 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     @Override
     public Line create(Line l) throws SQLException {
         return persist(l);
+    }
+
+    @Override
+    public void getReserveData() {
+
     }
 }

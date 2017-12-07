@@ -55,7 +55,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     }
 
     @Override
-    public String isMoreRecordsQuery() {
+    public String getReserveDataQuery() {
         return null;
     }
 
@@ -115,5 +115,10 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     @Override
     public Zone create(Zone z) throws SQLException {
         return persist(z);
+    }
+
+    @Override
+    public void getReserveData() {
+
     }
 }

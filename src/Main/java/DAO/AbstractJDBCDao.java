@@ -53,9 +53,15 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     public abstract String getDeleteQuery();
 
+    /**
+     * @return sql query that finds strings with 'transmitted=0'
+     */
     public abstract String getCountQuery();
 
-    public abstract  String isMoreRecordsQuery();
+    /**
+     * @return sql query that finds strings with 'transmitted=1'
+     */
+    public abstract String getReserveDataQuery();
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     protected abstract List<T> parseResultSet(ResultSet rs);
@@ -225,7 +231,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
             try(PreparedStatement stm = connection.prepareStatement(sql)){
                 ResultSet rs = stm.executeQuery();
                 rs.next();
-                count = rs.getInt(1);
+                count = rs.getLong(1);
                 stm.close();
             } catch (SQLException e) {
                 e.printStackTrace();

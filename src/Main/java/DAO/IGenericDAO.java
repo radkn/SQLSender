@@ -8,26 +8,29 @@ import java.util.List;
 public interface IGenericDAO<T, PK extends Serializable> {
 
     /** Создает новую запись и соответствующий ей объект */
-    public T create(T object) throws SQLException;
+    T create(T object) throws SQLException;
 
     /** Создает новую запись, соответствующую объекту object */
-    public T persist(T object) throws SQLException;
+    T persist(T object) throws SQLException;
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
-    public T getByPk(int key) throws Exception;
+    T getByPk(int key) throws Exception;
 
     /** Сохраняет состояние объекта group в базе данных */
-    public void update(T object) throws SQLException;
+    void update(T object) throws SQLException;
 
-    public List<T> getByTransmittedLimit(boolean tr, long limit);
+    List<T> getByTransmittedLimit(boolean tr, long limit);
 
-    public void updateTransmitted(int id, boolean transmitted) throws SQLException;
+    void updateTransmitted(int id, boolean transmitted) throws SQLException;
 
     /** Удаляет запись об объекте из базы данных */
-    public void delete(int id) throws SQLException;
+    void delete(int id) throws SQLException;
 
     /**возвращает все объекты выбраной таблицы*/
-    public List<T> getAll() throws SQLException;
+    List<T> getAll() throws SQLException;
 
-    public long getCount() throws SQLException;
+    long getCount() throws SQLException;
+
+    void getReserveData();
+
 }
