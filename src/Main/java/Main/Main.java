@@ -16,7 +16,7 @@ public class Main {
         boolean sendSuccess = false;
         XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = new Parameters();
-
+//here we get our parameters from .xml file
         try {
             param = reader.ReadFile(Parameters.class);
         } catch (IOException e) {
@@ -24,17 +24,17 @@ public class Main {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+
         try {
-            long count = getCountOfRecords();
-            int i = 0;
-            while (param.getNumberOfStringsLines()>0 && i < 5) {
+            long count = getCountOfLines(); //records with transmitted=0
+            while (count > 0) {
+                count = getCountOfLines();
                 if(count >= param.getOnePackOfStrings() )
-                sendSuccess = sendLines(param.getOnePackOfStrings());
-                else sendSuccess = sendLines(count);
-//                param.setNumberOfStringsLines(param.getNumberOfStringsLines()-param.getOnePackOfStrings());
+                    sendSuccess = sendLines(param.getOnePackOfStrings());
+                else
+                    sendSuccess = sendLines(count);
                 System.out.println("Lines success: " + sendSuccess);
-//                System.out.println("Lines:" + param.getNumberOfStringsLines());
-                i++;
         }
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,34 +44,56 @@ public class Main {
 
 
         try {
-            param = reader.ReadFile(Parameters.class);
+            long count = getCountOfZones(); //records with transmitted=0
+            int i = 0;
+            while (count > 0||i<5) {
+                count = getCountOfZones();
+                if (count >= param.getOnePackOfStrings())
+                    sendSuccess = sendZones(param.getOnePackOfStrings());
+                else
+                    sendSuccess = sendZones(count);
+                System.out.println("Zones success: " + sendSuccess);
+                i++;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-//        while (param.getNumberOfStringsZones()>0) {
-            sendSuccess = sendZones();
-//            param.setNumberOfStringsZones(param.getNumberOfStringsZones()-param.getOnePackOfStrings());
-            System.out.println("Zones success: " + sendSuccess);
-//            System.out.println("Zones:" + param.getNumberOfStringsZones());
-//        }
     }
 
-    public static long getCountOfRecords() throws IOException, ClassNotFoundException {
-        long count = 0;
+    public static long getCountOfLines() throws IOException, ClassNotFoundException {
+        long countLines = 0;
         XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
-            count = daoL.getCount();
+            countLines = daoL.getCount();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return count;
+        return countLines;
+    }
+
+    public static long getCountOfZones() throws IOException, ClassNotFoundException {
+        long countZones = 0;
+        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
+        Parameters param = reader.ReadFile(Parameters.class);
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+
+        try (Connection con = daoFactory.getConnection()) {
+            IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
+            countZones = daoZ.getCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countZones;
     }
 
     /**
@@ -118,30 +140,6 @@ public class Main {
         }
     }
 
-
-    /**
-     * Пример добавления записей в базу данных
-     * @param lines список линий которые нужно записать в базу данных
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    public static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
-        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
-        Parameters param = reader.ReadFile(Parameters.class);
-        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
-        try (Connection con = daoFactory.getConnection()) {
-            IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
-                for (Line l : lines) {
-                    daoL.create(l);
-                }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     /**
      * В методе показаны примеры работы с интерфейсом IGenericDAO
      * (интерфейс работы с базо  данных) на примере таблици Line
@@ -155,31 +153,16 @@ public class Main {
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         //список для хранения полученых линий с базы данных
-        List<Line> list = null;
+        List<Line> list;
         //создание подключения к базе
         try(Connection con = daoFactory.getConnection()){
             //создание объекта реализующего интерфейс работы с базой данных
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
-            //получение списка первых 100 записей таблици в которых параметр transmitted = false
+            //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
             list = daoL.getByTransmittedLimit(param.getTtansmitted(), count);
-
-
-            //создание новой записи в таблице по переданому объекту
-//            daoL.create(list.get(0));
-//            Line line = list.get(5);
-//            line.setId(list.get(list.size()-3).getId());
-            //обновление записи в таблице (обновляеться запись ID которой соответствует ID перезаного объекта)
-//            daoL.update(line);
-            //получение записи по ID
-//            Line l = (Line)daoL.getByPk(440);
-//            System.out.println(l.toJSON());
-            //удаление записи по ID
-//            daoL.delete(416);
-
-
             con.close();
         }
-        System.out.println(list.size());
+        System.out.println("List lines size" + list.size());
         return list;
     }
 
@@ -191,46 +174,22 @@ public class Main {
      * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
      * @throws Exception
      */
-    public static List<Zone> getZones() throws Exception{
+    public static List<Zone> getZones(long count) throws Exception{
         XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = reader.ReadFile(Parameters.class);
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         //список для хранения полученых линий с базы данных
-        List<Zone> list = null;
+        List<Zone> list;
         //создание подключения к базе
         try(Connection con = daoFactory.getConnection()){
             //создание объекта реализующего интерфейс работы с базой данных
-            IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
-            //получение списка первых 100 записей таблици в которых параметр transmitted = false
-            //list = daoL.getByTransmittedLimit(param.getTtansmitted(), param.getOnePackOfStrings());
-
-            long count = daoL.getCount();
-            int i = 0;
-            while (count>0 && i < 5) {
-                if (count >= param.getOnePackOfStrings()) {
-                    list = daoL.getByTransmittedLimit(param.getTtansmitted(), param.getOnePackOfStrings());
-                } else {
-                    list = daoL.getByTransmittedLimit(param.getTtansmitted(), count);
-                }
-                i++;
-            }
-            //создание новой записи в таблице по переданому объекту
-//            daoL.create(list.get(0));
-//            Line line = list.get(5);
-//            line.setId(list.get(list.size()-3).getId());
-            //обновление записи в таблице (обновляеться запись ID которой соответствует ID перезаного объекта)
-//            daoL.update(line);
-            //получение записи по ID
-//            Line l = (Line)daoL.getByPk(440);
-//            System.out.println(l.toJSON());
-            //удаление записи по ID
-//            daoL.delete(416);
-
-
+            IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
+            //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
+            list = daoZ.getByTransmittedLimit(param.getTtansmitted(), count);
             con.close();
         }
-        System.out.println(list.size());
+        System.out.println("List zones size" + list.size());
         return list;
     }
 
@@ -251,7 +210,7 @@ public class Main {
             e.printStackTrace();
         }
         String jsonLines = "{" +
-                "\"hash\":\"--some hash key--\"," +
+                "\"hash\":\"--Julya test--\"," +
                 "\"data\":" + messageLines + "}";
 
         try {
@@ -274,16 +233,7 @@ public class Main {
         return sendSuccess;
     }
 
-    public static boolean sendZones(){
-        XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
-        Parameters param = new Parameters();
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+    public static boolean sendZones(long count){
         boolean sendSuccess = false;
         DataSender sender = new DataSender();
         String messageZones = null;
@@ -292,7 +242,7 @@ public class Main {
         SQLList sqlList = new SQLList();
         try {
             long time = System.currentTimeMillis();
-            list.addAll(getZones());
+            list.addAll(getZones(count));
             sqlList.addAll(list);
             messageZones = sqlList.toJSON();
             time = System.currentTimeMillis() - time;
@@ -301,7 +251,7 @@ public class Main {
             e.printStackTrace();
         }
         String jsonZones = "{" +
-                "\"hash\":\"--some hash key--\"," +
+                "\"hash\":\"--Julya test--\"," +
                 "\"data\":" + messageZones + "}";
         try {
                 long time = System.currentTimeMillis();
@@ -309,7 +259,6 @@ public class Main {
                 time = System.currentTimeMillis() - time;
                 System.out.println("Send time: " + time);
         } catch (Exception e) {
-            //System.out.println("here!");
             e.printStackTrace();
         }
         if(sendSuccess==true){
