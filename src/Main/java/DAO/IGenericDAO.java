@@ -29,7 +29,7 @@ public interface IGenericDAO<T, PK extends Serializable> {
     /**возвращает все объекты выбраной таблицы*/
     List<T> getAll() throws SQLException;
 
-    long getCount() throws SQLException;
+    long getCountTransmitted(boolean transmitted) throws SQLException;
 
     void getReserveData();
 

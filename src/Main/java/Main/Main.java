@@ -13,7 +13,14 @@ import java.util.List;
 * */
 public class Main {
     public static void main(String[] args){
-        boolean sendSuccess = false;
+        try {
+            SendToReserveDB.sendAll();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        /*boolean sendSuccess = false;
         XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
         Parameters param = new Parameters();
 //here we get our parameters from .xml file
@@ -59,7 +66,7 @@ public class Main {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public static long getCountOfLines() throws IOException, ClassNotFoundException {
@@ -70,7 +77,7 @@ public class Main {
 
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
-            countLines = daoL.getCount();
+            countLines = daoL.getCountTransmitted(false);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -87,7 +94,7 @@ public class Main {
 
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
-            countZones = daoZ.getCount();
+            countZones = daoZ.getCountTransmitted(false);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -169,7 +176,7 @@ public class Main {
 
     /**
      * В методе показаны примеры работы с интерфейсом IGenericDAO
-     * (интерфейс работы с базо  данных) на примере таблици Zone
+     * (интерфейс работы с базой  данных) на примере таблици Zone
      * @return Список первых n записей таблицы Zone
      * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
      * @throws Exception

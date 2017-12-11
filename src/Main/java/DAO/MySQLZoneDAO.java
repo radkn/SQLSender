@@ -51,7 +51,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
 
     @Override
     public String getCountQuery() {
-        return "SELECT COUNT(*) FROM Zone WHERE transmitted = 0;";
+        return "SELECT COUNT(*) FROM Zone WHERE transmitted = ?;";
     }
 
     @Override

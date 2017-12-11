@@ -225,10 +225,11 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         }
 
         @Override
-        public long getCount(){
+        public long getCountTransmitted(boolean transmitted){
             long count = 0;
             String sql = getCountQuery();
             try(PreparedStatement stm = connection.prepareStatement(sql)){
+                stm.setBoolean(1,transmitted);
                 ResultSet rs = stm.executeQuery();
                 rs.next();
                 count = rs.getLong(1);

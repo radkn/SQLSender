@@ -54,7 +54,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     @Override
     public String getCountQuery() {
-        return "SELECT COUNT(*) FROM Line WHERE transmitted = 0;";
+        return "SELECT COUNT(*) FROM Line WHERE transmitted = ?;";
     }
 
     @Override

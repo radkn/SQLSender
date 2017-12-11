@@ -17,6 +17,13 @@ public class Parameters {
         DB_PASSWORD = "mysql";
     }
 
+    public Parameters(String DB_URL, String DB_USER, String DB_PASSWORD, boolean transmitted){
+        this.DB_URL = DB_URL ;
+        this.DB_USER = DB_USER ;
+        this.DB_PASSWORD = DB_PASSWORD;
+        this.transmitted = transmitted;
+    }
+
     public String getDB_URL(){
         return DB_URL;
     }
