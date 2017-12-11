@@ -12,7 +12,6 @@ public final class SendToReserveDB<T> {
 
     private static XMLwriterReader<Parameters> reader;
     private static Parameters param;
-    private static Parameters paramReserveDB;
 
     public SendToReserveDB() throws IOException, ClassNotFoundException {
 
@@ -72,7 +71,6 @@ public final class SendToReserveDB<T> {
     private static void setParam() throws IOException, ClassNotFoundException {
         reader = new XMLwriterReader("parameters/parameters.xml");
         param = reader.ReadFile(Parameters.class);
-        paramReserveDB = new Parameters("jdbc:mysql://localhost:3306/MusarnyaDB", "root","root", true);
     }
 
     private static long getCountOfTable(Class cl) throws IOException, ClassNotFoundException {
@@ -80,7 +78,7 @@ public final class SendToReserveDB<T> {
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO dao = daoFactory.getDAO(con, cl);
-            countZones = dao.getCountTransmitted(paramReserveDB.getTtansmitted());
+            countZones = dao.getCountTransmitted(param.getReserveTransmitted());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -106,7 +104,7 @@ public final class SendToReserveDB<T> {
             //создание объекта реализующего интерфейс работы с базой данных
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
             //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
-            list = daoL.getByTransmittedLimit(paramReserveDB.getTtansmitted(), count);
+            list = daoL.getByTransmittedLimit(param.getReserveTransmitted(), count);
             con.close();
         }
         System.out.println("List lines size" + list.size());
@@ -131,7 +129,7 @@ public final class SendToReserveDB<T> {
             //создание объекта реализующего интерфейс работы с базой данных
             IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
             //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
-            list = daoZ.getByTransmittedLimit(paramReserveDB.getTtansmitted(), count);
+            list = daoZ.getByTransmittedLimit(param.getReserveTransmitted(), count);
             con.close();
         }
         System.out.println("List zones size" + list.size());
@@ -156,7 +154,7 @@ public final class SendToReserveDB<T> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            delateLines(list);
+            deleteLines(list);
     }
 
     private static void sendZones(long count){
@@ -177,7 +175,7 @@ public final class SendToReserveDB<T> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            delateZones(list);
+            deleteZones(list);
     }
 
 
@@ -188,7 +186,7 @@ public final class SendToReserveDB<T> {
      * @throws ClassNotFoundException
      */
     private static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
-        IDAOFactory daoFactory = new MySQLDaoFactory(paramReserveDB.getDB_URL(), paramReserveDB.getDB_USER(), paramReserveDB.getDB_PASSWORD());
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
             for (Line l : lines) {
@@ -208,7 +206,7 @@ public final class SendToReserveDB<T> {
      * @throws ClassNotFoundException
      */
     private static void createZones(List<Zone> lines) throws IOException, ClassNotFoundException {
-        IDAOFactory daoFactory = new MySQLDaoFactory(paramReserveDB.getDB_URL(), paramReserveDB.getDB_USER(), paramReserveDB.getDB_PASSWORD());
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
             for (Zone l : lines) {
@@ -226,7 +224,7 @@ public final class SendToReserveDB<T> {
      * Delete all records which are in the list of lines
      * @param lines list of lines
      */
-    private static void delateLines(List<Line> lines){
+    private static void deleteLines(List<Line> lines){
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
@@ -244,7 +242,7 @@ public final class SendToReserveDB<T> {
      * Delete all records which are in the list of zones
      * @param zones list of zones
      */
-    private static void delateZones(List<Zone> zones){
+    private static void deleteZones(List<Zone> zones){
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
