@@ -19,49 +19,46 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     private Connection connection;
 
     /**
-     * Возвращает sql запрос для получения всех записей.
+     * Return Query to get all records.
      * <p/>
      * SELECT * FROM [Table]
      */
     public abstract String getSelectQuery();
 
     /**
-     * Возвращает sql запрос для вставки новой записи в базу данных.
+     * Return Query to create new record in Line table.
      * <p/>
      * INSERT INTO [Table] ([column, column, ...]) VALUES (?, ?, ...);
      */
     public abstract String getCreateQuery();
 
     /**
-     * Возвращает sql запрос для обновления записи.
+     * Return Query to update record in Line table.
      * <p/>
      * UPDATE [Table] SET [column = ?, column = ?, ...] WHERE id = ?;
      */
     public abstract String getUpdateQuery();
 
     /**
-     * Возвращает sql запрос для обновления записи.
+     * Return Query to update record with transmitted = true in Line table.
      * <p/>
      * UPDATE [Table] SET [column = ?, column = ?, ...] WHERE id = ?;
      */
     public abstract String getUpdateTransmittedQuery();
 
     /**
-     * Возвращает sql запрос для удаления записи из базы данных.
+     * Return Query to delete record by ID in Line table.
      * <p/>
      * DELETE FROM [Table] WHERE id= ?;
      */
     public abstract String getDeleteQuery();
 
     /**
-     * @return sql query that finds strings with 'transmitted=0'
+     * Return Query to get count of record in Line table.
+     * <p/>
+     * DELETE FROM [Table] WHERE id= ?;
      */
     public abstract String getCountQuery();
-
-    /**
-     * @return sql query that finds strings with 'transmitted=1'
-     */
-    public abstract String getReserveDataQuery();
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     protected abstract List<T> parseResultSet(ResultSet rs);
@@ -76,6 +73,12 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws Exception;
 
+    /**
+     * Create new record in DB Table
+     * @param object determines table to create record
+     * @return created line
+     * @throws SQLException
+     */
     @Override
     public T persist(T object) throws SQLException {
         T persistInstance = null;
@@ -108,7 +111,10 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         return persistInstance;
     }
 
-
+    /**
+     * update record by ID object
+     * @param object object of appropriate records
+     */
     @Override
     public void update(T object) {
         String sql = getUpdateQuery();
@@ -186,44 +192,58 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         return list;
     }
 
-        @Override
-        public T getByPk(int key) throws Exception {
-            List<T> list = null;
-            String sql = getSelectQuery() + "WHERE id = ?";
-            try(PreparedStatement statement = connection.prepareStatement(sql)){
-                statement.setInt(1,key);
-                ResultSet rs = statement.executeQuery();
-                list = parseResultSet(rs);
-                statement.close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            if ((list == null) || (list.size() == 0)){
-                throw new Exception("Record with PK = " + key + " not found.");
-            }
-            if (list.size()>1){
-                throw new Exception("Received more than one record.");
-            }
-            return list.iterator().next();
+    /**
+     *
+     * @param key ID of records
+     * @return records of table
+     * @throws Exception
+     */
+    @Override
+    public T getByPk(int key) throws Exception {
+        List<T> list = null;
+        String sql = getSelectQuery() + "WHERE id = ?";
+        try(PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1,key);
+            ResultSet rs = statement.executeQuery();
+            list = parseResultSet(rs);
+            statement.close();
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
-        @Override
-        public void delete(int id) {
-            String sql = getDeleteQuery();
-            try(PreparedStatement stm = connection.prepareStatement(sql)){
-                stm.setInt(1,id);
-                int count = stm.executeUpdate();
-                if(count != 1){
-                    throw new Exception("On delete modify more then 1 record: " + count);
-                }
-                stm.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if ((list == null) || (list.size() == 0)){
+            throw new Exception("Record with PK = " + key + " not found.");
         }
+        if (list.size()>1){
+            throw new Exception("Received more than one record.");
+        }
+        return list.iterator().next();
+    }
 
+    /**
+     * Delete record by ID
+     * @param id ID of record
+     */
+    @Override
+    public void delete(int id) {
+        String sql = getDeleteQuery();
+        try(PreparedStatement stm = connection.prepareStatement(sql)){
+            stm.setInt(1,id);
+            int count = stm.executeUpdate();
+            if(count != 1){
+                throw new Exception("On delete modify more then 1 record: " + count);
+            }
+            stm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @param transmitted
+     * @return count of records by transmitted
+     */
         @Override
         public long getCountTransmitted(boolean transmitted){
             long count = 0;

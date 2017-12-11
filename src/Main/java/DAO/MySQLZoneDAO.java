@@ -13,12 +13,6 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         super(connection);
     }
 
-
-    /**
-     * Возвращает sql запрос для получения всех записей.
-     * <p/>
-     * SELECT * FROM [Table]
-     */
     @Override
     public String getSelectQuery() {
         return "SELECT * FROM Zone";
@@ -52,11 +46,6 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     @Override
     public String getCountQuery() {
         return "SELECT COUNT(*) FROM Zone WHERE transmitted = ?;";
-    }
-
-    @Override
-    public String getReserveDataQuery() {
-        return null;
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -115,10 +104,5 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     @Override
     public Zone create(Zone z) throws SQLException {
         return persist(z);
-    }
-
-    @Override
-    public void getReserveData() {
-
     }
 }

@@ -36,7 +36,7 @@ public class Parameters {
         return DB_PASSWORD;
     }
 
-    public boolean getTtansmitted(){return transmitted;}
+    public boolean getTransmitted(){return transmitted;}
 
     public int getNumberOfStringsLines(){return numberOfStringsLines;}
 

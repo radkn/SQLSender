@@ -17,11 +17,6 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         }
     }
 
-    /**
-     * Возвращает sql запрос для получения всех записей.
-     * <p/>
-     * SELECT * FROM [Table]
-     */
     @Override
     public String getSelectQuery() {
         return "SELECT * FROM Line ";
@@ -55,11 +50,6 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     @Override
     public String getCountQuery() {
         return "SELECT COUNT(*) FROM Line WHERE transmitted = ?;";
-    }
-
-    @Override
-    public String getReserveDataQuery(){
-        return "SELECT * FROM Line WHERE transmitted = 1";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -113,14 +103,8 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         statement.setInt(9, object.getId());
     }
 
-
     @Override
     public Line create(Line l) throws SQLException {
         return persist(l);
-    }
-
-    @Override
-    public void getReserveData() {
-
     }
 }
