@@ -52,7 +52,7 @@ public final class SendToReserveDB{
         try {
             long count = getCountOfRecords(Zone.class); //records with transmitted=0
             int i = 0;
-            while (count > 0||i<5) {
+            while (count > 0) {
                 count = getCountOfRecords(Zone.class);
                 if (count >= param.getOnePackOfStrings())
                     sendZones(param.getOnePackOfStrings());

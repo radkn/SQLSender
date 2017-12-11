@@ -57,7 +57,7 @@ public class Main {
         try {
             long count = senderToServer.getCountOfZones(); //records with transmitted=0
             int i = 0;
-            while (count > 0||i<5) {
+            while (count > 0) {
                 count = senderToServer.getCountOfZones();
                 if (count >= param.getOnePackOfStrings())
                     sendSuccess = senderToServer.sendZones(param.getOnePackOfStrings());
