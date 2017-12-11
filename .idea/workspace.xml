@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e796d685-62b2-4b04-9c3c-8e78e3afce0f" name="Default" comment="Create class SendToReservDB">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/AbstractJDBCDao.class" afterPath="$PROJECT_DIR$/target/classes/DAO/AbstractJDBCDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/IGenericDAO.class" afterPath="$PROJECT_DIR$/target/classes/DAO/IGenericDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/Line.class" afterPath="$PROJECT_DIR$/target/classes/DAO/Line.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/MySQLLineDAO.class" afterPath="$PROJECT_DIR$/target/classes/DAO/MySQLLineDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/MySQLZoneDAO.class" afterPath="$PROJECT_DIR$/target/classes/DAO/MySQLZoneDAO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/Zone.class" afterPath="$PROJECT_DIR$/target/classes/DAO/Zone.class" />
+    <list default="true" id="e796d685-62b2-4b04-9c3c-8e78e3afce0f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parameters/parameters.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main/java/Main/SendToReserveDB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Main/Main.class" afterPath="$PROJECT_DIR$/target/classes/Main/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/Main.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -48,8 +39,8 @@
       <file leaf-file-name="SendToReserveDB.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SendToReserveDB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="65" column="32" lean-forward="true" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -279,6 +270,11 @@
             <path>
               <item name="SQLSender" type="b2602c69:ProjectViewProjectNode" />
               <item name="SQLSender" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SQLSender" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SQLSender" type="462c0819:PsiDirectoryNode" />
+              <item name="parameters" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SQLSender" type="b2602c69:ProjectViewProjectNode" />
@@ -809,7 +805,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512661739453</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Create class SendToReservDB">
+      <created>1512984368575</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1512984368575</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -940,7 +943,8 @@
     <MESSAGE value="Реализовано добавление(создание) новой записи и обновление существующей по id для таблицы Zone." />
     <MESSAGE value="Добавлены методы getByTransmitted и updateTransmitted" />
     <MESSAGE value="We send lines and zones if there is transmitted = 0" />
-    <option name="LAST_COMMIT_MESSAGE" value="We send lines and zones if there is transmitted = 0" />
+    <MESSAGE value="Create class SendToReservDB" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create class SendToReservDB" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1203,14 +1207,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parameters/parameters.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1231,10 +1227,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/parameters/parameters.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="24" lean-forward="false" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SendToReserveDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="65" column="32" lean-forward="true" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
           <folding />
         </state>
       </provider>
