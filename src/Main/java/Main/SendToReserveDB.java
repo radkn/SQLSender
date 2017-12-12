@@ -10,21 +10,16 @@ import java.util.List;
 
 public final class SendToReserveDB{
 
-    private static XMLwriterReader<Parameters> reader;
-    private static Parameters param;
-
-    public SendToReserveDB() throws IOException, ClassNotFoundException {
-
-    }
+    private static XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
 
     /**
      * Send all records with transmitted = 1, from  NewVision DB to reserve DB
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static void sendAll() throws IOException, ClassNotFoundException {
-        setParam();
-        //here we get our parameters from .xml file
+    public static void sendLinesToReserve(){
+
+        Parameters param = null;
         try {
             param = reader.ReadFile(Parameters.class);
         } catch (IOException e) {
@@ -33,49 +28,37 @@ public final class SendToReserveDB{
             e.printStackTrace();
         }
 
-        try {
-            long count = getCountOfRecords(Line.class); //records with transmitted=0
-            while (count > 0) {
-                count = getCountOfRecords(Line.class);
-                if(count >= param.getOnePackOfStrings() )
-                    sendLines(param.getOnePackOfStrings());
-                else
-                    sendLines(count);
-                System.out.println("Lines success reserved ");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            long count = getCountOfRecords(Zone.class); //records with transmitted=0
-            int i = 0;
-            while (count > 0) {
-                count = getCountOfRecords(Zone.class);
-                if (count >= param.getOnePackOfStrings())
-                    sendZones(param.getOnePackOfStrings());
-                else
-                    sendZones(count);
-                System.out.println("Zones success reserved");
-                i++;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        long count = getCountOfRecords(Line.class); //records with transmitted=0
+        while (count > 0) {
+            count = getCountOfRecords(Line.class);
+            if(count >= param.getOnePackOfStrings() )
+                sendLines(param.getOnePackOfStrings());
+            else
+                sendLines(count);
+            System.out.println("Lines success reserved ");
         }
     }
 
-    /**
-     * Set parameters to  reserve database
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    private static void setParam() throws IOException, ClassNotFoundException {
-        reader = new XMLwriterReader("parameters/parameters.xml");
-        param = reader.ReadFile(Parameters.class);
+    public static void sendZonesToReserve(){
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        long count = getCountOfRecords(Zone.class); //records with transmitted=0
+        while (count > 0) {
+            count = getCountOfRecords(Zone.class);
+            if (count >= param.getOnePackOfStrings())
+                sendZones(param.getOnePackOfStrings());
+            else
+                sendZones(count);
+            System.out.println("Zones success reserved");
+        }
+
     }
 
     /**
@@ -85,18 +68,27 @@ public final class SendToReserveDB{
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private static long getCountOfRecords(Class cl) throws IOException, ClassNotFoundException {
-        long countZones = 0;
+    private static long getCountOfRecords(Class cl){
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        long count = 0;
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO dao = daoFactory.getDAO(con, cl);
-            countZones = dao.getCountTransmitted(param.getReserveTransmitted());
+            count = dao.getCountTransmitted(param.getReserveTransmitted());
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return countZones;
+        return count;
     }
 
     /**
@@ -107,6 +99,15 @@ public final class SendToReserveDB{
      * @throws Exception
      */
     private static List<Line> getLines(long count) throws Exception{
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         //список для хранения полученых линий с базы данных
@@ -130,6 +131,15 @@ public final class SendToReserveDB{
      * @throws Exception
      */
     private static List<Zone> getZones(long count) throws Exception{
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         //список для хранения полученых линий с базы данных
@@ -204,6 +214,14 @@ public final class SendToReserveDB{
      * @throws ClassNotFoundException
      */
     private static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
@@ -224,6 +242,14 @@ public final class SendToReserveDB{
      * @throws ClassNotFoundException
      */
     private static void createZones(List<Zone> zones) throws IOException, ClassNotFoundException {
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
@@ -243,6 +269,14 @@ public final class SendToReserveDB{
      * @param lines list of lines
      */
     private static void deleteLines(List<Line> lines){
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
@@ -261,6 +295,14 @@ public final class SendToReserveDB{
      * @param zones list of zones
      */
     private static void deleteZones(List<Zone> zones){
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);

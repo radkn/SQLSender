@@ -12,6 +12,8 @@ public class Parameters {
     private boolean ReserveTransmitted = true;
     private boolean transmitted = false;
     private int onePackOfStrings = 2000;
+    private int checkTransmittedPeriod = 100;
+    private int numberToSendReserve = 5;
 
     public Parameters(){
         DB_URL = "jdbc:mysql://localhost:3306/NewVision";
@@ -55,4 +57,8 @@ public class Parameters {
     public boolean getTransmitted(){return transmitted;}
 
     public int getOnePackOfStrings(){return onePackOfStrings;}
+
+    public int getCheckTransmittedPeriod(){return checkTransmittedPeriod;}
+
+    public int getNumberToSendReserve(){return numberToSendReserve;}
 }
