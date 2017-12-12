@@ -16,6 +16,12 @@ public class XMLwriterReader<T> {
 
     XStream xstream = new XStream(new DomDriver("UTF-8"));
 
+    /**
+     * Writes object into .xml file
+     * @param object - the object
+     * @param c - class of the object
+     * @throws IOException
+     */
     public void WriteFile(T object, Class c) throws IOException {
         xstream.alias(c.getClass().getName(), c);
 
@@ -36,7 +42,15 @@ public class XMLwriterReader<T> {
         }
         out.close();
     }
+    //delete this comment
 
+    /**
+     * Reads object from .xml file
+     * @param c - class of object
+     * @return the object
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public T ReadFile(Class c) throws IOException, ClassNotFoundException {
         xstream.alias(c.getClass().getName(), c);
         ObjectInputStream in = null;
