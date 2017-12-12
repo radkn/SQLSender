@@ -21,9 +21,16 @@ public final class NVToServer {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static long getCountOfLines() throws IOException, ClassNotFoundException {
+    public static long getCountOfLines() {
         long countLines = 0;
-        Parameters param = reader.ReadFile(Parameters.class);
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
 
         try (Connection con = daoFactory.getConnection()) {
@@ -43,9 +50,16 @@ public final class NVToServer {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static long getCountOfZones() throws IOException, ClassNotFoundException {
+    public static long getCountOfZones(){
         long countZones = 0;
-        Parameters param = reader.ReadFile(Parameters.class);
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
 
         try (Connection con = daoFactory.getConnection()) {
@@ -240,5 +254,19 @@ public final class NVToServer {
             }
         }
         return sendSuccess;
+    }
+
+    /**
+     * my method for work process
+     * will be DELETED
+     */
+    public static void writeParameters(){
+        XMLwriterReader writer = new XMLwriterReader(parametersAddress);
+        Parameters par = new Parameters();
+        try {
+            writer.WriteFile(par, Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

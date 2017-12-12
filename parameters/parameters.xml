@@ -9,5 +9,7 @@
     <ReserveTransmitted>true</ReserveTransmitted>
     <transmitted>false</transmitted>
     <onePackOfStrings>2000</onePackOfStrings>
+    <checkTransmittedPeriod>100</checkTransmittedPeriod>
+    <numberToSendReserve>5</numberToSendReserve>
   </java.lang.Class>
 </object-stream>
