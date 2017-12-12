@@ -193,7 +193,6 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     }
 
     /**
-     *
      * @param key ID of records
      * @return records of table
      * @throws Exception
@@ -241,7 +240,8 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     }
 
     /**
-     * @param transmitted
+     * Finds number of records by 'transmitted'
+     * @param transmitted to tell which data we want to get (with transmitted = true/false)
      * @return count of records by transmitted
      */
         @Override

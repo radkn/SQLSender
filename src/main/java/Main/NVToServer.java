@@ -14,6 +14,13 @@ import java.util.List;
 public final class NVToServer {
     private static String parametersAddress = "parameters/parameters.xml";
     private static XMLwriterReader<Parameters> reader = new XMLwriterReader(parametersAddress);
+
+    /**
+     * Finds number of lines with 'transmitted=false'
+     * @return number of lines
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static long getCountOfLines() throws IOException, ClassNotFoundException {
         long countLines = 0;
         Parameters param = reader.ReadFile(Parameters.class);
@@ -30,6 +37,12 @@ public final class NVToServer {
         return countLines;
     }
 
+    /**
+     * Finds number of zones with 'transmitted=false'
+     * @return number of zones
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static long getCountOfZones() throws IOException, ClassNotFoundException {
         long countZones = 0;
         Parameters param = reader.ReadFile(Parameters.class);
@@ -69,7 +82,7 @@ public final class NVToServer {
 
     /**
      * Метод меняет поле transmitted указаных в списке записей на true
-     * @param list  список объектов Line
+     * @param list  список объектов Zone
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -90,7 +103,7 @@ public final class NVToServer {
 
     /**
      * В методе показаны примеры работы с интерфейсом IGenericDAO
-     * (интерфейс работы с базо  данных) на примере таблици Line
+     * (интерфейс работы с базой данных) на примере таблицы Line
      * @return Список первых n записей таблицы Line
      * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
      * @throws Exception
@@ -106,7 +119,7 @@ public final class NVToServer {
             //создание объекта реализующего интерфейс работы с базой данных
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
             //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
-            list = daoL.getByTransmittedLimit(param.getTtansmitted(), count);
+            list = daoL.getByTransmittedLimit(param.getTransmitted(), count);
             con.close();
         }
         System.out.println("List lines size" + list.size());
@@ -116,7 +129,7 @@ public final class NVToServer {
 
     /**
      * В методе показаны примеры работы с интерфейсом IGenericDAO
-     * (интерфейс работы с базой  данных) на примере таблици Zone
+     * (интерфейс работы с базой  данных) на примере таблицы Zone
      * @return Список первых n записей таблицы Zone
      * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
      * @throws Exception
@@ -132,13 +145,18 @@ public final class NVToServer {
             //создание объекта реализующего интерфейс работы с базой данных
             IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
             //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
-            list = daoZ.getByTransmittedLimit(param.getTtansmitted(), count);
+            list = daoZ.getByTransmittedLimit(param.getTransmitted(), count);
             con.close();
         }
         System.out.println("List zones size" + list.size());
         return list;
     }
 
+    /**
+     * Sends lines to the server
+     * @param count - number of lines that should be sent
+     * @return
+     */
     public static boolean sendLines(long count){
         boolean sendSuccess = false;
         DataSender sender = new DataSender();
@@ -179,6 +197,11 @@ public final class NVToServer {
         return sendSuccess;
     }
 
+    /**
+     * Sends zones to the server
+     * @param count - number of zones that should be sent
+     * @return
+     */
     public static boolean sendZones(long count){
         boolean sendSuccess = false;
         DataSender sender = new DataSender();

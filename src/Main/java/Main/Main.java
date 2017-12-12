@@ -2,21 +2,10 @@ package Main;
 
 import java.io.IOException;
 
-/**
-*
-*
-* */
 public class Main {
     public static void main(String[] args){
         String parametersAddress = "parameters/parameters.xml";
-        XMLwriterReader writer = new XMLwriterReader(parametersAddress);
-        Parameters par = new Parameters();
-        try {
-            writer.WriteFile(par, Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        NVToServer senderToServer = new NVToServer();
+
         try {
             SendToReserveDB.sendAll();
         } catch (IOException e) {
@@ -38,13 +27,13 @@ public class Main {
 
 
         try {
-            long count = senderToServer.getCountOfLines(); //records with transmitted=0
+            long count = NVToServer.getCountOfLines(); //records with transmitted=false
             while (count > 0) {
-                count = senderToServer.getCountOfLines();
+                count = NVToServer.getCountOfLines();
                 if(count >= param.getOnePackOfStrings() )
-                    sendSuccess = senderToServer.sendLines(param.getOnePackOfStrings());
+                    sendSuccess = NVToServer.sendLines(param.getOnePackOfStrings());
                 else
-                    sendSuccess = senderToServer.sendLines(count);
+                    sendSuccess = NVToServer.sendLines(count);
                 System.out.println("Lines success: " + sendSuccess);
         }
         } catch (IOException e) {
@@ -55,16 +44,14 @@ public class Main {
 
 
         try {
-            long count = senderToServer.getCountOfZones(); //records with transmitted=0
-            int i = 0;
+            long count = NVToServer.getCountOfZones(); //records with transmitted=false
             while (count > 0) {
-                count = senderToServer.getCountOfZones();
+                count = NVToServer.getCountOfZones();
                 if (count >= param.getOnePackOfStrings())
-                    sendSuccess = senderToServer.sendZones(param.getOnePackOfStrings());
+                    sendSuccess = NVToServer.sendZones(param.getOnePackOfStrings());
                 else
-                    sendSuccess = senderToServer.sendZones(count);
+                    sendSuccess = NVToServer.sendZones(count);
                 System.out.println("Zones success: " + sendSuccess);
-                i++;
             }
         } catch (IOException e) {
             e.printStackTrace();
