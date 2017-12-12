@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e796d685-62b2-4b04-9c3c-8e78e3afce0f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Main/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/XMLwriterReader.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/XMLwriterReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main/ISendable.java" afterPath="$PROJECT_DIR$/src/main/java/Main/ISendable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main/Parameters.java" afterPath="$PROJECT_DIR$/src/main/java/Main/Parameters.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/IDAOFactory.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/IDAOFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/Line.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/Line.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/ISendable.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/ISendable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,24 +85,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XMLwriterReader.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="XMLwriterReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main/XMLwriterReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="38" column="36" lean-forward="true" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+            <state relative-caret-position="-316">
+              <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MySQLLineDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/DAO/MySQLLineDAO.java">
+      <file leaf-file-name="AbstractJDBCDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DAO/AbstractJDBCDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-588">
-              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding>
-                <element signature="e#1662#1668#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="560">
+              <caret line="242" column="47" lean-forward="false" selection-start-line="242" selection-start-column="47" selection-end-line="242" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IDAOFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/DAO/IDAOFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Main/Test.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -198,7 +221,6 @@
         <option value="$PROJECT_DIR$/src/main/java/Main/DataSender.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/Zone.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main/NVToServer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/DAO/IDAOFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/IGenericDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/Line.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/MySQLDaoFactory.java" />
@@ -206,6 +228,7 @@
         <option value="$PROJECT_DIR$/src/main/java/Main/ISendable.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main/Parameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main/XMLwriterReader.java" />
+        <option value="$PROJECT_DIR$/src/main/java/DAO/IDAOFactory.java" />
       </list>
     </option>
   </component>
@@ -802,7 +825,7 @@
       <workItem from="1512643590413" duration="11989000" />
       <workItem from="1513070956800" duration="1076000" />
       <workItem from="1513072594726" duration="4931000" />
-      <workItem from="1513078539354" duration="1907000" />
+      <workItem from="1513078539354" duration="2661000" />
     </task>
     <task id="LOCAL-00001" summary="Классам Line и Zone заданы типы полей, соответствующие типам в базе данных.">
       <created>1511820873919</created>
@@ -867,11 +890,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513034450283</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="comments">
+      <created>1513080467592</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1513080467592</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45540000" />
+    <option name="totallyTimeSpent" value="46294000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -980,7 +1010,8 @@
     <MESSAGE value="We send lines and zones if there is transmitted = 0" />
     <MESSAGE value="Create class SendToReservDB" />
     <MESSAGE value="Merge branch 'Kostia_ReserveDB2' into Test_Merge4&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/Main/java/Main/Parameters.java&#10;#&#9;src/Main/java/Main/SendToReserveDB.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Kostia_ReserveDB2' into Test_Merge4&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/Main/java/Main/Parameters.java&#10;#&#9;src/Main/java/Main/SendToReserveDB.java" />
+    <MESSAGE value="comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -993,14 +1024,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1103,14 +1126,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DAO/AbstractJDBCDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="242" column="47" lean-forward="false" selection-start-line="242" selection-start-column="47" selection-end-line="242" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/DAO/Line.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-10">
@@ -1146,14 +1161,6 @@
             <element signature="e#1241#1242#0" expanded="true" />
             <element signature="e#1583#1589#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/DAO/IDAOFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1237,8 +1244,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main/XMLwriterReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="38" column="36" lean-forward="true" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+        <state relative-caret-position="-316">
+          <caret line="21" column="37" lean-forward="true" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DAO/AbstractJDBCDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="242" column="47" lean-forward="false" selection-start-line="242" selection-start-column="47" selection-end-line="242" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/DAO/IDAOFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
           <folding />
         </state>
       </provider>

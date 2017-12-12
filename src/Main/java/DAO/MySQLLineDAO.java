@@ -17,6 +17,11 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         }
     }
 
+    /**
+     * Возвращает sql запрос для получения всех записей.
+     * <p/>
+     * SELECT * FROM [Table]
+     */
     @Override
     public String getSelectQuery() {
         return "SELECT * FROM Line ";

@@ -19,8 +19,19 @@ public interface IGenericDAO<T, PK extends Serializable> {
     /** Сохраняет состояние объекта group в базе данных */
     void update(T object) throws SQLException;
 
+    /**
+     * @param tr transmitted = true/false
+     * @param limit number of strings we need to get
+     * @return List of objects with needed 'transmitted' and with size of 'limit'
+     */
     List<T> getByTransmittedLimit(boolean tr, long limit);
 
+    /**
+     * Changes 'transmitted' by id
+     * @param id - id of the object
+     * @param transmitted
+     * @throws SQLException
+     */
     void updateTransmitted(int id, boolean transmitted) throws SQLException;
 
     /** Удаляет запись об объекте из базы данных */

@@ -11,8 +11,6 @@ public class Parameters {
     private String ReserveDB_PASSWORD = "mysql";
     private boolean ReserveTransmitted = true;
     private boolean transmitted = false;
-//    private int numberOfStringsLines = 6366;
-//    private int numberOfStringsZones = 60243;
     private int onePackOfStrings = 2000;
 
     public Parameters(){
@@ -54,19 +52,7 @@ public class Parameters {
 
     public boolean getReserveTransmitted(){return ReserveTransmitted;}
 
-    public boolean getTtansmitted(){return transmitted;}
-
-//    public int getNumberOfStringsLines(){return numberOfStringsLines;}
-//
-//    public int getNumberOfStringsZones(){return numberOfStringsZones;}
+    public boolean getTransmitted(){return transmitted;}
 
     public int getOnePackOfStrings(){return onePackOfStrings;}
-
-//    public void setNumberOfStringsLines(int number){
-//        numberOfStringsLines = number;
-//    }
-//
-//    public void setNumberOfStringsZones(int number){
-//        numberOfStringsZones = number;
-//    }
 }

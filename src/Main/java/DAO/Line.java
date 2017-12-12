@@ -91,6 +91,7 @@ public class Line implements ISendable {
         this.transmitted = transmitted;
     }
 
+    @Override
     public String toJSON() {
         DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
         return "{\"lineTitle\":\"" + lineTitle

@@ -12,7 +12,12 @@ public class MySQLDaoFactory implements IDAOFactory {
     private static String DB_PASSWORD;
     private Map<Class, DaoCreator> creators;
 
-    // в конструкторе создаеться список возможных классов базы данных
+    /**
+     * создается список возможных классов базы данных
+     * @param DB_URL - connection to DB
+     * @param DB_USER - connection to DB
+     * @param DB_PASSWORD - connection to DB
+     */
     public MySQLDaoFactory(String DB_URL, String DB_USER, String DB_PASSWORD){
         this.DB_URL = DB_URL;
         this.DB_USER = DB_USER;
