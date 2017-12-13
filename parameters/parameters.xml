@@ -1,15 +1,16 @@
 <object-stream>
   <java.lang.Class>
-    <DB__URL>jdbc:mysql://localhost:3306/NewVision</DB__URL>
+    <DB__URL>jdbc:mysql://localhost:3306/MusarnyaDB</DB__URL>
     <DB__USER>mysql</DB__USER>
     <DB__PASSWORD>mysql</DB__PASSWORD>
-    <ReserveDB__URL>jdbc:mysql://localhost:3306/MusarnyaDB</ReserveDB__URL>
+    <ReserveDB__URL>jdbc:mysql://localhost:3306/NewVision</ReserveDB__URL>
     <ReserveDB__USER>mysql</ReserveDB__USER>
     <ReserveDB__PASSWORD>mysql</ReserveDB__PASSWORD>
     <ReserveTransmitted>true</ReserveTransmitted>
+    <newReserveTable>true</newReserveTable>
     <transmitted>false</transmitted>
     <onePackOfStrings>2000</onePackOfStrings>
-    <checkTransmittedPeriod>100</checkTransmittedPeriod>
+    <checkTransmittedPeriod>10</checkTransmittedPeriod>
     <numberToSendReserve>5</numberToSendReserve>
   </java.lang.Class>
 </object-stream>

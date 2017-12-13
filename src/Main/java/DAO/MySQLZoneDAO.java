@@ -13,6 +13,8 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         super(connection);
     }
 
+    private String tableName = "Zone";
+
     @Override
     public String getSelectQuery() {
         return "SELECT * FROM Zone";
@@ -46,6 +48,21 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     @Override
     public String getCountQuery() {
         return "SELECT COUNT(*) FROM Zone WHERE transmitted = ?;";
+    }
+
+    @Override
+    public String createNewTableQuery() {
+        return "CREATE TABLE ? (" +
+                "id int(11) Primary key, " +
+                "scene_id varchar(255), " +
+                "zoneTitle varchar(255), " +
+                "uid varchar(255), " +
+                "datetime_start timestamp, " +
+                "datetime_end timestamp, " +
+                "datetime_end int(11), " +
+                "type int(11), " +
+                "time_stamp timestamp, " +
+                "transmitted tinyint(1))";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -104,5 +121,11 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     @Override
     public Zone create(Zone z) throws SQLException {
         return persist(z);
+    }
+
+    @Override
+    public String createNewTable(Class cl) {
+        tableName = creatingTable(cl);
+        return tableName;
     }
 }

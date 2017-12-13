@@ -10,6 +10,7 @@ public class Parameters {
     private String ReserveDB_USER = "mysql";
     private String ReserveDB_PASSWORD = "mysql";
     private boolean ReserveTransmitted = true;
+    private boolean newReserveTable = false;
     private boolean transmitted = false;
     private int onePackOfStrings = 2000;
     private int checkTransmittedPeriod = 100;
@@ -53,6 +54,8 @@ public class Parameters {
     }
 
     public boolean getReserveTransmitted(){return ReserveTransmitted;}
+
+    public boolean getNewReserveTable(){return newReserveTable;}
 
     public boolean getTransmitted(){return transmitted;}
 

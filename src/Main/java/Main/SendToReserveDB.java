@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class SendToReserveDB{
@@ -26,6 +27,10 @@ public final class SendToReserveDB{
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+
+        if(param.getNewReserveTable()){
+            System.out.println(createTable(Line.class));
         }
 
         long count = getCountOfRecords(Line.class); //records with transmitted=0
@@ -49,6 +54,10 @@ public final class SendToReserveDB{
             e.printStackTrace();
         }
 
+        if(false){
+            createTable(Line.class);
+        }
+
         long count = getCountOfRecords(Zone.class); //records with transmitted=0
         while (count > 0) {
             count = getCountOfRecords(Zone.class);
@@ -68,7 +77,7 @@ public final class SendToReserveDB{
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private static long getCountOfRecords(Class cl){
+    public static long getCountOfRecords(Class cl){
         Parameters param = null;
         try {
             param = reader.ReadFile(Parameters.class);
@@ -314,5 +323,30 @@ public final class SendToReserveDB{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static String createTable(Class cl){
+        String newTableName = null;
+        Parameters param = null;
+        try {
+            param = reader.ReadFile(Parameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        IDAOFactory idaoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
+        try(Connection con = idaoFactory.getConnection()){
+            IGenericDAO dao = idaoFactory.getDAO(con, cl);
+            newTableName = dao.createNewTable(cl);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(newTableName != null){
+            System.out.println("Creating new table with name "+ newTableName + " successful.");
+        } else System.err.println("ERROR with creating table! Table successful created");
+        return newTableName;
     }
 }

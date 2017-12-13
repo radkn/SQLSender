@@ -6,9 +6,11 @@ import java.util.List;
 
 public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
+    private String tableName = "Line";
 
     public MySQLLineDAO(Connection connection) {
         super(connection);
+
     }
 
     private class PersistLine extends Line {
@@ -24,37 +26,51 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
      */
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM Line ";
+        return "SELECT * FROM " + tableName +" ";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO Line (scene_id, lineTitle, uid, datetime, status, type, time_stamp, transmitted)" +
+        return "INSERT INTO " + tableName + " (scene_id, lineTitle, uid, datetime, status, type, time_stamp, transmitted)" +
                 "VALUE (?,?,?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE Line\n" +
+        return "UPDATE " + tableName + "\n" +
                 "SET scene_id = ?, lineTitle = ?, uid = ?, datetime = ?, status = ?, type = ?, time_stamp = ?, transmitted = ? " +
                 "WHERE id = ?";
     }
 
     @Override
     public String getUpdateTransmittedQuery() {
-        return "UPDATE Line\n" +
+        return "UPDATE "+ tableName +"\n" +
                 "SET transmitted = ? " +
                 "WHERE id = ? ";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM Line WHERE id = ?;";
+        return "DELETE FROM "+ tableName +" WHERE id = ?;";
     }
 
     @Override
     public String getCountQuery() {
-        return "SELECT COUNT(*) FROM Line WHERE transmitted = ?;";
+        return "SELECT COUNT(*) FROM "+ tableName +" WHERE transmitted = ?;";
+    }
+
+    @Override
+    public String createNewTableQuery() {
+        return " (" +
+                "id int(11) Primary key, " +
+                "scene_id varchar(255), " +
+                "lineTitle varchar(255), " +
+                "uid varchar(255), " +
+                "datetime timestamp, " +
+                "status int(11), " +
+                "type int(11), " +
+                "time_stamp timestamp, " +
+                "transmitted tinyint(1))";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -111,5 +127,11 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     @Override
     public Line create(Line l) throws SQLException {
         return persist(l);
+    }
+
+    @Override
+    public String createNewTable(Class cl) {
+        tableName = creatingTable(cl);
+        return tableName;
     }
 }

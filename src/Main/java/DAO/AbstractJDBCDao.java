@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     public abstract String getUpdateTransmittedQuery();
 
     /**
-     * Return Query to delete record by ID in Line table.
+     * Return Query to delete record by ID in table.
      * <p/>
      * DELETE FROM [Table] WHERE id= ?;
      */
@@ -59,6 +61,13 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      * DELETE FROM [Table] WHERE id= ?;
      */
     public abstract String getCountQuery();
+
+    /**
+     * Return Query to create new table.
+     * <p/>
+     * CREATE TABLE [Table name]  (column = ?, column = ?, ...);
+     */
+    public abstract String createNewTableQuery();
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
     protected abstract List<T> parseResultSet(ResultSet rs);
@@ -244,19 +253,36 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      * @param transmitted to tell which data we want to get (with transmitted = true/false)
      * @return count of records by transmitted
      */
-        @Override
-        public long getCountTransmitted(boolean transmitted){
-            long count = 0;
-            String sql = getCountQuery();
-            try(PreparedStatement stm = connection.prepareStatement(sql)){
-                stm.setBoolean(1,transmitted);
-                ResultSet rs = stm.executeQuery();
-                rs.next();
-                count = rs.getLong(1);
-                stm.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return count;
+    @Override
+    public long getCountTransmitted(boolean transmitted){
+        long count = 0;
+        String sql = getCountQuery();
+        try(PreparedStatement stm = connection.prepareStatement(sql)){
+            stm.setBoolean(1,transmitted);
+            ResultSet rs = stm.executeQuery();
+            rs.next();
+            count = rs.getLong(1);
+            stm.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return count;
+    }
+
+    @Override
+    public String creatingTable(Class cl){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
+        String tableName = cl.getSimpleName()+ dateFormat.format(new java.util.Date());
+        String sql = "CREATE TABLE " + tableName + createNewTableQuery();
+        try(PreparedStatement stm = connection.prepareStatement(sql)){
+            stm.executeUpdate();
+            stm.close();
+            System.out.println("New table is: " + tableName);
+        } catch (SQLException e){
+            if(e.getErrorCode() == 1050) {
+                tableName = null;
+            } else e.printStackTrace();
+        }
+        return tableName;
+    }
 }

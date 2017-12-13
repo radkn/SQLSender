@@ -42,4 +42,8 @@ public interface IGenericDAO<T, PK extends Serializable> {
 
     long getCountTransmitted(boolean transmitted) throws SQLException;
 
+    String createNewTable(Class cl);
+
+    String creatingTable(Class cl);
+
 }
