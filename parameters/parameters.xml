@@ -8,8 +8,8 @@
     <ReserveDB__PASSWORD>mysql</ReserveDB__PASSWORD>
     <ReserveTransmitted>true</ReserveTransmitted>
     <transmitted>false</transmitted>
-    <onePackOfStrings>2000</onePackOfStrings>
-    <checkTransmittedPeriod>100</checkTransmittedPeriod>
+    <onePackOfStrings>20</onePackOfStrings>
+    <checkTransmittedPeriod>1000</checkTransmittedPeriod>
     <numberToSendReserve>5</numberToSendReserve>
   </java.lang.Class>
 </object-stream>

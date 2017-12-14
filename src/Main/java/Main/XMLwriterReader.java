@@ -22,7 +22,7 @@ public class XMLwriterReader<T> {
      * @param c - class of the object
      * @throws IOException
      */
-    public void WriteFile(T object, Class c) throws IOException {
+    public void WriteFile(T object, Class c){
         xstream.alias(c.getClass().getName(), c);
 
         File f = new File(address);
@@ -33,14 +33,23 @@ public class XMLwriterReader<T> {
         //String fPath = f.getPath();
         //String folredPath = folder.getPath();
 
-        ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter(this.address));
+        ObjectOutputStream out = null;
+        try {
+            out = xstream.createObjectOutputStream(new FileWriter(this.address));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             out.writeObject(object);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        out.close();
+        try {
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //delete this comment
 
@@ -51,7 +60,7 @@ public class XMLwriterReader<T> {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public T ReadFile(Class c) throws IOException, ClassNotFoundException {
+    public T ReadFile(Class c){
         xstream.alias(c.getClass().getName(), c);
         ObjectInputStream in = null;
         try {
@@ -60,7 +69,14 @@ public class XMLwriterReader<T> {
             e.printStackTrace();
         }
 
-        T newObject = (T) in.readObject();
+        T newObject = null;
+        try {
+            newObject = (T) in.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         return newObject;
     }

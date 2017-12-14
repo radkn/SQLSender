@@ -19,14 +19,8 @@ public final class SendToReserveDB{
      */
     public static void sendLinesToReserve(){
 
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
+
 
         long count = getCountOfRecords(Line.class); //records with transmitted=0
         while (count > 0) {
@@ -40,14 +34,7 @@ public final class SendToReserveDB{
     }
 
     public static void sendZonesToReserve(){
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
 
         long count = getCountOfRecords(Zone.class); //records with transmitted=0
         while (count > 0) {
@@ -69,14 +56,8 @@ public final class SendToReserveDB{
      * @throws ClassNotFoundException
      */
     private static long getCountOfRecords(Class cl){
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
+
 
         long count = 0;
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
@@ -99,14 +80,7 @@ public final class SendToReserveDB{
      * @throws Exception
      */
     private static List<Line> getLines(long count) throws Exception{
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
 
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
@@ -131,14 +105,7 @@ public final class SendToReserveDB{
      * @throws Exception
      */
     private static List<Zone> getZones(long count) throws Exception{
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
 
         //создание фабрики объектов для работы с базой данных
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
@@ -214,14 +181,8 @@ public final class SendToReserveDB{
      * @throws ClassNotFoundException
      */
     private static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
+
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
@@ -242,14 +203,8 @@ public final class SendToReserveDB{
      * @throws ClassNotFoundException
      */
     private static void createZones(List<Zone> zones) throws IOException, ClassNotFoundException {
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
+
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
@@ -269,14 +224,8 @@ public final class SendToReserveDB{
      * @param lines list of lines
      */
     private static void deleteLines(List<Line> lines){
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
+
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
@@ -295,14 +244,8 @@ public final class SendToReserveDB{
      * @param zones list of zones
      */
     private static void deleteZones(List<Zone> zones){
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
+
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
