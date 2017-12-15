@@ -1,6 +1,8 @@
 package DAO;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -138,7 +140,9 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         return tableName;
     }
 
-    public void setTableName(String tableName){
-        this.tableName = tableName;
+    @Override
+    public void setTableName(Class cl) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
+        this.tableName = cl.getSimpleName()+ dateFormat.format(new java.util.Date());
     }
 }

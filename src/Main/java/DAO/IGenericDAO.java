@@ -59,8 +59,8 @@ public interface IGenericDAO<T, PK extends Serializable> {
 
     /**
      * Set name of table with which we wood work
-     * @param tableName name of this table
+     * @param cl name of this table
      */
-    void setTableName(String tableName);
+    void setTableName(Class cl);
 
 }

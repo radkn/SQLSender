@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -130,7 +132,9 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     }
 
     @Override
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setTableName(Class cl) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
+        this.tableName =cl.getSimpleName()+ dateFormat.format(new java.util.Date());
     }
+
 }
