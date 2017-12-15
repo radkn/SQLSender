@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *
+ */
 public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     private String tableName = "Line";
@@ -62,7 +65,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     @Override
     public String createNewTableQuery() {
         return " (" +
-                "id int(11) Primary key, " +
+                "id int(11) Primary key NOT NULL AUTO_INCREMENT, " +
                 "scene_id varchar(255), " +
                 "lineTitle varchar(255), " +
                 "uid varchar(255), " +
@@ -133,5 +136,9 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     public String createNewTable(Class cl) {
         tableName = creatingTable(cl);
         return tableName;
+    }
+
+    public void setTableName(String tableName){
+        this.tableName = tableName;
     }
 }

@@ -12,6 +12,8 @@ import java.util.List;
 public final class SendToReserveDB{
 
     private static XMLwriterReader<Parameters> reader = new XMLwriterReader("parameters/parameters.xml");
+    private static XMLwriterReader<DBInfo> readerDBinfo = new XMLwriterReader("DBInfo/dbInfo.xml");
+
 
     /**
      * Send all records with transmitted = 1, from  NewVision DB to reserve DB
@@ -54,8 +56,8 @@ public final class SendToReserveDB{
             e.printStackTrace();
         }
 
-        if(false){
-            createTable(Line.class);
+        if(param.getNewReserveTable()){
+            createTable(Zone.class);
         }
 
         long count = getCountOfRecords(Zone.class); //records with transmitted=0
@@ -224,8 +226,10 @@ public final class SendToReserveDB{
      */
     private static void createLines(List<Line> lines) throws IOException, ClassNotFoundException {
         Parameters param = null;
+        DBInfo dbInfo = null;
         try {
             param = reader.ReadFile(Parameters.class);
+            dbInfo = readerDBinfo.ReadFile(DBInfo.class);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -234,6 +238,7 @@ public final class SendToReserveDB{
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
+            daoL.setTableName(dbInfo.getLastCreateLineTable());
             for (Line l : lines) {
                 daoL.create(l);
             }
@@ -252,8 +257,10 @@ public final class SendToReserveDB{
      */
     private static void createZones(List<Zone> zones) throws IOException, ClassNotFoundException {
         Parameters param = null;
+        DBInfo dbInfo = null;
         try {
             param = reader.ReadFile(Parameters.class);
+            dbInfo = readerDBinfo.ReadFile(DBInfo.class);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -261,9 +268,10 @@ public final class SendToReserveDB{
         }
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
-            IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
+            IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
+            daoZ.setTableName(dbInfo.getLastCreateZoneTable());
             for (Zone l : zones) {
-                daoL.create(l);
+                daoZ.create(l);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -325,11 +333,19 @@ public final class SendToReserveDB{
         }
     }
 
+    /**
+     * Method create new table for Reserve DB and
+     * write new name of table to dbInfo.xml
+     * @param cl determine name of table to create
+     * @return name of new table
+     */
     private static String createTable(Class cl){
         String newTableName = null;
         Parameters param = null;
+        DBInfo dbInfo = null;
         try {
             param = reader.ReadFile(Parameters.class);
+            dbInfo = readerDBinfo.ReadFile(DBInfo.class);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -339,6 +355,12 @@ public final class SendToReserveDB{
         try(Connection con = idaoFactory.getConnection()){
             IGenericDAO dao = idaoFactory.getDAO(con, cl);
             newTableName = dao.createNewTable(cl);
+
+            if(cl.getSimpleName().equals("Line"))
+                dbInfo.setLastCreateLineTable(newTableName);
+            else if (cl.getSimpleName().equals("Zone"))
+                dbInfo.setLastCreateZoneTable(newTableName);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -346,6 +368,12 @@ public final class SendToReserveDB{
         }
         if(newTableName != null){
             System.out.println("Creating new table with name "+ newTableName + " successful.");
+
+            try {
+                readerDBinfo.WriteFile(dbInfo, DBInfo.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else System.err.println("ERROR with creating table! Table successful created");
         return newTableName;
     }

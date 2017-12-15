@@ -17,49 +17,49 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM Zone";
+        return "SELECT * FROM "+ tableName + "";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO Zone (scene_id, zoneTitle, uid, datetime_start, datetime_end, datetime_delay, type, time_stamp, transmitted)" +
+        return "INSERT INTO "+ tableName +" (scene_id, zoneTitle, uid, datetime_start, datetime_end, datetime_delay, type, time_stamp, transmitted)" +
                 "VALUE (?,?,?,?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE Zone\n" +
+        return "UPDATE "+ tableName +"\n" +
                 "SET scene_id = ?, zoneTitle = ?, uid = ?, datetime_start = ?, datetime_end = ?, datetime_delay = ?, type = ?, time_stamp = ?, transmitted = ? " +
                 "WHERE id = ?";
     }
 
     @Override
     public String getUpdateTransmittedQuery() {
-        return "UPDATE Zone\n" +
+        return "UPDATE "+ tableName +"\n" +
                 "SET transmitted = ? " +
                 "WHERE id = ?";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM Zone WHERE id = ?;";
+        return "DELETE FROM "+ tableName +" WHERE id = ?;";
     }
 
     @Override
     public String getCountQuery() {
-        return "SELECT COUNT(*) FROM Zone WHERE transmitted = ?;";
+        return "SELECT COUNT(*) FROM "+ tableName +" WHERE transmitted = ?;";
     }
 
     @Override
     public String createNewTableQuery() {
-        return "CREATE TABLE ? (" +
-                "id int(11) Primary key, " +
+        return " (" +
+                "id int(11) Primary key NOT NULL AUTO_INCREMENT, " +
                 "scene_id varchar(255), " +
                 "zoneTitle varchar(255), " +
                 "uid varchar(255), " +
                 "datetime_start timestamp, " +
                 "datetime_end timestamp, " +
-                "datetime_end int(11), " +
+                "datetime_delay int(11), " +
                 "type int(11), " +
                 "time_stamp timestamp, " +
                 "transmitted tinyint(1))";
@@ -127,5 +127,10 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     public String createNewTable(Class cl) {
         tableName = creatingTable(cl);
         return tableName;
+    }
+
+    @Override
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 }

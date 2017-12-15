@@ -40,10 +40,27 @@ public interface IGenericDAO<T, PK extends Serializable> {
     /**возвращает все объекты выбраной таблицы*/
     List<T> getAll() throws SQLException;
 
+    /**
+     * Finds number of records by 'transmitted'
+     * @param transmitted to tell which data we want to get (with transmitted = true/false)
+     * @return count of records by transmitted
+     */
     long getCountTransmitted(boolean transmitted) throws SQLException;
 
+    /**need to point on class of creating table*/
     String createNewTable(Class cl);
 
+    /**
+     * Create new table
+     * @param cl determine type of table to create
+     * @return new table name
+     */
     String creatingTable(Class cl);
+
+    /**
+     * Set name of table with which we wood work
+     * @param tableName name of this table
+     */
+    void setTableName(String tableName);
 
 }
