@@ -234,7 +234,7 @@ public final class SendToReserveDB{
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
-            daoL.setTableName(Line.class);
+            daoL.setTableName(lines.get(0));
             for (Line l : lines) {
                 daoL.create(l);
             }
@@ -263,7 +263,7 @@ public final class SendToReserveDB{
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
-            daoZ.setTableName(Zone.class);
+            daoZ.setTableName(zones.get(0));
             for (Zone l : zones) {
                 daoZ.create(l);
             }

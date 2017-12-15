@@ -61,6 +61,6 @@ public interface IGenericDAO<T, PK extends Serializable> {
      * Set name of table with which we wood work
      * @param cl name of this table
      */
-    void setTableName(Class cl);
+    void setTableName(INewVisionDB cl);
 
 }

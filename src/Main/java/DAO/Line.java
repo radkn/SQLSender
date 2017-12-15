@@ -7,7 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 
-public class Line implements ISendable {
+public class Line implements ISendable, INewVisionDB {
     private int id;
     private String scene_id;
     private String lineTitle;
@@ -17,6 +17,7 @@ public class Line implements ISendable {
     private int type;
     private Timestamp time_stamp;
     private boolean transmitted;
+    private String nameOfTable = "Line";
 
 
     public int getId() {
@@ -100,5 +101,10 @@ public class Line implements ISendable {
                 + "\",\"status\":\"" + status
                 + "\",\"type\":\"" + type
                 + "\"}";
+    }
+
+    @Override
+    public String getNameOfTable() {
+        return nameOfTable;
     }
 }

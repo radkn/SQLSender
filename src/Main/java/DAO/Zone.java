@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class Zone implements ISendable {
+public class Zone implements ISendable, INewVisionDB {
     private int id;
     private String scene_id;
     private String zoneTitle;
@@ -17,6 +17,7 @@ public class Zone implements ISendable {
     private int type;
     private Timestamp time_stamp;
     private boolean transmitted;
+    private String nameOfTable = "Zone";
 
     public int getId() {
         return id;
@@ -110,5 +111,10 @@ public class Zone implements ISendable {
                 + "\",\"datetime_delay\":\"" + datatime_delay
                 + "\",\"type\":\"" + type
                 + "\"}";
+    }
+
+    @Override
+    public String getNameOfTable() {
+        return nameOfTable;
     }
 }
