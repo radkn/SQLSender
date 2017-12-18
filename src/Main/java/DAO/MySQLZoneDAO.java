@@ -132,8 +132,9 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     }
 
     @Override
-    public void setTableName(INewVisionDB cl) {
+    public void setTableName(Class cl) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");
-        this.tableName = cl.getNameOfTable()+ dateFormat.format(new java.util.Date());
+        this.tableName = cl.getSimpleName()+ dateFormat.format(new java.util.Date());
     }
+
 }
