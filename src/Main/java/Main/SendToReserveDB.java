@@ -64,7 +64,7 @@ public final class SendToReserveDB{
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    private static long getCountOfRecords(Class cl){
+    public static long getCountOfRecords(Class cl){
         Parameters param = reader.ReadFile(Parameters.class);
 
 
@@ -195,7 +195,7 @@ public final class SendToReserveDB{
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
-            daoL.setTableName(lines.get(0));
+            daoL.setTableName(new Line());
             for (Line l : lines) {
                 daoL.create(l);
             }
@@ -218,7 +218,7 @@ public final class SendToReserveDB{
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
             IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
-            daoZ.setTableName(zones.get(0));
+            daoZ.setTableName(new Zone());
             for (Zone l : zones) {
                 daoZ.create(l);
             }
@@ -278,14 +278,7 @@ public final class SendToReserveDB{
      */
     private static String createTable(Class cl){
         String newTableName = null;
-        Parameters param = null;
-        try {
-            param = reader.ReadFile(Parameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Parameters param = reader.ReadFile(Parameters.class);
         IDAOFactory idaoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
         try(Connection con = idaoFactory.getConnection()){
             IGenericDAO dao = idaoFactory.getDAO(con, cl);
