@@ -7,8 +7,6 @@ import javax.swing.Timer;
 import DAO.Line;
 import DAO.Zone;
 
-import java.io.IOException;
-
 public class Main {
 
     public static void main(String[] args){
@@ -45,6 +43,7 @@ public class Main {
                 while (countL > 0) {
                     if (countL >= param.getOnePackOfStrings())
                         sendSuccess = NVToServer.sendLines(param.getOnePackOfStrings());
+
                     else
                         sendSuccess = NVToServer.sendLines(countL);
                     System.out.println("Lines success: " + sendSuccess);

@@ -1,6 +1,7 @@
 package Main;
 
 import DAO.*;
+import RSAencryption.RSADataSender;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,6 +15,7 @@ import java.util.List;
 public final class NVToServer {
     private static String parametersAddress = "parameters/parameters.xml";
     private static XMLwriterReader<Parameters> reader = new XMLwriterReader(parametersAddress);
+    private static RSADataSender RSASender = new RSADataSender();
 
     /**
      * Finds number of lines with 'transmitted=false'
@@ -175,10 +177,14 @@ public final class NVToServer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        String encryptedLines = RSASender.encryptJSON(messageLines);
+
         String jsonLines = "{" +
                 "\"hash\":\"--Julya test--\"," +
-                "\"data\":" + messageLines + "}";
-
+                "\"data\":\"" + encryptedLines + "\"}";
+        System.out.println("Enc Lines: ");
+        System.out.println(encryptedLines);
         try {
             long time = System.currentTimeMillis();
             sendSuccess = sender.SendData(jsonLines, "http://ppd.cifr.us/api/line/put");
@@ -221,9 +227,13 @@ public final class NVToServer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        String encryptedZones = RSASender.encryptJSON(messageZones);
         String jsonZones = "{" +
                 "\"hash\":\"--Julya test--\"," +
-                "\"data\":" + messageZones + "}";
+                "\"data\":\"" + encryptedZones + "\"}";
+        System.out.println("Enc Lines: ");
+        System.out.println(encryptedZones);
         try {
             long time = System.currentTimeMillis();
             sendSuccess = sender.SendData(jsonZones, "http://ppd.cifr.us/api/zone/put");
