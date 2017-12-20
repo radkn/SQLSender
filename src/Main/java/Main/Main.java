@@ -2,8 +2,11 @@ package Main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.Scanner;
 import javax.swing.Timer;
+
+import DAO.HeatMap;
 import DAO.Line;
 import DAO.Zone;
 
@@ -17,30 +20,39 @@ public class Main {
         //here we get our parameters from .xml file
         Parameters param = reader.ReadFile(Parameters.class);
 
-        //here we check whether we need to send data to reserve DB
-        //if true, we send
-        if (SendToReserveDB.getCountOfRecords(Line.class) >= param.getNumberToSendReserve()) {
-            SendToReserveDB.sendLinesToReserve();
-            System.out.println("L - true");
-        }
-        else {
-            System.out.println("There is no reserve Lines data");
-        }
-        System.out.println("Count L: " + NVToServer.getCountOfLines());
-        if (SendToReserveDB.getCountOfRecords(Zone.class) >= param.getNumberToSendReserve()) {
-            SendToReserveDB.sendZonesToReserve();
-            System.out.println("Z - true");
-        }
-        else {
-            System.out.println("There is no reserve Zones data");
-        }
-
-
         Timer timerSendData = new Timer(param.getCheckTransmittedPeriod(), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //here we check whether we need to send data to reserve DB
+                //if true, we send
+                if (SendToReserveDB.getCountOfRecords(Line.class) >= param.getNumberToSendReserve()) {
+                    SendToReserveDB.sendLinesToReserve();
+                    System.out.println("L - true");
+                }
+                else {
+                    System.out.println("There is no reserve Lines data");
+                }
+                System.out.println("Count L: " + NVToServer.getCountOfLines());
+                if (SendToReserveDB.getCountOfRecords(Zone.class) >= param.getNumberToSendReserve()) {
+                    SendToReserveDB.sendZonesToReserve();
+                    System.out.println("Z - true");
+                }
+                else {
+                    System.out.println("There is no reserve Zones data");
+                }
+
+                if (SendToReserveDB.getCountOfRecords(HeatMap.class) >= param.getNumberToSendReserve()) {
+                    SendToReserveDB.sendHeatMapToReserve();
+                    System.out.println("H - true");
+                }
+                else {
+                    System.out.println("There is no reserve HeatMaps data");
+                }
+
                 boolean sendSuccess;
                 //here we send new Lines data to server
+/*
+                System.out.println("Start check count of Line...");
                 long countL = NVToServer.getCountOfLines(); //records with transmitted=false
                 while (countL > 0) {
                     if (countL >= param.getOnePackOfStrings())
@@ -50,7 +62,10 @@ public class Main {
                     System.out.println("Lines success: " + sendSuccess);
                     countL = NVToServer.getCountOfLines();
                 }
+                System.out.println("Count of Line checked.");
 
+
+                System.out.println("Start check count of Zone...");
                 //here we send new Zones data to server
                 long countZ = NVToServer.getCountOfZones(); //records with transmitted=false
                 while (countZ > 0) {
@@ -61,6 +76,7 @@ public class Main {
                     System.out.println("Zones success: " + sendSuccess);
                     countZ = NVToServer.getCountOfZones();
                 }
+                System.out.println("Count of Zone checked.");*/
             }
         });
         timerSendData.start();

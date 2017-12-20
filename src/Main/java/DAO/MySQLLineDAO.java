@@ -35,6 +35,11 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     }
 
     @Override
+    public String getConditionOfQuery() {
+        return " WHERE transmitted = ? LIMIT ?";
+    }
+
+    @Override
     public String getCreateQuery() {
         return "INSERT INTO " + tableName + " (scene_id, lineTitle, uid, datetime, status, type, time_stamp, transmitted)" +
                 "VALUE (?,?,?,?,?,?,?,?)";

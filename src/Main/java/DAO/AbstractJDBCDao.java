@@ -27,6 +27,8 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     public abstract String getSelectQuery();
 
+    public abstract String getConditionOfQuery();
+
     /**
      * Return Query to create new record in Line table.
      * <p/>
@@ -188,7 +190,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     public List<T> getByTransmittedLimit(boolean tr, long limit){
         List<T> list = new ArrayList<T>();
-        String sql = getSelectQuery() + " WHERE transmitted = ? LIMIT ?";
+        String sql = getSelectQuery() + getConditionOfQuery();
         try(PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setBoolean(1,tr);
             stm.setLong(2, limit);

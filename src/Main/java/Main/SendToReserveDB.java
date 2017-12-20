@@ -57,6 +57,25 @@ public final class SendToReserveDB{
 
     }
 
+    public static void sendHeatMapToReserve(){
+        Parameters param = reader.ReadFile(Parameters.class);
+
+        if(param.getNewReserveTable()){
+            createTable(HeatMap.class);
+        }
+
+        long count = getCountOfRecords(HeatMap.class); //records with transmitted=0
+        while (count > 0) {
+            if (count >= param.getOnePackOfStrings())
+                sendHeatMap(param.getOnePackOfStrings());
+            else
+                sendHeatMap(count);
+            System.out.println("Zones success reserved");
+            count = getCountOfRecords(HeatMap.class);
+        }
+
+    }
+
     /**
      * Get count of records in table which name corresponds to cl
      * @param cl class name of appropriated table
@@ -133,6 +152,30 @@ public final class SendToReserveDB{
     }
 
     /**
+     * @return list of records by paramReserveDB.getTransmitted()
+     * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
+     * @throws Exception
+     */
+    private static List<HeatMap> getHeatMaps(long count) throws Exception{
+        Parameters param = reader.ReadFile(Parameters.class);
+
+        //создание фабрики объектов для работы с базой данных
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+        //список для хранения полученых линий с базы данных
+        List<HeatMap> list;
+        //создание подключения к базе
+        try(Connection con = daoFactory.getConnection()){
+            //создание объекта реализующего интерфейс работы с базой данных
+            IGenericDAO daoZ = daoFactory.getDAO(con, HeatMap.class);
+            //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
+            list = daoZ.getByTransmittedLimit(param.getReserveTransmitted(), count);
+            con.close();
+        }
+        System.out.println("List zones size" + list.size());
+        return list;
+    }
+
+    /**
      * Send several counts of lines to reserve database
      * @param count count of lines which need to send
      */
@@ -182,6 +225,31 @@ public final class SendToReserveDB{
             deleteZones(list);
     }
 
+    /**
+     * Send several counts of zones to reserve database
+     * @param count count of zones which need to send
+     */
+    private static void sendHeatMap(long count){
+        List<HeatMap> list = new ArrayList<>();
+        try {
+            long time = System.currentTimeMillis();
+            list.addAll(getHeatMaps(count));
+            time = System.currentTimeMillis() - time;
+            System.out.println("Read time: " + time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            long time = System.currentTimeMillis();
+            createHeatMap(list);
+            time = System.currentTimeMillis() - time;
+            System.out.println("Send time: " + time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        deleteHeatMaps(list);
+    }
+
 
     /**
      * Add records to table Lines of reserve DB
@@ -229,6 +297,29 @@ public final class SendToReserveDB{
         }
     }
 
+    /**
+     * Add records to table Zones of reserve DB
+     * @param heats list of zones which need to write to table
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private static void createHeatMap(List<HeatMap> heats) throws IOException, ClassNotFoundException {
+        Parameters param = reader.ReadFile(Parameters.class);
+
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getReserveDB_URL(), param.getReserveDB_USER(), param.getReserveDB_PASSWORD());
+        try (Connection con = daoFactory.getConnection()) {
+            IGenericDAO daoH = daoFactory.getDAO(con, HeatMap.class);
+            daoH.setTableName(HeatMap.class);
+            for (HeatMap l : heats) {
+                daoH.create(l);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Delete all records which are in the list of lines
@@ -259,9 +350,29 @@ public final class SendToReserveDB{
 
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
         try (Connection con = daoFactory.getConnection()) {
-            IGenericDAO daoL = daoFactory.getDAO(con, Zone.class);
+            IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
             for (Zone l : zones) {
-                daoL.delete(l.getId());
+                daoZ.delete(l.getId());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Delete all records which are in the list of zones
+     * @param heats list of zones
+     */
+    private static void deleteHeatMaps(List<HeatMap> heats){
+        Parameters param = reader.ReadFile(Parameters.class);
+
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+        try (Connection con = daoFactory.getConnection()) {
+            IGenericDAO daoH = daoFactory.getDAO(con, HeatMap.class);
+            for (HeatMap l : heats) {
+                daoH.delete(l.getId());
             }
         } catch (SQLException e) {
             e.printStackTrace();

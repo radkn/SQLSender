@@ -23,6 +23,11 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
     }
 
     @Override
+    public String getConditionOfQuery() {
+        return " WHERE transmitted = ? LIMIT ?";
+    }
+
+    @Override
     public String getCreateQuery() {
         return "INSERT INTO "+ tableName +" (scene_id, zoneTitle, uid, datetime_start, datetime_end, datetime_delay, type, time_stamp, transmitted)" +
                 "VALUE (?,?,?,?,?,?,?,?,?)";
