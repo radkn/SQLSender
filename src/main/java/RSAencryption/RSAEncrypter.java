@@ -21,6 +21,12 @@ public class RSAEncrypter implements IEncrypter {
         modStr = keys.getModulus();
     }
 
+    /**
+     * Splits large text into pieces (chunks) and encrypts it
+     * @param plaintext
+     * @return
+     * @throws Exception
+     */
     public String encryptLarge(String plaintext) throws Exception{
 
 
@@ -32,9 +38,9 @@ public class RSAEncrypter implements IEncrypter {
 
         String[] chunks = plaintext.split("(?<=\\G.{" + chunkSize + "})");
 
-        System.out.println("Plain text: " + plaintext.length());
-        System.out.println("Chunks: " + chunks.length);
-        System.out.println("Chunk size: " + chunkSize);
+//        System.out.println("Plain text: " + plaintext.length());
+//        System.out.println("Chunks: " + chunks.length);
+//        System.out.println("Chunk size: " + chunkSize);
 
         for (int i = 0; i < chunks.length; i++) {
             System.out.println("Chunk " + i + " is: " + chunks[i].length());
@@ -69,7 +75,7 @@ public class RSAEncrypter implements IEncrypter {
 
     @Override
     public String encrypt(String message) throws Exception {
-        String encrypted = encryptLarge(message);//Base64.getEncoder().encodeToString(encrypt(message.getBytes("UTF-8")));
+        String encrypted = encryptLarge(message);
         return encrypted;
     }
 

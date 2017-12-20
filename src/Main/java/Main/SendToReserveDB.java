@@ -38,6 +38,7 @@ public final class SendToReserveDB{
         }
     }
 
+    //TODO: comment
     public static void sendZonesToReserve(){
         Parameters param = reader.ReadFile(Parameters.class);
 

@@ -17,7 +17,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         super(connection);
 
     }
-
+    //TODO: what is it?
     private class PersistLine extends Line {
         public void setId(int id){
             super.setId(id);

@@ -64,7 +64,7 @@ public class Main {
         });
         timerSendData.start();
 
-        //program will never stop
+        //program will not stop until user enters "stop"
         while (true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("If you want to stop the program enter 'stop'");

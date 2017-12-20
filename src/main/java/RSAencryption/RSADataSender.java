@@ -30,6 +30,11 @@ public class RSADataSender extends DataSender {
         return super.SendData(encryptedMessage, url);
     }
 
+    /**
+     * encrypts JSON
+     * @param jSon - string that is to be encrypted
+     * @return
+     */
     public String encryptJSON(String jSon){
         String encryptedMessage = null;
 
