@@ -42,9 +42,9 @@ public class RSAEncrypter implements IEncrypter {
 //        System.out.println("Chunks: " + chunks.length);
 //        System.out.println("Chunk size: " + chunkSize);
 
-        for (int i = 0; i < chunks.length; i++) {
-            System.out.println("Chunk " + i + " is: " + chunks[i].length());
-        }
+//        for (int i = 0; i < chunks.length; i++) {
+//            System.out.println("Chunk " + i + " is: " + chunks[i].length());
+//        }
 
         String encrypted = "";
 
