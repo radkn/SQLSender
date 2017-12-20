@@ -32,13 +32,13 @@ public class RSAEncrypter implements IEncrypter {
 
         String[] chunks = plaintext.split("(?<=\\G.{" + chunkSize + "})");
 
-//        System.out.println("Plain text: " + plaintext.length());
-//        System.out.println("Chunks: " + chunks.length);
-//        System.out.println("Chunk size: " + chunkSize);
-//
-//        for (int i = 0; i < chunks.length; i++) {
-//            System.out.println("Chunk " + i + " is: " + chunks[i].length());
-//        }
+        System.out.println("Plain text: " + plaintext.length());
+        System.out.println("Chunks: " + chunks.length);
+        System.out.println("Chunk size: " + chunkSize);
+
+        for (int i = 0; i < chunks.length; i++) {
+            System.out.println("Chunk " + i + " is: " + chunks[i].length());
+        }
 
         String encrypted = "";
 
