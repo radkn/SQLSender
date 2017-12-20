@@ -66,7 +66,7 @@ public class HeatMap implements ISendable {
     @Override
     public String toJSON() {
         DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
-        return "{,\"x\":\"" + x
+        return "{\"x\":\"" + x
                 + "\",\"y\":\"" + y
                 + "\",\"datetime\":\"" + sendFormat.format(new java.util.Date(datetime.getTime()))
                 + "\"}";

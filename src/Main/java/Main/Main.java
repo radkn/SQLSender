@@ -2,17 +2,20 @@ package Main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import javax.swing.Timer;
 
-import DAO.HeatMap;
-import DAO.Line;
-import DAO.Zone;
+import DAO.*;
 
 import java.io.IOException;
 
 public class Main {
+    private static String parametersAddress = "parameters/parameters.xml";
+    private static XMLwriterReader<Parameters> reader = new XMLwriterReader(parametersAddress);
 
     public static void main(String[] args){
         String parametersAddress = "parameters/parameters.xml";
@@ -50,6 +53,9 @@ public class Main {
                 }
 
                 boolean sendSuccess;
+
+                testSendHM(param.getOnePackOfStrings());
+
                 //here we send new Lines data to server
 /*
                 System.out.println("Start check count of Line...");
@@ -91,5 +97,58 @@ public class Main {
                 break;
             }
         }
+    }
+
+    public static void testSendHM(long count){
+
+        boolean sendSuccess = false;
+        DataSender sender = new DataSender();
+        String messageLines = null;
+        List<HeatMap> list = new ArrayList();
+        HeatMapsPars hmList = new HeatMapsPars();
+        SQLList sqlList = new SQLList();
+        try {
+            long time = System.currentTimeMillis();
+            list.addAll(getHeatMaps(count));
+            hmList.addAll(list);
+            sqlList.addAll(list);
+            messageLines = hmList.toJSON();
+            time = System.currentTimeMillis() - time;
+            System.out.println("Read time: " + time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String jsonLines = "{" +
+                "\"hash\":\"--Julya test--\"," +
+                "\"data\":" + messageLines + "}";
+
+        System.out.println(jsonLines);
+
+    }
+
+    /**
+     * В методе показаны примеры работы с интерфейсом IGenericDAO
+     * (интерфейс работы с базой данных) на примере таблицы Line
+     * @return Список первых n записей таблицы Line
+     * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
+     * @throws Exception
+     */
+    private static List<HeatMap> getHeatMaps(long count) throws Exception{
+        Parameters param = reader.ReadFile(Parameters.class);
+        //создание фабрики объектов для работы с базой данных
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+        //список для хранения полученых линий с базы данных
+        List<HeatMap> list;
+        //создание подключения к базе
+        try(Connection con = daoFactory.getConnection()){
+            //создание объекта реализующего интерфейс работы с базой данных
+            IGenericDAO daoL = daoFactory.getDAO(con, HeatMap.class);
+            //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
+            list = daoL.getByTransmittedLimit(param.getTransmitted(), count);
+            con.close();
+        }
+        System.out.println("List lines size" + list.size());
+        return list;
     }
 }

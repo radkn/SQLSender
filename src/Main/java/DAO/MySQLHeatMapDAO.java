@@ -79,8 +79,8 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
                 h.setUid(rs.getString(2));
                 h.setX(rs.getInt(3));
                 h.setY(rs.getInt(4));
-                h.setDatetime(rs.getTimestamp(5));
-                h.setTransmitted(rs.getBoolean(6));
+                h.setDatetime(rs.getTimestamp(6));
+                h.setTransmitted(rs.getBoolean(7));
                 result.add(h);
             }
         } catch (SQLException e) {
