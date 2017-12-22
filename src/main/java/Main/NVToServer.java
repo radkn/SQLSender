@@ -281,13 +281,15 @@ public final class NVToServer {
         DataSender sender = new DataSender();
         String messageHeatMaps = null;
         List<HeatMap> list = new ArrayList<>();
+        HeatMapsPars hmList = new HeatMapsPars();
         /**Объект содержащий список с мотодом toJSON*/
         SQLList sqlList = new SQLList();
         try {
             long time = System.currentTimeMillis();
             list.addAll(getHeatMap(count));
+            hmList.addAll(list);
             sqlList.addAll(list);
-            messageHeatMaps = sqlList.toJSON();
+            messageHeatMaps = hmList.toJSON();
             time = System.currentTimeMillis() - time;
             System.out.println("Read time: " + time);
         } catch (Exception e) {
