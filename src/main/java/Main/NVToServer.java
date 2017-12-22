@@ -16,49 +16,24 @@ public final class NVToServer {
     private static XMLwriterReader<Parameters> reader = new XMLwriterReader(parametersAddress);
 
     /**
-     * Finds number of lines with 'transmitted=false'
-     * @return number of lines
+     * Finds number of records with 'transmitted=false' (transmitted is taken from 'parameters')
+     * @return number of records
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static long getCountOfLines() {
-        long countLines = 0;
+    public static long getCountOfRecords(Class c){
+        long countOfRecords = 0;
         Parameters param = reader.ReadFile(Parameters.class);
-
         IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
 
-        try (Connection con = daoFactory.getConnection()) {
-            IGenericDAO daoL = daoFactory.getDAO(con, Line.class);
-            countLines = daoL.getCountTransmitted(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        try(Connection con = daoFactory.getConnection()){
+            IGenericDAO daoC = daoFactory.getDAO(con, c);
+            countOfRecords = daoC.getCountTransmitted(param.getTransmitted());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return countLines;
-    }
 
-    /**
-     * Finds number of zones with 'transmitted=false'
-     * @return number of zones
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    public static long getCountOfZones(){
-        long countZones = 0;
-        Parameters param = reader.ReadFile(Parameters.class);
-
-        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
-
-        try (Connection con = daoFactory.getConnection()) {
-            IGenericDAO daoZ = daoFactory.getDAO(con, Zone.class);
-            countZones = daoZ.getCountTransmitted(false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return countZones;
+        return countOfRecords;
     }
 
     /**
@@ -104,6 +79,25 @@ public final class NVToServer {
     }
 
     /**
+     * Метод меняет поле transmitted указаных в списке записей на true
+     * @param list  список объектов HeatMap
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private static void transmittedToTrueHeatMap(List<HeatMap> list){
+        Parameters param = reader.ReadFile(Parameters.class);
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+        try(Connection con = daoFactory.getConnection()) {
+            IGenericDAO daoH = daoFactory.getDAO(con, HeatMap.class);
+            for(HeatMap hm: list){
+                daoH.updateTransmitted(hm.getId(), true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * В методе показаны примеры работы с интерфейсом IGenericDAO
      * (интерфейс работы с базой данных) на примере таблицы Line
      * @return Список первых n записей таблицы Line
@@ -124,7 +118,7 @@ public final class NVToServer {
             list = daoL.getByTransmittedLimit(param.getTransmitted(), count);
             con.close();
         }
-        System.out.println("List lines size" + list.size());
+        System.out.println("List lines size: " + list.size());
         return list;
     }
 
@@ -150,10 +144,33 @@ public final class NVToServer {
             list = daoZ.getByTransmittedLimit(param.getTransmitted(), count);
             con.close();
         }
-        System.out.println("List zones size" + list.size());
+        System.out.println("List zones size: " + list.size());
         return list;
     }
 
+    /**
+     * В методе показаны примеры работы с интерфейсом IGenericDAO
+     * (интерфейс работы с базой  данных) на примере таблицы HeatMap
+     * @return Список первых n записей таблицы HeatMap
+     * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
+     * @throws Exception
+     */
+    private static List<HeatMap> getHeatMap(long count){
+        Parameters param = reader.ReadFile(Parameters.class);
+        //создание фабрики объектов для работы с базой данных
+        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+        //список для хранения полученых линий с базы данных
+        List<HeatMap> list = null;
+        try(Connection con = daoFactory.getConnection()){
+            IGenericDAO daoH = daoFactory.getDAO(con, HeatMap.class);
+            list = daoH.getByTransmittedLimit(param.getTransmitted(), count);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("List heat map size: " + list.size());
+        return list;
+    }
     /**
      * Sends lines to the server
      * @param count - number of lines that should be sent
@@ -244,6 +261,44 @@ public final class NVToServer {
         return sendSuccess;
     }
 
+    /**
+     * Sends heat maps to the server
+     * @param count - number of heat maps that should be sent
+     * @return
+     */
+    public static boolean sendHeatMap(long count){
+        boolean sendSuccess = false;
+        DataSender sender = new DataSender();
+        String messageHeatMaps = null;
+        List<HeatMap> list = new ArrayList<>();
+        /**Объект содержащий список с мотодом toJSON*/
+        SQLList sqlList = new SQLList();
+        try {
+            long time = System.currentTimeMillis();
+            list.addAll(getHeatMap(count));
+            sqlList.addAll(list);
+            messageHeatMaps = sqlList.toJSON();
+            time = System.currentTimeMillis() - time;
+            System.out.println("Read time: " + time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String jsonZones = "{" +
+                "\"hash\":\"--Julya test--\"," +
+                "\"data\":" + messageHeatMaps + "}";
+        try {
+            long time = System.currentTimeMillis();
+            sendSuccess = sender.SendData(jsonZones, "http://ppd.cifr.us/api/point/put");
+            time = System.currentTimeMillis() - time;
+            System.out.println("Send time: " + time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(sendSuccess==true){
+            transmittedToTrueHeatMap(list);
+        }
+        return sendSuccess;
+    }
     /**
      * my method for work process
      * will be DELETED
