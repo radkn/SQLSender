@@ -293,12 +293,15 @@ public final class NVToServer {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String jsonZones = "{" +
+
+        System.out.println("HM string: " + messageHeatMaps);
+        String encryptedHeatMaps = RSASender.encryptJSON(messageHeatMaps);
+        String jsonHeatMaps = "{" +
                 "\"hash\":\"--Julya test--\"," +
-                "\"data\":" + messageHeatMaps + "}";
+                "\"data\":\"" + encryptedHeatMaps + "\"}";
         try {
             long time = System.currentTimeMillis();
-            sendSuccess = sender.SendData(jsonZones, "http://ppd.cifr.us/api/point/put");
+            sendSuccess = sender.SendData(jsonHeatMaps, "http://ppd.cifr.us/api/point/put");
             time = System.currentTimeMillis() - time;
             System.out.println("Send time: " + time);
         } catch (Exception e) {
