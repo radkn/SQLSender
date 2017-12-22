@@ -37,6 +37,13 @@ public class MySQLDaoFactory implements IDAOFactory {
             }
         });
 
+        creators.put(HeatMap.class, new DaoCreator<Connection>() {
+            @Override
+            public IGenericDAO create(Connection connection) {
+                return new MySQLHeatMapDAO(connection);
+            }
+        });
+
     }
 
 

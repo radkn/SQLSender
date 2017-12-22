@@ -10,7 +10,7 @@
     <newReserveTable>true</newReserveTable>
     <transmitted>false</transmitted>
     <onePackOfStrings>2000</onePackOfStrings>
-    <checkTransmittedPeriod>10</checkTransmittedPeriod>
+    <checkTransmittedPeriod>10000</checkTransmittedPeriod>
     <numberToSendReserve>5</numberToSendReserve>
   </java.lang.Class>
 </object-stream>
