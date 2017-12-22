@@ -13,7 +13,10 @@ public class HeatMap implements ISendable {
     private int x;
     private int y;
     private Timestamp datetime;
+    private int type;
     private boolean transmitted;
+
+
 
     public String getUid() {
         return uid;
@@ -55,6 +58,14 @@ public class HeatMap implements ISendable {
         this.datetime = datetime;
     }
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     public boolean getTransmitted() {
         return transmitted;
     }
@@ -69,6 +80,7 @@ public class HeatMap implements ISendable {
         return "{\"x\":\"" + x
                 + "\",\"y\":\"" + y
                 + "\",\"datetime\":\"" + sendFormat.format(new java.util.Date(datetime.getTime()))
-                + "\"}";
+                + "\",\"type\":\"" + type
+                +"\"}";
     }
 }

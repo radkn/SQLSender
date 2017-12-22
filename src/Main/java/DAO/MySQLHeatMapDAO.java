@@ -28,14 +28,14 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO "+ tableName +" (uid, x, y, datetime, transmitted)" +
-                "VALUE (?,?,?,?,?)";
+        return "INSERT INTO "+ tableName +" (uid, x, y, datetime, type, transmitted)" +
+                "VALUE (?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
         return "UPDATE "+ tableName +"\n" +
-                "SET  uid = ?, x = ?, y = ?, datetime = ?, transmitted = ? " +
+                "SET  uid = ?, x = ?, y = ?, datetime = ?, type = ?, transmitted = ? " +
                 "WHERE id = ?";
     }
 
@@ -64,6 +64,7 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
                 "x int(11), " +
                 "y int(11), " +
                 "datetime timestamp, " +
+                "type int(11), " +
                 "transmitted tinyint(1))";
     }
 
@@ -77,7 +78,8 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
                 h.setUid(rs.getString(2));
                 h.setX(rs.getInt(3));
                 h.setY(rs.getInt(4));
-                h.setDatetime(rs.getTimestamp(6));
+                h.setDatetime(rs.getTimestamp(5));
+                h.setType(rs.getInt(6));
                 h.setTransmitted(rs.getBoolean(7));
                 result.add(h);
             }
@@ -93,7 +95,8 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
         statement.setInt(2, object.getX());
         statement.setInt(3, object.getY());
         statement.setTimestamp(4, object.getDatetime());
-        statement.setBoolean(5, object.getTransmitted());
+        statement.setInt(5, object.getType());
+        statement.setBoolean(6, object.getTransmitted());
     }
 
     @Override
@@ -102,9 +105,10 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
         statement.setInt(2, object.getX());
         statement.setInt(3, object.getY());
         statement.setTimestamp(4, object.getDatetime());
-        statement.setBoolean(5, object.getTransmitted());
+        statement.setInt(5, object.getType());
+        statement.setBoolean(6, object.getTransmitted());
 
-        statement.setInt(6, object.getId());
+        statement.setInt(7, object.getId());
     }
 
 
