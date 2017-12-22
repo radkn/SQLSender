@@ -35,7 +35,7 @@ public class Main {
                 else {
                     System.out.println("There is no reserve Lines data");
                 }
-                System.out.println("Count L: " + NVToServer.getCountOfLines());
+
                 if (SendToReserveDB.getCountOfRecords(Zone.class) >= param.getNumberToSendReserve()) {
                     SendToReserveDB.sendZonesToReserve();
                     System.out.println("Z - true");
@@ -54,35 +54,45 @@ public class Main {
 
                 boolean sendSuccess;
 
-                testSendHM(param.getOnePackOfStrings());
-
                 //here we send new Lines data to server
-/*
                 System.out.println("Start check count of Line...");
-                long countL = NVToServer.getCountOfLines(); //records with transmitted=false
+                long countL = NVToServer.getCountOfRecords(Line.class); //records with transmitted=false
                 while (countL > 0) {
                     if (countL >= param.getOnePackOfStrings())
                         sendSuccess = NVToServer.sendLines(param.getOnePackOfStrings());
                     else
                         sendSuccess = NVToServer.sendLines(countL);
                     System.out.println("Lines success: " + sendSuccess);
-                    countL = NVToServer.getCountOfLines();
+                    countL = NVToServer.getCountOfRecords(Line.class);
                 }
                 System.out.println("Count of Line checked.");
 
 
                 System.out.println("Start check count of Zone...");
                 //here we send new Zones data to server
-                long countZ = NVToServer.getCountOfZones(); //records with transmitted=false
+                long countZ = NVToServer.getCountOfRecords(Zone.class); //records with transmitted=false
                 while (countZ > 0) {
                     if (countZ >= param.getOnePackOfStrings())
                         sendSuccess = NVToServer.sendZones(param.getOnePackOfStrings());
                     else
                         sendSuccess = NVToServer.sendZones(countZ);
                     System.out.println("Zones success: " + sendSuccess);
-                    countZ = NVToServer.getCountOfZones();
+                    countZ = NVToServer.getCountOfRecords(Zone.class);
                 }
-                System.out.println("Count of Zone checked.");*/
+                System.out.println("Count of Zone checked.");
+
+                System.out.println("Start check count of HeatMap...");
+                //here we send new HeatMap data to server
+                long countH = NVToServer.getCountOfRecords(HeatMap.class); //records with transmitted=false
+                while (countH > 0){
+                    if(countH >= param.getOnePackOfStrings())
+                        sendSuccess = NVToServer.sendHeatMap(param.getOnePackOfStrings());
+                    else
+                        sendSuccess = NVToServer.sendHeatMap(countH);
+                    System.out.println("HeatMaps success: " + sendSuccess);
+                    countH = NVToServer.getCountOfRecords(HeatMap.class);
+                }
+                System.out.println("Count of HeatMap checked.");
             }
         });
         timerSendData.start();
@@ -99,56 +109,56 @@ public class Main {
         }
     }
 
-    public static void testSendHM(long count){
-
-        boolean sendSuccess = false;
-        DataSender sender = new DataSender();
-        String messageLines = null;
-        List<HeatMap> list = new ArrayList();
-        HeatMapsPars hmList = new HeatMapsPars();
-        SQLList sqlList = new SQLList();
-        try {
-            long time = System.currentTimeMillis();
-            list.addAll(getHeatMaps(count));
-            hmList.addAll(list);
-            sqlList.addAll(list);
-            messageLines = hmList.toJSON();
-            time = System.currentTimeMillis() - time;
-            System.out.println("Read time: " + time);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String jsonLines = "{" +
-                "\"hash\":\"--Julya test--\"," +
-                "\"data\":" + messageLines + "}";
-
-        System.out.println(jsonLines);
-
-    }
-
-    /**
-     * В методе показаны примеры работы с интерфейсом IGenericDAO
-     * (интерфейс работы с базой данных) на примере таблицы Line
-     * @return Список первых n записей таблицы Line
-     * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
-     * @throws Exception
-     */
-    private static List<HeatMap> getHeatMaps(long count) throws Exception{
-        Parameters param = reader.ReadFile(Parameters.class);
-        //создание фабрики объектов для работы с базой данных
-        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
-        //список для хранения полученых линий с базы данных
-        List<HeatMap> list;
-        //создание подключения к базе
-        try(Connection con = daoFactory.getConnection()){
-            //создание объекта реализующего интерфейс работы с базой данных
-            IGenericDAO daoL = daoFactory.getDAO(con, HeatMap.class);
-            //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
-            list = daoL.getByTransmittedLimit(param.getTransmitted(), count);
-            con.close();
-        }
-        System.out.println("List lines size" + list.size());
-        return list;
-    }
+//    public static void testSendHM(long count){
+//
+//        boolean sendSuccess = false;
+//        DataSender sender = new DataSender();
+//        String messageLines = null;
+//        List<HeatMap> list = new ArrayList();
+//        HeatMapsPars hmList = new HeatMapsPars();
+//        SQLList sqlList = new SQLList();
+//        try {
+//            long time = System.currentTimeMillis();
+//            list.addAll(getHeatMaps(count));
+//            hmList.addAll(list);
+//            sqlList.addAll(list);
+//            messageLines = hmList.toJSON();
+//            time = System.currentTimeMillis() - time;
+//            System.out.println("Read time: " + time);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        String jsonLines = "{" +
+//                "\"hash\":\"--Julya test--\"," +
+//                "\"data\":" + messageLines + "}";
+//
+//        System.out.println(jsonLines);
+//
+//    }
+//
+//    /**
+//     * В методе показаны примеры работы с интерфейсом IGenericDAO
+//     * (интерфейс работы с базой данных) на примере таблицы Line
+//     * @return Список первых n записей таблицы Line
+//     * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
+//     * @throws Exception
+//     */
+//    private static List<HeatMap> getHeatMaps(long count) throws Exception{
+//        Parameters param = reader.ReadFile(Parameters.class);
+//        //создание фабрики объектов для работы с базой данных
+//        IDAOFactory daoFactory = new MySQLDaoFactory(param.getDB_URL(), param.getDB_USER(), param.getDB_PASSWORD());
+//        //список для хранения полученых линий с базы данных
+//        List<HeatMap> list;
+//        //создание подключения к базе
+//        try(Connection con = daoFactory.getConnection()){
+//            //создание объекта реализующего интерфейс работы с базой данных
+//            IGenericDAO daoL = daoFactory.getDAO(con, HeatMap.class);
+//            //получение списка с определенным количеством записей таблици в которых параметр transmitted = false
+//            list = daoL.getByTransmittedLimit(param.getTransmitted(), count);
+//            con.close();
+//        }
+//        System.out.println("List lines size" + list.size());
+//        return list;
+//    }
 }
