@@ -13,7 +13,7 @@ public class RSADataSender extends DataSender {
      * entire URL wil be Domain+Postfix. Example:www.servername.net/example/add-cam
      */
     public RSADataSender() {
-
+        //lies here because it can
     }
 
     @Override
@@ -21,7 +21,7 @@ public class RSADataSender extends DataSender {
 
         String encryptedMessage = null;
 
-        IPublicKeyProvider keyProvider = new PKProvider("C:/Users/July/IdeaProjects/SendRSAdata/src/main/resources/public.txt");
+        IPublicKeyProvider keyProvider = new PKProvider("rsa/public.txt");
 
         RSAEncrypter encrypter = new RSAEncrypter(keyProvider);
 
@@ -38,7 +38,7 @@ public class RSADataSender extends DataSender {
     public String encryptJSON(String jSon){
         String encryptedMessage = null;
 
-        IPublicKeyProvider keyProvider = new PKProvider("C:/Users/July/IdeaProjects/SendRSAdata/src/main/resources/public.txt");
+        IPublicKeyProvider keyProvider = new PKProvider("rsa/public.txt");
 
         RSAEncrypter encrypter = new RSAEncrypter(keyProvider);
 
