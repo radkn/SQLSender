@@ -200,8 +200,6 @@ public final class NVToServer {
         String jsonLines = "{" +
                 "\"hash\":\"--Julya test--\"," +
                 "\"data\":\"" + encryptedLines + "\"}";
-        System.out.println("Enc Lines: ");
-        System.out.println(encryptedLines);
         try {
             long time = System.currentTimeMillis();
             sendSuccess = sender.SendData(jsonLines, "http://ppd.cifr.us/api/line/put");
@@ -249,8 +247,6 @@ public final class NVToServer {
         String jsonZones = "{" +
                 "\"hash\":\"--Julya test--\"," +
                 "\"data\":\"" + encryptedZones + "\"}";
-        System.out.println("Enc Lines: ");
-        System.out.println(encryptedZones);
         try {
             long time = System.currentTimeMillis();
             sendSuccess = sender.SendData(jsonZones, "http://ppd.cifr.us/api/zone/put");
@@ -295,8 +291,6 @@ public final class NVToServer {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println("HM string: " + messageHeatMaps);
         String encryptedHeatMaps = RSASender.encryptJSON(messageHeatMaps);
         String jsonHeatMaps = "{" +
                 "\"hash\":\"--Julya test--\"," +
@@ -313,14 +307,5 @@ public final class NVToServer {
             transmittedToTrueHeatMap(list);
         }
         return sendSuccess;
-    }
-    /**
-     * my method for work process
-     * will be DELETED
-     */
-    public static void writeParameters(){
-        XMLwriterReader writer = new XMLwriterReader(parametersAddress);
-        Parameters par = new Parameters();
-        writer.WriteFile(par, Parameters.class);
     }
 }
