@@ -21,7 +21,7 @@ public class RSADataSender extends DataSender {
 
         String encryptedMessage = null;
 
-        IPublicKeyProvider keyProvider = new PKProvider("C:/Users/July/IdeaProjects/SendRSAdata/src/main/resources/public.txt");
+        IPublicKeyProvider keyProvider = new PKProvider("rsa/public.txt");
 
         RSAEncrypter encrypter = new RSAEncrypter(keyProvider);
 
@@ -38,7 +38,7 @@ public class RSADataSender extends DataSender {
     public String encryptJSON(String jSon){
         String encryptedMessage = null;
 
-        IPublicKeyProvider keyProvider = new PKProvider("C:/Users/July/IdeaProjects/SendRSAdata/src/main/resources/public.txt");
+        IPublicKeyProvider keyProvider = new PKProvider("rsa/public.txt");
 
         RSAEncrypter encrypter = new RSAEncrypter(keyProvider);
 
