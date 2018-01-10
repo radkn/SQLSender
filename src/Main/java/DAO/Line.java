@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 /**
  * Object of this class corresponds to one record of table Line
  */
-public class Line implements ISendable, INewVisionDB {
+public class Line extends AbstractSendableRecord implements ISendable, INewVisionDB {
     private int id;
     private String scene_id;
     private String lineTitle;

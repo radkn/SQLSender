@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 /**
  * Object of this class corresponds to one record of table HeatMap
  */
-public class HeatMap implements ISendable {
+public class HeatMap extends AbstractSendableRecord implements ISendable {
 
     private String uid;
     private int id;

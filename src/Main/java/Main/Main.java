@@ -2,10 +2,6 @@ package Main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 import javax.swing.Timer;
 
@@ -24,8 +20,35 @@ public class Main {
         Timer timerSendData = new Timer(param.getCheckTransmittedPeriod(), new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                SaveSliсeToReserveDB objToSave = new SaveSliсeToReserveDB();
+                if (objToSave.getCountOfRecords(Line.class) >= param.getNumberToSendReserve()) {
+                    objToSave.sendLinesToReserve();
+                    System.out.println("L - true");
+                }
+                else {
+                    System.out.println("There is no reserve Lines data");
+                }
+
+                if (objToSave.getCountOfRecords(Zone.class) >= param.getNumberToSendReserve()) {
+                    objToSave.sendZonesToReserve();
+                    System.out.println("Z - true");
+                }
+                else {
+                    System.out.println("There is no reserve Zones data");
+                }
+
+                if (objToSave.getCountOfRecords(HeatMap.class) >= param.getNumberToSendReserve()) {
+                    objToSave.sendHeatMapToReserve();
+                    System.out.println("H - true");
+                }
+                else {
+                    System.out.println("There is no reserve HeatMaps data");
+                }
+
                 //here we check whether we need to send data to reserve DB
                 //if true, we send
+/*
                 if (SendToReserveDB.getCountOfRecords(Line.class) >= param.getNumberToSendReserve()) {
                     SendToReserveDB.sendLinesToReserve();
                     System.out.println("L - true");
@@ -49,6 +72,7 @@ public class Main {
                 else {
                     System.out.println("There is no reserve HeatMaps data");
                 }
+*/
 
                 boolean sendSuccess;
 
