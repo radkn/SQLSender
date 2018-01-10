@@ -18,12 +18,12 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     }
     //TODO: what is it?
-    private class PersistLine extends Line {
+/*   private class PersistLine extends Line {
         public void setId(int id){
             super.setId(id);
         }
     }
-
+*/
     /**
      * Возвращает sql запрос для получения всех записей.
      * <p/>
