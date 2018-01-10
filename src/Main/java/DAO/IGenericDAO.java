@@ -4,19 +4,43 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
-/**универсальный интерфейс объектов базы данных*/
+/**
+ * universal database object interface
+ * @param <T>
+ * @param <PK>
+ */
 public interface IGenericDAO<T, PK extends Serializable> {
 
-    /** Создает новую запись и соответствующий ей объект */
+     /**
+     * Creates a new record and its corresponding object
+      *calling method persist
+     * @param object object which need to write in DB
+     * @return written object
+     * @throws SQLException
+     */
     T create(T object) throws SQLException;
 
-    /** Создает новую запись, соответствующую объекту object */
+    /**
+     * Creates a new record corresponding to the object "object"
+     * @param object object which need to write in DB
+     * @return
+     * @throws SQLException
+     */
     T persist(T object) throws SQLException;
 
-    /** Возвращает объект соответствующий записи с первичным ключом key или null */
+    /**
+     * Returns an object corresponding to a record with a primary key "key" or null
+     * @param key id of record you need
+     * @return object corresponding to a record you need
+     * @throws Exception
+     */
     T getByPk(int key) throws Exception;
 
-    /** Сохраняет состояние объекта group в базе данных */
+    /**
+     * Saves the state of the object in the database
+     * @param object object which need to update in DB
+     * @throws SQLException
+     */
     void update(T object) throws SQLException;
 
     /**
@@ -34,10 +58,17 @@ public interface IGenericDAO<T, PK extends Serializable> {
      */
     void updateTransmitted(int id, boolean transmitted) throws SQLException;
 
-    /** Удаляет запись об объекте из базы данных */
+    /**
+     * Delete record about an object from the database
+     * @param id id of record need to delete
+     * @throws SQLException
+     */
     void delete(int id) throws SQLException;
 
-    /**возвращает все объекты выбраной таблицы*/
+    /**
+     * @return all objects of the selected table
+     * @throws SQLException
+     */
     List<T> getAll() throws SQLException;
 
     /**
@@ -47,7 +78,11 @@ public interface IGenericDAO<T, PK extends Serializable> {
      */
     long getCountTransmitted(boolean transmitted) throws SQLException;
 
-    /**need to point on class of creating table*/
+    /**
+     * need to point on class of creating table
+     * @param cl class table of which need create
+     * @return Name of new table
+     */
     String createNewTable(Class cl);
 
     /**

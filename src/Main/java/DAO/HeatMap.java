@@ -6,6 +6,9 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+/**
+ * Object of this class corresponds to one record of table HeatMap
+ */
 public class HeatMap implements ISendable {
 
     private String uid;

@@ -6,7 +6,9 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-
+/**
+ * Object of this class corresponds to one record of table Line
+ */
 public class Line implements ISendable, INewVisionDB {
     private int id;
     private String scene_id;

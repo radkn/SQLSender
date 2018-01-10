@@ -13,7 +13,7 @@ public class MySQLDaoFactory implements IDAOFactory {
     private Map<Class, DaoCreator> creators;
 
     /**
-     * создается список возможных классов базы данных
+     * create a list of possible database classes
      * @param DB_URL - connection to DB
      * @param DB_USER - connection to DB
      * @param DB_PASSWORD - connection to DB

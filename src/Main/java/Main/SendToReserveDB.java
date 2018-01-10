@@ -38,7 +38,10 @@ public final class SendToReserveDB{
         }
     }
 
-    //TODO: comment
+    /**
+     * Create reserve table and write Zone records,
+     * or write in existing table
+     */
     public static void sendZonesToReserve(){
         Parameters param = reader.ReadFile(Parameters.class);
 
