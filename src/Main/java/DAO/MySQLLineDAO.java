@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * keep methods that return queries, pars result of query
+ * and other to work with table Line
  */
 public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 

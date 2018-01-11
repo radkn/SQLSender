@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**реализовывает схожие методы получения данных с базы*/
+/**implements similar methods of obtaining data from the database*/
 public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGenericDAO<T,PK>{
 
     public AbstractJDBCDao(Connection connection){

@@ -36,8 +36,8 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
     }
 
     /**
-     * Метод меняет поле transmitted указаных в списке записей на true
-     * @param list  список объектов Line
+     * The method changes the field transmitted in the list of records to true
+     * @param list  list of object to update transmitted
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -58,10 +58,8 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
 
 
     /**
-     * В методе показаны примеры работы с интерфейсом IGenericDAO
-     * (интерфейс работы с базой данных) на примере таблицы Line
-     * @return Список первых n записей таблицы Line
-     * (n указываться как аргумент limit метода daoL.getByTransmittedLimit)
+     * @return List of the first n records of the current table
+     * (n it is specified as the argument limit of the method daoL.getByTransmittedLimit)
      * @throws Exception
      */
     private List<T> getRecords(long count, Class c) throws Exception{
@@ -108,7 +106,7 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
         String encryptedLines = RSASender.encryptJSON(messageLines);
 
         String jsonLines = "{" +
-                "\"hash\":\"--Julya test--\"," +
+                "\"hash\":\""+ param.getHash() +"\"," +
                 "\"data\":\"" + encryptedLines + "\"}";
         System.out.println("Enc Lines: ");
         System.out.println(encryptedLines);
@@ -158,7 +156,7 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
 
         String encryptedZones = RSASender.encryptJSON(messageZones);
         String jsonZones = "{" +
-                "\"hash\":\"--Julya test--\"," +
+                "\"hash\":\""+ param.getHash() +"\"," +
                 "\"data\":\"" + encryptedZones + "\"}";
         System.out.println("Enc Lines: ");
         System.out.println(encryptedZones);
@@ -211,7 +209,7 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
         System.out.println("HM string: " + messageHeatMaps);
         String encryptedHeatMaps = RSASender.encryptJSON(messageHeatMaps);
         String jsonHeatMaps = "{" +
-                "\"hash\":\"--Julya test--\"," +
+                "\"hash\":\""+ param.getHash() +"\"," +
                 "\"data\":\"" + encryptedHeatMaps + "\"}";
         try {
             long time = System.currentTimeMillis();

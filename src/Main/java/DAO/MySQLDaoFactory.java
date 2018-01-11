@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class use to determine different connection to different table of DB
+ */
 public class MySQLDaoFactory implements IDAOFactory {
 
     private static String DB_URL;

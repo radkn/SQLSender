@@ -11,9 +11,12 @@ public class Parameters {
     private String DB_URL = "jdbc:mysql://localhost:3306/NewVision";
     private String DB_USER = "mysql";
     private String DB_PASSWORD = "mysql";
+
     private String ReserveDB_URL = "jdbc:mysql://localhost:3306/MusarnyaDB";
     private String ReserveDB_USER = "mysql";
     private String ReserveDB_PASSWORD = "mysql";
+
+    private String Hash = "--Test data--";
     private boolean ReserveTransmitted = true;
     private boolean newReserveTable = false;
     private boolean transmitted = false;
@@ -59,6 +62,10 @@ public class Parameters {
 
     public String getReserveDB_PASSWORD(){
         return ReserveDB_PASSWORD;
+    }
+
+    public String getHash() {
+        return Hash;
     }
 
     public boolean getReserveTransmitted(){return ReserveTransmitted;}
