@@ -3,6 +3,7 @@ package Main;
  * Created by July on 22.11.2017.
  */
 public class Parameters {
+    private String ServerURL = "http://ppd.cifr.us/api/line/put";
     private String DB_URL = "jdbc:mysql://localhost:3306/NewVision";
     private String DB_USER = "mysql";
     private String DB_PASSWORD = "mysql";
@@ -15,6 +16,10 @@ public class Parameters {
     private int onePackOfStrings = 2000;
     private int checkTransmittedPeriod = 100;
     private int numberToSendReserve = 5;
+
+    public String getServerURL() {
+        return ServerURL;
+    }
 
     public String getDB_URL(){
         return DB_URL;

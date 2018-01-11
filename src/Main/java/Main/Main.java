@@ -75,6 +75,50 @@ public class Main {
 */
 
                 boolean sendSuccess;
+/*
+
+                SendNVToServer objToSendServer = new SendNVToServer();
+
+                System.out.println("Start check count of Line...");
+                long countL = objToSendServer.getCountOfRecords(Line.class); //records with transmitted=false
+                while (countL > 0) {
+                    if (countL >= param.getOnePackOfStrings())
+                        sendSuccess = objToSendServer.sendLines(param.getOnePackOfStrings());
+
+                    else
+                        sendSuccess = objToSendServer.sendLines(countL);
+                    System.out.println("Lines success: " + sendSuccess);
+                    countL = objToSendServer.getCountOfRecords(Line.class);
+                }
+                System.out.println("Count of Line checked.");
+
+
+                System.out.println("Start check count of Zone...");
+                //here we send new Zones data to server
+                long countZ = objToSendServer.getCountOfRecords(Zone.class); //records with transmitted=false
+                while (countZ > 0) {
+                    if (countZ >= param.getOnePackOfStrings())
+                        sendSuccess = objToSendServer.sendZones(param.getOnePackOfStrings());
+                    else
+                        sendSuccess = objToSendServer.sendZones(countZ);
+                    System.out.println("Zones success: " + sendSuccess);
+                    countZ = NVToServer.getCountOfRecords(Zone.class);
+                }
+                System.out.println("Count of Zone checked.");
+
+                System.out.println("Start check count of HeatMap...");
+                //here we send new HeatMap data to server
+                long countH = objToSendServer.getCountOfRecords(HeatMap.class); //records with transmitted=false
+                while (countH > 0){
+                    if(countH >= param.getOnePackOfStrings())
+                        sendSuccess = objToSendServer.sendHeatMap(param.getOnePackOfStrings());
+                    else
+                        sendSuccess = objToSendServer.sendHeatMap(countH);
+                    System.out.println("HeatMaps success: " + sendSuccess);
+                    countH = objToSendServer.getCountOfRecords(HeatMap.class);
+                }
+                System.out.println("Count of HeatMap checked.");
+*/
 
                 //here we send new Lines data to server
                 System.out.println("Start check count of Line...");
