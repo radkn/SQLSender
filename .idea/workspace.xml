@@ -6,23 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e796d685-62b2-4b04-9c3c-8e78e3afce0f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Main/java/DAO/INewVisionDB.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/Line.class" afterPath="$PROJECT_DIR$/target/classes/DAO/Line.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/Zone.class" afterPath="$PROJECT_DIR$/target/classes/DAO/Zone.class" />
+    <list default="true" id="e796d685-62b2-4b04-9c3c-8e78e3afce0f" name="Default" comment="merge">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/MySQLDaoFactory$1.class" afterPath="$PROJECT_DIR$/target/classes/DAO/MySQLDaoFactory$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/MySQLDaoFactory$2.class" afterPath="$PROJECT_DIR$/target/classes/DAO/MySQLDaoFactory$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/MySQLDaoFactory.class" afterPath="$PROJECT_DIR$/target/classes/DAO/MySQLDaoFactory.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DAO/MySQLLineDAO.class" afterPath="$PROJECT_DIR$/target/classes/DAO/MySQLLineDAO.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parameters/parameters.xml" afterPath="$PROJECT_DIR$/parameters/parameters.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/AbstractSendableRecord.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/AbstractSendableRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/Line.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/Line.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLHeatMapDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLHeatMapDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/DAO/Zone.java" afterPath="$PROJECT_DIR$/src/Main/java/DAO/Zone.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/Main.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/java/Main/SendNVToServer.java" afterPath="$PROJECT_DIR$/src/Main/java/Main/SendNVToServer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -43,12 +33,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/java/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1798">
-              <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="105">
+              <caret line="103" column="54" lean-forward="true" selection-start-line="103" selection-start-column="54" selection-end-line="103" selection-end-column="54" />
+              <folding>
+                <element signature="e#883#884#0" expanded="true" />
+                <element signature="e#925#926#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+              <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -66,19 +59,11 @@
       <file leaf-file-name="MySQLLineDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MySQLHeatMapDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLHeatMapDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-              <folding />
+            <state relative-caret-position="187">
+              <caret line="12" column="3" lean-forward="false" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+              <folding>
+                <marker date="1515675883287" expanded="true" signature="4665:4673" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,9 +81,11 @@
       <file leaf-file-name="NVToServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/java/Main/NVToServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="119">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <marker date="1515675846384" expanded="true" signature="12755:12761" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,8 +93,8 @@
       <file leaf-file-name="parameters.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parameters/parameters.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+            <state relative-caret-position="136">
+              <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -116,20 +103,16 @@
       <file leaf-file-name="Parameters.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/java/Main/Parameters.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="677">
-              <caret line="66" column="27" lean-forward="false" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SendNVToServer.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SendNVToServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="212" column="54" lean-forward="false" selection-start-line="212" selection-start-column="54" selection-end-line="212" selection-end-column="54" />
+            <state relative-caret-position="714">
+              <caret line="70" column="27" lean-forward="false" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1515675883300" expanded="true" signature="1653:1659" ph=" }" />
+                <marker date="1515675883300" expanded="true" signature="1703:1731" ph="{...}" />
+                <marker date="1515675883300" expanded="true" signature="1772:1797" ph="{...}" />
+                <marker date="1515675883300" expanded="true" signature="1834:1855" ph="{...}" />
+                <marker date="1515675883300" expanded="true" signature="1893:1919" ph="{...}" />
+                <marker date="1515675883300" expanded="true" signature="1963:1995" ph="{...}" />
+                <marker date="1515675883300" expanded="true" signature="2036:2065" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -173,7 +156,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Kostia_Hitmap" />
       </map>
     </option>
   </component>
@@ -185,11 +168,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/Main/java/SQLLine.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/ISendable.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/Main/SQLZone.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/LocalDBDataWriter.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/ILineDAO.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/Main/java/Main/XMLwriterReader.java" />
         <option value="$PROJECT_DIR$/src/Main/java/Main/DataSender.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/Main/SQLList.java" />
         <option value="$PROJECT_DIR$/src/parameters/parameters.xml" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/MySQLLineDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/MySQLZoneDAO.java" />
         <option value="$PROJECT_DIR$/src/Main/java/Main/ReserveDB.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/AbstractJDBCDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/IGenericDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/IDAOFactory.java" />
@@ -201,41 +193,32 @@
         <option value="$PROJECT_DIR$/src/main/java/Main/Parameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main/XMLwriterReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main/SendToReserveDB.java" />
+        <option value="$PROJECT_DIR$/parameters/parameters.xml" />
         <option value="$PROJECT_DIR$/src/Main/java/DAO/Hitmap.java" />
         <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLHitmapDAO.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/Main/NVToServer.java" />
+        <option value="$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/PreparedStatement.class" />
+        <option value="$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/StatementImpl.class" />
         <option value="$PROJECT_DIR$/src/main/java/DAO/MySQLHeatMapDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/RSAencryption/RSAEncrypter.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main/NVToServer.java" />
         <option value="$PROJECT_DIR$/src/Main/java/RSAencryption/RSADataSender.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/IDAOFactory.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/HeatMapsPars.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/SeveSliseToReserveDB.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/SendToReserveDB.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/HeatMap.java" />
-        <option value="$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/ConnectionImpl.class" />
-        <option value="$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/PreparedStatement.class" />
-        <option value="$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/StatementImpl.class" />
         <option value="$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/ResultSetImpl.class" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/SaveSliseToReserveDB.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/SaveSliсeToReserveDB.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/SQLList.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/NVToServer.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/Main.java" />
-        <option value="$PROJECT_DIR$/out/artifacts/SQLSender_jar/parameters/parameters.xml" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/AbstractSendableRecord.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/INewVisionDB.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/Line.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/Zone.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java" />
+        <option value="$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/ConnectionImpl.class" />
         <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLHeatMapDAO.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java" />
-        <option value="$PROJECT_DIR$/parameters/parameters.xml" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/Parameters.java" />
-        <option value="$PROJECT_DIR$/src/Main/java/Main/SendNVToServer.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/Main/SendToReserveDB.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/Line.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/HeatMap.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/Zone.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/IDAOFactory.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/DAO/HeatMapsPars.java" />
+        <option value="$PROJECT_DIR$/src/Main/java/Main/Main.java" />
       </list>
     </option>
   </component>
@@ -943,35 +926,7 @@
       <option name="project" value="LOCAL" />
       <updated>1513959671720</updated>
     </task>
-    <task id="LOCAL-00020" summary="create new class SaveSliceToReserveDB,that not final and without static methods.">
-      <created>1515589026028</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1515589026028</updated>
-    </task>
-    <task id="LOCAL-00021" summary="hotfix (delate PersistLine class from class MySQLLineDao)">
-      <created>1515589424548</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1515589424548</updated>
-    </task>
-    <task id="LOCAL-00022" summary="hotfix (delate PersistLine class from class MySQLLineDao)">
-      <created>1515589441481</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1515589441481</updated>
-    </task>
-    <task id="LOCAL-00023" summary="SendNVToServer work. Server URL is divided into 2 parts and moved to the parameters.">
-      <created>1515671440326</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1515671440326</updated>
-    </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -996,9 +951,9 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16559486" sideWeight="0.5204236" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13157895" sideWeight="0.5234493" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.121710524" sideWeight="0.4795764" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21710527" sideWeight="0.47655067" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1063,10 +1018,10 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.573955" sideWeight="0.4795764" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.573955" sideWeight="0.4795764" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19575115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19271624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25080386" sideWeight="0.4969743" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1114,22 +1069,11 @@
     <MESSAGE value="HeatMap sending" />
     <MESSAGE value="HeatMap sending and encryption" />
     <MESSAGE value="add type to HeatMap" />
-    <MESSAGE value="create new class SaveSliceToReserveDB,that not final and without static methods." />
-    <MESSAGE value="hotfix (delate PersistLine class from class MySQLLineDao)" />
-    <MESSAGE value="SendNVToServer work. Server URL is divided into 2 parts and moved to the parameters." />
-    <option name="LAST_COMMIT_MESSAGE" value="SendNVToServer work. Server URL is divided into 2 parts and moved to the parameters." />
+    <option name="LAST_COMMIT_MESSAGE" value="add type to HeatMap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main/java/Main/NVToServer.java</url>
-          <line>251</line>
-          <properties />
-          <option name="timeStamp" value="101" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="110" />
+      <option name="time" value="82" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1138,6 +1082,31 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/ArrayList.java" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/parameters/parameters.xml" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/PrintStream.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.4/httpcore-4.4.4.jar!/org/apache/http/entity/StringEntity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/lang/ClassLoader.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.2/httpclient-4.5.2.jar!/org/apache/http/impl/client/DefaultHttpClient.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.2/httpclient-4.5.2.jar!/org/apache/http/conn/EofSensorInputStream.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1155,15 +1124,60 @@
     <entry file="file://$PROJECT_DIR$/src/Main/java/Main/ReserveDB.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/lang/System.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/sql/DriverManager.java" />
+    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/XMLwriterReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="78" column="9" lean-forward="false" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/TimerQueue.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/javax/swing/Timer.java" />
     <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/Hitmap.java" />
     <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLHitmapDAO.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/Map.java" />
+    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="70" column="27" lean-forward="false" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+          <folding>
+            <marker date="1515675883300" expanded="true" signature="1653:1659" ph=" }" />
+            <marker date="1515675883300" expanded="true" signature="1703:1731" ph="{...}" />
+            <marker date="1515675883300" expanded="true" signature="1772:1797" ph="{...}" />
+            <marker date="1515675883300" expanded="true" signature="1834:1855" ph="{...}" />
+            <marker date="1515675883300" expanded="true" signature="1893:1919" ph="{...}" />
+            <marker date="1515675883300" expanded="true" signature="1963:1995" ph="{...}" />
+            <marker date="1515675883300" expanded="true" signature="2036:2065" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/PreparedStatement.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="1544" column="0" lean-forward="false" selection-start-line="1544" selection-start-column="0" selection-end-line="1544" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/StatementImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="229" column="0" lean-forward="false" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/exceptions/jdbc4/CommunicationsException.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parameters/parameters.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1181,204 +1195,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SeveSliseToReserveDB.java" />
-    <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/PreparedStatement.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="988" column="0" lean-forward="false" selection-start-line="988" selection-start-column="0" selection-end-line="988" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/StatementImpl.class">
+    <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/ConnectionImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="228" column="0" lean-forward="false" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
+          <caret line="1836" column="0" lean-forward="false" selection-start-line="1836" selection-start-column="0" selection-end-line="1836" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/ResultSetImpl.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="1461" column="0" lean-forward="false" selection-start-line="1461" selection-start-column="0" selection-end-line="1461" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="3390" column="0" lean-forward="false" selection-start-line="3390" selection-start-column="0" selection-end-line="3390" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SendToReserveDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SaveSliseToReserveDB.java" />
     <entry file="file://$PROJECT_DIR$/src/Main/java/RSAencryption/RSADataSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/XMLwriterReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/libraries/mysql-connector-java-5.1.44-bin.jar!/com/mysql/jdbc/ConnectionImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="922" column="0" lean-forward="false" selection-start-line="922" selection-start-column="0" selection-end-line="922" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SQLList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="26" lean-forward="false" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SaveSliсeToReserveDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="229" column="32" lean-forward="true" selection-start-line="229" selection-start-column="32" selection-end-line="229" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/artifacts/SQLSender_jar/parameters/parameters.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="43" lean-forward="true" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/AbstractSendableRecord.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/HeatMapsPars.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1989">
-          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/IDAOFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-          <folding>
-            <marker date="1515665204348" expanded="true" signature="64:68" ph="/**...*/" />
-            <marker date="1515665204348" expanded="true" signature="642:645" ph="/**...*/" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="92" column="11" lean-forward="false" selection-start-line="92" selection-start-column="11" selection-end-line="92" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/HeatMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/Line.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/INewVisionDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/Zone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1241">
-          <caret line="117" column="0" lean-forward="false" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="8" column="71" lean-forward="false" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLHeatMapDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="13" column="39" lean-forward="false" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1798">
-          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="197">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLZoneDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/DataSender.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/NVToServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-438">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <marker date="1515675846384" expanded="true" signature="12755:12761" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SendToReserveDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="399" column="31" lean-forward="false" selection-start-line="399" selection-start-column="31" selection-end-line="399" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/IGenericDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/AbstractJDBCDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="296" column="42" lean-forward="true" selection-start-line="296" selection-start-column="42" selection-end-line="296" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLLineDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="12" column="3" lean-forward="false" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <marker date="1515675883287" expanded="true" signature="4665:4673" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLHeatMapDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="72" lean-forward="true" selection-start-line="11" selection-start-column="72" selection-end-line="11" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/Line.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/HeatMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="9" column="66" lean-forward="false" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/Zone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/IDAOFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/MySQLDaoFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="24" column="38" lean-forward="false" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/java/DAO/HeatMapsPars.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1391,36 +1332,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/NVToServer.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/DataSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="-438">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parameters/parameters.xml">
+    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SQLList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="30" lean-forward="false" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/Parameters.java">
+    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="66" column="27" lean-forward="false" selection-start-line="66" selection-start-column="27" selection-end-line="66" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/java/Main/SendNVToServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="212" column="54" lean-forward="false" selection-start-line="212" selection-start-column="54" selection-end-line="212" selection-end-column="54" />
+        <state relative-caret-position="105">
+          <caret line="103" column="54" lean-forward="true" selection-start-line="103" selection-start-column="54" selection-end-line="103" selection-end-column="54" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#883#884#0" expanded="true" />
+            <element signature="e#925#926#0" expanded="true" />
           </folding>
         </state>
       </provider>
