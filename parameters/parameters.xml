@@ -1,6 +1,9 @@
 <object-stream>
   <java.lang.Class>
-    <ServerURL>http://ppd.cifr.us/api/line/put</ServerURL>
+    <ServerURL>http://ppd.cifr.us</ServerURL>
+    <LineURL>/api/line/put</LineURL>
+    <ZoneURL>/api/zone/put</ZoneURL>
+    <HeatMapURL>/api/point/put</HeatMapURL>
     <DB__URL>jdbc:mysql://localhost:3306/NewVision</DB__URL>
     <DB__USER>mysql</DB__USER>
     <DB__PASSWORD>mysql</DB__PASSWORD>

@@ -114,7 +114,7 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
         System.out.println(encryptedLines);
         try {
             long time = System.currentTimeMillis();
-            sendSuccess = sender.SendData(jsonLines, param.getServerURL());
+            sendSuccess = sender.SendData(jsonLines, param.getServerURL() + param.getLineURL());
             time = System.currentTimeMillis() - time;
             System.out.println("Send time: " + time);
         } catch (Exception e) {
@@ -164,7 +164,7 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
         System.out.println(encryptedZones);
         try {
             long time = System.currentTimeMillis();
-            sendSuccess = sender.SendData(jsonZones, param.getServerURL());
+            sendSuccess = sender.SendData(jsonZones, param.getServerURL()+param.getZoneURL());
             time = System.currentTimeMillis() - time;
             System.out.println("Send time: " + time);
         } catch (Exception e) {
@@ -215,7 +215,7 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
                 "\"data\":\"" + encryptedHeatMaps + "\"}";
         try {
             long time = System.currentTimeMillis();
-            sendSuccess = sender.SendData(jsonHeatMaps, param.getServerURL());
+            sendSuccess = sender.SendData(jsonHeatMaps, param.getServerURL() + param.getHeatMapURL());
             time = System.currentTimeMillis() - time;
             System.out.println("Send time: " + time);
         } catch (Exception e) {

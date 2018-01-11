@@ -3,7 +3,11 @@ package Main;
  * Created by July on 22.11.2017.
  */
 public class Parameters {
-    private String ServerURL = "http://ppd.cifr.us/api/line/put";
+    private String ServerURL = "http://ppd.cifr.us";
+    private String LineURL = "/api/line/put";
+    private String ZoneURL = "/api/zone/put";
+    private String HeatMapURL = "/api/point/put";
+
     private String DB_URL = "jdbc:mysql://localhost:3306/NewVision";
     private String DB_USER = "mysql";
     private String DB_PASSWORD = "mysql";
@@ -19,6 +23,18 @@ public class Parameters {
 
     public String getServerURL() {
         return ServerURL;
+    }
+
+    public String getLineURL() {
+        return LineURL;
+    }
+
+    public String getZoneURL() {
+        return ZoneURL;
+    }
+
+    public String getHeatMapURL() {
+        return HeatMapURL;
     }
 
     public String getDB_URL(){

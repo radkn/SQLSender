@@ -75,7 +75,6 @@ public class Main {
 */
 
                 boolean sendSuccess;
-/*
 
                 SendNVToServer objToSendServer = new SendNVToServer();
 
@@ -118,9 +117,9 @@ public class Main {
                     countH = objToSendServer.getCountOfRecords(HeatMap.class);
                 }
                 System.out.println("Count of HeatMap checked.");
-*/
 
                 //here we send new Lines data to server
+/*
                 System.out.println("Start check count of Line...");
                 long countL = NVToServer.getCountOfRecords(Line.class); //records with transmitted=false
                 while (countL > 0) {
@@ -160,6 +159,7 @@ public class Main {
                     countH = NVToServer.getCountOfRecords(HeatMap.class);
                 }
                 System.out.println("Count of HeatMap checked.");
+*/
             }
         });
         timerSendData.start();
