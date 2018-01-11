@@ -106,7 +106,7 @@ public class Main {
             else
                 sendSuccess = objToSendServer.sendZones(countZ);
             System.out.println("Zones success: " + sendSuccess);
-            countZ = NVToServer.getCountOfRecords(Zone.class);
+            countZ = objToSendServer.getCountOfRecords(Zone.class);
         }
         System.out.println("Count of Zone checked.");
 
