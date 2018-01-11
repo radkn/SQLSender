@@ -1,11 +1,16 @@
 <object-stream>
   <java.lang.Class>
+    <ServerURL>http://ppd.cifr.us</ServerURL>
+    <LineURL>/api/line/put</LineURL>
+    <ZoneURL>/api/zone/put</ZoneURL>
+    <HeatMapURL>/api/point/put</HeatMapURL>
     <DB__URL>jdbc:mysql://localhost:3306/NewVision</DB__URL>
     <DB__USER>mysql</DB__USER>
     <DB__PASSWORD>mysql</DB__PASSWORD>
     <ReserveDB__URL>jdbc:mysql://localhost:3306/MusarnyaDB</ReserveDB__URL>
     <ReserveDB__USER>mysql</ReserveDB__USER>
     <ReserveDB__PASSWORD>mysql</ReserveDB__PASSWORD>
+    <Hash>--Test data--</Hash>
     <ReserveTransmitted>true</ReserveTransmitted>
     <newReserveTable>true</newReserveTable>
     <transmitted>false</transmitted>

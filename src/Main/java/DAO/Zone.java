@@ -6,7 +6,10 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class Zone implements ISendable, INewVisionDB {
+/**
+ * Object of this class corresponds to one record of table Zone
+ */
+public class Zone extends AbstractSendableRecord implements ISendable {
     private int id;
     private String scene_id;
     private String zoneTitle;
@@ -113,8 +116,4 @@ public class Zone implements ISendable, INewVisionDB {
                 + "\"}";
     }
 
-    @Override
-    public String getNameOfTable() {
-        return nameOfTable;
-    }
 }

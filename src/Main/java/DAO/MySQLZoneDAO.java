@@ -9,6 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * keep methods that return queries, pars result of query
+ * and other to work with table Zone
+ */
 public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
 
     public MySQLZoneDAO(Connection connection) {

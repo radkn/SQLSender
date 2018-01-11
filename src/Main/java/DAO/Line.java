@@ -6,8 +6,10 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-
-public class Line implements ISendable, INewVisionDB {
+/**
+ * Object of this class corresponds to one record of table Line
+ */
+public class Line extends AbstractSendableRecord implements ISendable {
     private int id;
     private String scene_id;
     private String lineTitle;
@@ -103,8 +105,5 @@ public class Line implements ISendable, INewVisionDB {
                 + "\"}";
     }
 
-    @Override
-    public String getNameOfTable() {
-        return nameOfTable;
-    }
+
 }

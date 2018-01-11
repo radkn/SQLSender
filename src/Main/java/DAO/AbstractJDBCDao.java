@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**реализовывает схожие методы получения данных с базы*/
+/**implements similar methods of obtaining data from the database*/
 public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGenericDAO<T,PK>{
 
     public AbstractJDBCDao(Connection connection){
@@ -27,6 +27,11 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     public abstract String getSelectQuery();
 
+    /**
+     * @return second part of Query to get some number of record by transmitted.
+     * <p/>
+     * WHERE transmitted = ? LIMIT ?
+     */
     public abstract String getConditionOfQuery();
 
     /**
@@ -71,29 +76,39 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
      */
     public abstract String createNewTableQuery();
 
-    /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
+    /**
+     * Disassembles the ResultSet and returns a list of objects corresponding to the contents of the ResultSet
+     * @param rs
+     * @return returns a list of objects T
+     */
     protected abstract List<T> parseResultSet(ResultSet rs);
 
     /**
-     * Устанавливает аргументы insert запроса в соответствии со значением полей объекта object.
+     * Sets the arguments of the insert request according to the value of the fields of the object.
+     * @param statement connection with table
+     * @param object object to insert
+     * @throws Exception
      */
     protected abstract void prepareStatementForInsert(PreparedStatement statement, T object) throws Exception;
 
     /**
-     * Устанавливает аргументы update запроса в соответствии со значением полей объекта object.
+     * Sets the arguments of the update request according to the value of the fields of the object.
+     * @param statement connection with table
+     * @param object object to update
+     * @throws Exception
      */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws Exception;
 
     /**
      * Create new record in DB Table
      * @param object determines table to create record
-     * @return created line
+     * @return created record
      * @throws SQLException
      */
     @Override
     public T persist(T object) throws SQLException {
         T persistInstance = null;
-        /**Добавляем запись*/
+        /**Add record*/
         String sql = getCreateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForInsert(statement, object);
@@ -106,7 +121,7 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
             e.printStackTrace();
         }
 
-        /**Получаем только что вставленую запись*/
+        /**Get just insert record*/
         sql = getSelectQuery() + " WHERE id = LAST_INSERT_ID();";// + lastId;
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
@@ -144,9 +159,9 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     }
 
     /**
-     * Обновляет поле transmitted записи указаного id соответственно параметру transmitted
-     * @param id id записи которую нужно обновить
-     * @param transmitted значение согласно которому необходимо обновлять запись
+     * Updates the transmitted field of the record of the specified id according to the parameter transmitted
+     * @param id id of the record you want to update
+     * @param transmitted the value according to which you want to update the record
      */
     @Override
     public void updateTransmitted(int id, boolean transmitted) {
@@ -166,7 +181,9 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         }
     }
 
-    /**возвращает все записи выбраной таблицы в виде списка объектов*/
+    /**
+     * @return  all records of the selected table as a list of objects
+     */
     @Override
     public List<T> getAll(){
         List<T> list = new ArrayList<T>();
@@ -183,9 +200,9 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
     }
 
     /**
-     * Возвращает первые limit записей со значением tr поля transmitted
-     * @param tr значение поля transmitted по которому выполняеться поиск
-     * @param limit количество записей которые необходимо получить
+     * Returns n numbers of records with the value tr of the transmitted field
+     * @param tr the value of transmitted field on which the search is performed
+     * @param limit the number of entries you need to receive
      * @return
      */
     public List<T> getByTransmittedLimit(boolean tr, long limit){
@@ -271,6 +288,11 @@ public abstract class AbstractJDBCDao<T, PK extends Serializable> implements IGe
         return count;
     }
 
+    /**
+     * Create new table
+     * @param cl determine type of table to create
+     * @return new table name
+     */
     @Override
     public String creatingTable(Class cl){
         DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd");

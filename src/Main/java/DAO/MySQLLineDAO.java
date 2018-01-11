@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
+ * keep methods that return queries, pars result of query
+ * and other to work with table Line
  */
 public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
@@ -16,12 +17,6 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
     public MySQLLineDAO(Connection connection) {
         super(connection);
 
-    }
-    //TODO: what is it?
-    private class PersistLine extends Line {
-        public void setId(int id){
-            super.setId(id);
-        }
     }
 
     /**

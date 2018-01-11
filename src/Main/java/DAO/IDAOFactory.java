@@ -3,7 +3,7 @@ package DAO;
 import java.sql.*;
 import java.sql.SQLException;
 
-/** Фабрика объектов для работы с базой данных */
+/** Factory of objects to working with database */
 public interface IDAOFactory<Context> {
 
 
@@ -11,10 +11,19 @@ public interface IDAOFactory<Context> {
         IGenericDAO create(Context context);
     }
 
-    /**возвращает подключение  к базе данных*/
+    /**
+     * @return connection to the database
+     * @throws SQLException
+     */
     Connection getConnection () throws SQLException;
 
-    /** Возвращает объект который содержит коннект с текущим состоянием базы в данный конкретный момент */
+    /**
+     *
+     * @param connection connection to DB
+     * @param dtoClass class corresponding to DB table
+     * @return an object that contains a connection with the current state of the database at that particular moment
+     * @throws Exception
+     */
     IGenericDAO getDAO(Connection connection, Class dtoClass) throws Exception;
 
 }

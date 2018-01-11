@@ -12,6 +12,9 @@ import java.util.List;
 public class HeatMapsPars extends ArrayList<ISendable> implements ISendable{
 
 
+    /**
+     * @return string part of JSON, which have records sort by uid
+     */
     private List<String> heatsToString(){
         String json = new String("[");
         List<String> jsonList = new ArrayList<>();
