@@ -43,6 +43,12 @@ public class Main {
     }
 
 
+    /**
+     * Method execute save slice of DB to reserve DB
+     * and send data to server
+     * with final classes NVToServer and SendToReserveDB
+     * with static methods
+     */
     public static void sendDataStatic(){
         String parametersAddress = "parameters/parameters.xml";
         XMLwriterReader<Parameters> reader = new XMLwriterReader(parametersAddress);
