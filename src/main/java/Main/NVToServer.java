@@ -178,7 +178,7 @@ public final class NVToServer {
      * @param count - number of lines that should be sent
      * @return
      */
-    public static boolean sendLines(long count){
+    public static boolean sendLines(long count, String urlLines, String hash){
         boolean sendSuccess = false;
         DataSender sender = new DataSender();
         String messageLines = null;
@@ -198,11 +198,11 @@ public final class NVToServer {
         String encryptedLines = RSASender.encryptJSON(messageLines);
 
         String jsonLines = "{" +
-                "\"hash\":\"--Julya test--\"," +
+                "\"hash\":\"" + hash + "\"," +
                 "\"data\":\"" + encryptedLines + "\"}";
         try {
             long time = System.currentTimeMillis();
-            sendSuccess = sender.SendData(jsonLines, "http://ppd.cifr.us/api/line/put");
+            sendSuccess = sender.SendData(jsonLines, urlLines);
             time = System.currentTimeMillis() - time;
             System.out.println("Send time: " + time);
         } catch (Exception e) {
@@ -225,7 +225,7 @@ public final class NVToServer {
      * @param count - number of zones that should be sent
      * @return
      */
-    public static boolean sendZones(long count){
+    public static boolean sendZones(long count, String urlZones, String hash){
         boolean sendSuccess = false;
         DataSender sender = new DataSender();
         String messageZones = null;
@@ -245,11 +245,11 @@ public final class NVToServer {
 
         String encryptedZones = RSASender.encryptJSON(messageZones);
         String jsonZones = "{" +
-                "\"hash\":\"--Julya test--\"," +
+                "\"hash\":\"" + hash + "\"," +
                 "\"data\":\"" + encryptedZones + "\"}";
         try {
             long time = System.currentTimeMillis();
-            sendSuccess = sender.SendData(jsonZones, "http://ppd.cifr.us/api/zone/put");
+            sendSuccess = sender.SendData(jsonZones, urlZones);
             time = System.currentTimeMillis() - time;
             System.out.println("Send time: " + time);
         } catch (Exception e) {
@@ -272,7 +272,7 @@ public final class NVToServer {
      * @param count - number of heat maps that should be sent
      * @return
      */
-    public static boolean sendHeatMap(long count){
+    public static boolean sendHeatMap(long count, String urlHeatMap, String hash){
         boolean sendSuccess = false;
         DataSender sender = new DataSender();
         String messageHeatMaps = null;
@@ -293,11 +293,11 @@ public final class NVToServer {
         }
         String encryptedHeatMaps = RSASender.encryptJSON(messageHeatMaps);
         String jsonHeatMaps = "{" +
-                "\"hash\":\"--Julya test--\"," +
+                "\"hash\":\"" + hash + "\"," +
                 "\"data\":\"" + encryptedHeatMaps + "\"}";
         try {
             long time = System.currentTimeMillis();
-            sendSuccess = sender.SendData(jsonHeatMaps, "http://ppd.cifr.us/api/point/put");
+            sendSuccess = sender.SendData(jsonHeatMaps, urlHeatMap);
             time = System.currentTimeMillis() - time;
             System.out.println("Send time: " + time);
         } catch (Exception e) {

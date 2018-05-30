@@ -7,18 +7,18 @@
           <element id="file-copy" path="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
         </element>
         <element id="module-output" name="SQLSender" />
-        <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" />
-        <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" />
-        <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
-        <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
       </element>
+      <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.9" />
+      <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
+      <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.2" />
       <element id="library" level="project" name="xstream-1.4.9" />
       <element id="library" level="project" name="mysql-connector-java-5.1.44-bin" />
-      <element id="directory" name="parameters">
-        <element id="dir-copy" path="$PROJECT_DIR$/parameters" />
-      </element>
+      <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.4" />
       <element id="directory" name="rsa">
         <element id="dir-copy" path="$PROJECT_DIR$/rsa" />
+      </element>
+      <element id="directory" name="parameters">
+        <element id="dir-copy" path="$PROJECT_DIR$/parameters" />
       </element>
     </root>
   </artifact>

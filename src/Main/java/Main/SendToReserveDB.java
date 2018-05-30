@@ -33,7 +33,7 @@ public final class SendToReserveDB{
                 sendLines(param.getOnePackOfStrings());
             else
                 sendLines(count);
-            System.out.println("Lines success reserved ");
+            System.out.println("Lines successfully reserved ");
             count = getCountOfRecords(Line.class);
         }
     }
@@ -52,7 +52,7 @@ public final class SendToReserveDB{
                 sendZones(param.getOnePackOfStrings());
             else
                 sendZones(count);
-            System.out.println("Zones success reserved");
+            System.out.println("Zones successfully reserved");
             count = getCountOfRecords(Zone.class);
         }
 
@@ -71,7 +71,7 @@ public final class SendToReserveDB{
                 sendHeatMap(param.getOnePackOfStrings());
             else
                 sendHeatMap(count);
-            System.out.println("Zones success reserved");
+            System.out.println("Zones successfully reserved");
             count = getCountOfRecords(HeatMap.class);
         }
 
