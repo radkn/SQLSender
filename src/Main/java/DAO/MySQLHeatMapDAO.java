@@ -18,7 +18,7 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
         super(connection);
     }
 
-    private String tableName = "HeatMap";
+    private String tableName = "heatmap";
 
     @Override
     public String getSelectQuery() {
@@ -69,7 +69,8 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
                 "y int(11), " +
                 "datetime timestamp, " +
                 "type int(11), " +
-                "transmitted tinyint(1))";
+                "transmitted tinyint(1))" +
+                "taskID int(11)";
     }
 
     @Override
@@ -85,6 +86,7 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
                 h.setDatetime(rs.getTimestamp(5));
                 h.setType(rs.getInt(6));
                 h.setTransmitted(rs.getBoolean(7));
+                h.setTaskID(rs.getInt(8));
                 result.add(h);
             }
         } catch (SQLException e) {

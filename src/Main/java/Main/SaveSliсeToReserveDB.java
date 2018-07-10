@@ -26,18 +26,13 @@ public class SaveSliсeToReserveDB<T extends AbstractSendableRecord> {
 
         Parameters param = reader.ReadFile(Parameters.class);
 
-
-        if(param.getNewReserveTable()){
-            System.out.println(createTable(Line.class));
-        }
-
         long count = getCountOfRecords(Line.class); //records with transmitted=0
         while (count > 0) {
             if(count >= param.getOnePackOfStrings() )
                 sendRecords(param.getOnePackOfStrings(), Line.class);
             else
                 sendRecords(count, Line.class);
-            System.out.println("Lines success reserved ");
+            System.out.println("Lines successfully reserved ");
             count = getCountOfRecords(Line.class);
         }
     }
@@ -62,7 +57,7 @@ public class SaveSliсeToReserveDB<T extends AbstractSendableRecord> {
                 sendRecords(param.getOnePackOfStrings(), Zone.class);
             else
                 sendRecords(count, Zone.class);
-            System.out.println("Zones success reserved");
+            System.out.println("Zones successfully reserved");
             count = getCountOfRecords(Zone.class);
         }
 
@@ -88,7 +83,7 @@ public class SaveSliсeToReserveDB<T extends AbstractSendableRecord> {
                 sendRecords(param.getOnePackOfStrings(), HeatMap.class);
             else
                 sendRecords(count, HeatMap.class);
-            System.out.println("HeatMaps success reserved");
+            System.out.println("HeatMaps successfully reserved");
             count = getCountOfRecords(HeatMap.class);
         }
 
@@ -139,7 +134,7 @@ public class SaveSliсeToReserveDB<T extends AbstractSendableRecord> {
             list = daoL.getByTransmittedLimit(param.getReserveTransmitted(), count);
             con.close();
         }
-        System.out.println("List lines size" + list.size());
+        System.out.println("List lines size: " + list.size());
         return list;
     }
 
@@ -231,7 +226,7 @@ public class SaveSliсeToReserveDB<T extends AbstractSendableRecord> {
         }
         if(newTableName != null){
             System.out.println("Creating new table with name "+ newTableName + " successful.");
-        } else System.err.println("ERROR with creating table! Table successful created");
+        } else System.err.println("ERROR with creating table! It has been created earlier.");
         return newTableName;
     }
 }

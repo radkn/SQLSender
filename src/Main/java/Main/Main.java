@@ -56,7 +56,6 @@ public class Main {
         SaveSliсeToReserveDB objToSave = new SaveSliсeToReserveDB();
         if (objToSave.getCountOfRecords(Line.class) >= param.getNumberToSendReserve()) {
             objToSave.sendLinesToReserve();
-            System.out.println("L - true");
         }
         else {
             System.out.println("There is no reserve Lines data");
@@ -64,7 +63,6 @@ public class Main {
 
         if (objToSave.getCountOfRecords(Zone.class) >= param.getNumberToSendReserve()) {
             objToSave.sendZonesToReserve();
-            System.out.println("Z - true");
         }
         else {
             System.out.println("There is no reserve Zones data");
@@ -72,7 +70,6 @@ public class Main {
 
         if (objToSave.getCountOfRecords(HeatMap.class) >= param.getNumberToSendReserve()) {
             objToSave.sendHeatMapToReserve();
-            System.out.println("H - true");
         }
         else {
             System.out.println("There is no reserve HeatMaps data");

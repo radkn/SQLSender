@@ -76,7 +76,6 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
             list = daoL.getByTransmittedLimit(param.getTransmitted(), count);
             con.close();
         }
-        System.out.println("List lines size: " + list.size());
         return list;
     }
 
@@ -108,8 +107,9 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
         String jsonLines = "{" +
                 "\"hash\":\""+ param.getHash() +"\"," +
                 "\"data\":\"" + encryptedLines + "\"}";
-        System.out.println("Enc Lines: ");
-        System.out.println(encryptedLines);
+        //Test output
+//        System.out.println("Enc Lines: ");
+//        System.out.println(encryptedLines);
         try {
             long time = System.currentTimeMillis();
             sendSuccess = sender.SendData(jsonLines, param.getServerURL() + param.getLineURL());
@@ -158,8 +158,9 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
         String jsonZones = "{" +
                 "\"hash\":\""+ param.getHash() +"\"," +
                 "\"data\":\"" + encryptedZones + "\"}";
-        System.out.println("Enc Lines: ");
-        System.out.println(encryptedZones);
+        //Test output
+//        System.out.println("Enc Lines: ");
+//        System.out.println(encryptedZones);
         try {
             long time = System.currentTimeMillis();
             sendSuccess = sender.SendData(jsonZones, param.getServerURL()+param.getZoneURL());
@@ -206,7 +207,6 @@ public class SendNVToServer<T extends AbstractSendableRecord> {
             e.printStackTrace();
         }
 
-        System.out.println("HM string: " + messageHeatMaps);
         String encryptedHeatMaps = RSASender.encryptJSON(messageHeatMaps);
         String jsonHeatMaps = "{" +
                 "\"hash\":\""+ param.getHash() +"\"," +

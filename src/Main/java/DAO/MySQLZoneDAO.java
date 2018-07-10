@@ -19,7 +19,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         super(connection);
     }
 
-    private String tableName = "Zone";
+    private String tableName = "zone";
 
     @Override
     public String getSelectQuery() {
@@ -73,7 +73,8 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
                 "datetime_delay int(11), " +
                 "type int(11), " +
                 "time_stamp timestamp, " +
-                "transmitted tinyint(1))";
+                "transmitted tinyint(1))" +
+                "taskID int(11)";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -93,6 +94,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
                 z.setType(rs.getInt(8));
                 z.setTime_stamp(rs.getTimestamp(9));
                 z.setTransmitted(rs.getBoolean(10));
+                z.setTaskID(rs.getInt(11));
                 result.add(z);
             }
         } catch (SQLException e) {

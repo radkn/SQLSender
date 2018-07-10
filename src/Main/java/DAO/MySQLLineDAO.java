@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
-    private String tableName = "Line";
+    private String tableName = "line";
 
     public MySQLLineDAO(Connection connection) {
         super(connection);
@@ -75,7 +75,8 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
                 "status int(11), " +
                 "type int(11), " +
                 "time_stamp timestamp, " +
-                "transmitted tinyint(1))";
+                "transmitted tinyint(1))" +
+                "taskID int(11)";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -94,6 +95,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
                 l.setType(rs.getInt(7));
                 l.setTime_stamp(rs.getTimestamp(8));
                 l.setTransmitted(rs.getBoolean(9));
+                l.setTaskID(rs.getInt(10));
                 result.add(l);
             }
         } catch (SQLException e) {
