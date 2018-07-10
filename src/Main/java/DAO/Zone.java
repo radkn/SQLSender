@@ -21,6 +21,7 @@ public class Zone extends AbstractSendableRecord implements ISendable {
     private Timestamp time_stamp;
     private boolean transmitted;
     private String nameOfTable = "Zone";
+    private int taskID;
 
     public int getId() {
         return id;
@@ -102,6 +103,14 @@ public class Zone extends AbstractSendableRecord implements ISendable {
         this.transmitted = transmitted;
     }
 
+    public int getTaskID(){
+        return taskID;
+    }
+
+    public void setTaskID(int taskid){
+        this.taskID = taskid;
+    }
+
 
     @Override
     public String toJSON() {
@@ -113,7 +122,7 @@ public class Zone extends AbstractSendableRecord implements ISendable {
                 + "\",\"datetime_end\":\"" + sendFormat.format(new java.util.Date(datatime_end.getTime()))
                 + "\",\"datetime_delay\":\"" + datatime_delay
                 + "\",\"type\":\"" + type
+                + "\",\"taskID\":\"" + taskID
                 + "\"}";
     }
-
 }

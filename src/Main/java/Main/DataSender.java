@@ -50,7 +50,7 @@ public class DataSender {
                 String line = "";
                 while ((line = rd.readLine()) != null) {
                     System.out.println(line);
-                    //{"success":"true","error":"null"}
+
                     if ((line.contains("\"success\":\"1\""))||(line.contains("\"success\":\"true\""))||(line.contains("\"success\":true")))
                         result = true;
                 }

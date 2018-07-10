@@ -68,6 +68,8 @@ public class Parameters {
         return Hash;
     }
 
+    public void setHash(String hash){this.Hash = hash;}
+
     public boolean getReserveTransmitted(){return ReserveTransmitted;}
 
     public boolean getNewReserveTable(){return newReserveTable;}

@@ -18,6 +18,7 @@ public class HeatMap extends AbstractSendableRecord implements ISendable {
     private Timestamp datetime;
     private int type;
     private boolean transmitted;
+    private int taskID;
 
 
 
@@ -77,6 +78,14 @@ public class HeatMap extends AbstractSendableRecord implements ISendable {
         this.transmitted = transmitted;
     }
 
+    public int getTaskID(){
+        return taskID;
+    }
+
+    public void setTaskID(int taskid){
+        this.taskID = taskid;
+    }
+
     @Override
     public String toJSON() {
         DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
@@ -84,6 +93,7 @@ public class HeatMap extends AbstractSendableRecord implements ISendable {
                 + "\",\"y\":\"" + y
                 + "\",\"datetime\":\"" + sendFormat.format(new java.util.Date(datetime.getTime()))
                 + "\",\"type\":\"" + type
+                + "\",\"taskID\":\"" + taskID
                 +"\"}";
     }
 }

@@ -20,6 +20,7 @@ public class Line extends AbstractSendableRecord implements ISendable {
     private Timestamp time_stamp;
     private boolean transmitted;
     private String nameOfTable = "Line";
+    private int taskID;
 
 
     public int getId() {
@@ -94,6 +95,15 @@ public class Line extends AbstractSendableRecord implements ISendable {
         this.transmitted = transmitted;
     }
 
+    public int getTaskID(){
+        return taskID;
+    }
+
+    public void setTaskID(int taskid){
+        this.taskID = taskid;
+    }
+
+
     @Override
     public String toJSON() {
         DateFormat sendFormat = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
@@ -102,8 +112,7 @@ public class Line extends AbstractSendableRecord implements ISendable {
                 + "\",\"datetime\":\"" + sendFormat.format(new java.util.Date(dataTime.getTime()))
                 + "\",\"status\":\"" + status
                 + "\",\"type\":\"" + type
+                + "\",\"taskID\":\"" + taskID
                 + "\"}";
     }
-
-
 }
