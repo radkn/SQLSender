@@ -32,14 +32,14 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO "+ tableName +" (uid, x, y, datetime, type, transmitted)" +
-                "VALUE (?,?,?,?,?,?)";
+        return "INSERT INTO "+ tableName +" (uid, x, y, datetime, type, transmitted, taskID)" +
+                "VALUE (?,?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
         return "UPDATE "+ tableName +"\n" +
-                "SET  uid = ?, x = ?, y = ?, datetime = ?, type = ?, transmitted = ? " +
+                "SET  uid = ?, x = ?, y = ?, datetime = ?, type = ?, transmitted = ?, taskID = ? " +
                 "WHERE id = ?";
     }
 
@@ -69,8 +69,8 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
                 "y int(11), " +
                 "datetime timestamp, " +
                 "type int(11), " +
-                "transmitted tinyint(1))" +
-                "taskID int(11)";
+                "transmitted tinyint(1)," +
+                "taskID int(11))";
     }
 
     @Override
@@ -103,6 +103,7 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
         statement.setTimestamp(4, object.getDatetime());
         statement.setInt(5, object.getType());
         statement.setBoolean(6, object.getTransmitted());
+        statement.setInt(7, object.getTaskID());
     }
 
     @Override
@@ -113,8 +114,9 @@ public class MySQLHeatMapDAO extends AbstractJDBCDao<HeatMap, Integer> {
         statement.setTimestamp(4, object.getDatetime());
         statement.setInt(5, object.getType());
         statement.setBoolean(6, object.getTransmitted());
+        statement.setInt(7, object.getTaskID());
 
-        statement.setInt(7, object.getId());
+        statement.setInt(8, object.getId());
     }
 
 

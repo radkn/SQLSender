@@ -36,14 +36,14 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO " + tableName + " (scene_id, lineTitle, uid, datetime, status, type, time_stamp, transmitted)" +
-                "VALUE (?,?,?,?,?,?,?,?)";
+        return "INSERT INTO " + tableName + " (scene_id, lineTitle, uid, datetime, status, type, time_stamp, transmitted, taskID)" +
+                "VALUE (?,?,?,?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
         return "UPDATE " + tableName + "\n" +
-                "SET scene_id = ?, lineTitle = ?, uid = ?, datetime = ?, status = ?, type = ?, time_stamp = ?, transmitted = ? " +
+                "SET scene_id = ?, lineTitle = ?, uid = ?, datetime = ?, status = ?, type = ?, time_stamp = ?, transmitted = ?, taskID = ?" +
                 "WHERE id = ?";
     }
 
@@ -75,8 +75,8 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
                 "status int(11), " +
                 "type int(11), " +
                 "time_stamp timestamp, " +
-                "transmitted tinyint(1))" +
-                "taskID int(11)";
+                "transmitted tinyint(1)," +
+                "taskID int(11))";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -114,6 +114,7 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         statement.setInt(6, object.getType());
         statement.setTimestamp(7, object.getTime_stamp());
         statement.setBoolean(8, object.getTransmitted());
+        statement.setInt(9, object.getTaskID());
     }
 
     @Override
@@ -127,8 +128,9 @@ public class MySQLLineDAO extends AbstractJDBCDao<Line, Integer>{
         statement.setInt(6, object.getType());
         statement.setTimestamp(7, object.getTime_stamp());
         statement.setBoolean(8, object.getTransmitted());
+        statement.setInt(9, object.getTaskID());
 
-        statement.setInt(9, object.getId());
+        statement.setInt(10, object.getId());
     }
 
     @Override

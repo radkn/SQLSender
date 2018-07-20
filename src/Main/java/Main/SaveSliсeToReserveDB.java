@@ -26,6 +26,10 @@ public class SaveSliсeToReserveDB<T extends AbstractSendableRecord> {
 
         Parameters param = reader.ReadFile(Parameters.class);
 
+        if(param.getNewReserveTable()){
+            createTable(Line.class);
+        }
+
         long count = getCountOfRecords(Line.class); //records with transmitted=0
         while (count > 0) {
             if(count >= param.getOnePackOfStrings() )

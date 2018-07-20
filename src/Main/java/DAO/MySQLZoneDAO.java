@@ -33,14 +33,14 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO "+ tableName +" (scene_id, zoneTitle, uid, datetime_start, datetime_end, datetime_delay, type, time_stamp, transmitted)" +
-                "VALUE (?,?,?,?,?,?,?,?,?)";
+        return "INSERT INTO "+ tableName +" (scene_id, zoneTitle, uid, datetime_start, datetime_end, datetime_delay, type, time_stamp, transmitted, taskID)" +
+                "VALUE (?,?,?,?,?,?,?,?,?,?)";
     }
 
     @Override
     public String getUpdateQuery() {
         return "UPDATE "+ tableName +"\n" +
-                "SET scene_id = ?, zoneTitle = ?, uid = ?, datetime_start = ?, datetime_end = ?, datetime_delay = ?, type = ?, time_stamp = ?, transmitted = ? " +
+                "SET scene_id = ?, zoneTitle = ?, uid = ?, datetime_start = ?, datetime_end = ?, datetime_delay = ?, type = ?, time_stamp = ?, transmitted = ?, taskID = ? " +
                 "WHERE id = ?";
     }
 
@@ -73,8 +73,8 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
                 "datetime_delay int(11), " +
                 "type int(11), " +
                 "time_stamp timestamp, " +
-                "transmitted tinyint(1))" +
-                "taskID int(11)";
+                "transmitted tinyint(1)," +
+                "taskID int(11))";
     }
 
     /**Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.*/
@@ -114,6 +114,7 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         statement.setInt(7, object.getType());
         statement.setTimestamp(8, object.getTime_stamp());
         statement.setBoolean(9, object.getTransmitted());
+        statement.setInt(10, object.getTaskID());
     }
 
     @Override
@@ -127,8 +128,9 @@ public class MySQLZoneDAO extends AbstractJDBCDao<Zone, Integer> {
         statement.setInt(7, object.getType());
         statement.setTimestamp(8, object.getTime_stamp());
         statement.setBoolean(9, object.getTransmitted());
+        statement.setInt(10, object.getTaskID());
 
-        statement.setInt(10, object.getId());
+        statement.setInt(11, object.getId());
     }
 
     @Override

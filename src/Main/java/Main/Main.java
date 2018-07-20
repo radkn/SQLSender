@@ -68,12 +68,13 @@ public class Main {
             System.out.println("There is no reserve Zones data");
         }
 
-        if (objToSave.getCountOfRecords(HeatMap.class) >= param.getNumberToSendReserve()) {
-            objToSave.sendHeatMapToReserve();
-        }
-        else {
-            System.out.println("There is no reserve HeatMaps data");
-        }
+        //DON`T DELETE!!! COMMENTED BECAUSE NO WE HAVE NO TABLES WITH HEATMAP
+//        if (objToSave.getCountOfRecords(HeatMap.class) >= param.getNumberToSendReserve()) {
+//            objToSave.sendHeatMapToReserve();
+//        }
+//        else {
+//            System.out.println("There is no reserve HeatMaps data");
+//        }
 
 
         //here we send new Lines data to server
@@ -107,18 +108,19 @@ public class Main {
         }
         System.out.println("Count of Zone checked.");
 
-        System.out.println("Start check count of HeatMap...");
-        //here we send new HeatMap data to server
-        long countH = objToSendServer.getCountOfRecords(HeatMap.class); //records with transmitted=false
-        while (countH > 0){
-            if(countH >= param.getOnePackOfStrings())
-                sendSuccess = objToSendServer.sendHeatMap(param.getOnePackOfStrings());
-            else
-                sendSuccess = objToSendServer.sendHeatMap(countH);
-            System.out.println("HeatMaps success: " + sendSuccess);
-            countH = objToSendServer.getCountOfRecords(HeatMap.class);
-        }
-        System.out.println("Count of HeatMap checked.");
+        //DON`T DELETE!!! COMMENTED BECAUSE NO WE HAVE NO TABLES WITH HEATMAP
+//        System.out.println("Start check count of HeatMap...");
+//        //here we send new HeatMap data to server
+//        long countH = objToSendServer.getCountOfRecords(HeatMap.class); //records with transmitted=false
+//        while (countH > 0){
+//            if(countH >= param.getOnePackOfStrings())
+//                sendSuccess = objToSendServer.sendHeatMap(param.getOnePackOfStrings());
+//            else
+//                sendSuccess = objToSendServer.sendHeatMap(countH);
+//            System.out.println("HeatMaps success: " + sendSuccess);
+//            countH = objToSendServer.getCountOfRecords(HeatMap.class);
+//        }
+//        System.out.println("Count of HeatMap checked.");
 
 
     }
